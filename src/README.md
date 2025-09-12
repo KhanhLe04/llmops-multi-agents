@@ -11,7 +11,7 @@ Thư mục này chứa source code của hệ thống LLMOps Multi Agents với 
 src/
 ├── README.md                      # Tài liệu này
 ├── docker-compose.yml             # Orchestration toàn bộ services
-├── preprocessing/                 # Data pipeline & preprocessing
+├── indexing/                      # Data pipeline, indexing
 │   ├── 01_extract_text.py          # Trích xuất text từ PDF
 │   ├── 02_chunk_text.py            # Chia text thành chunks
 │   ├── 03_create_embeddings.py     # Tạo embeddings và lưu vector DB
@@ -26,7 +26,11 @@ src/
 │   ├── app.py                      # FastAPI retrieval API
 │   ├── Dockerfile                  # Container definition
 │   └── pyproject.toml              # Poetry dependencies
-```
+├── agents/                       # Thư mục cho các agent
+│   ├── orchestrator-agent          # Thư mục cho orchestrator agent
+│   ├── empathy-agent               # Thư mục cho empathy agent
+│   └── rag-agent                   # Thư mục cho RAG agent
+│   └── emergency-agent             # Thư mục cho emergency agent
 
 ## Quick Start
 
