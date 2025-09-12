@@ -26,7 +26,11 @@ src/
 │   ├── app.py                      # FastAPI retrieval API
 │   ├── Dockerfile                  # Container definition
 │   └── pyproject.toml              # Poetry dependencies
-```
+├── agents/                       # Thư mục cho các agent
+│   ├── orchestrator-agent          # Thư mục cho orchestrator agent
+│   ├── empathy-agent               # Thư mục cho empathy agent
+│   └── rag-agent                   # Thư mục cho RAG agent
+│   └── emergency-agent             # Thư mục cho emergency agent
 
 ## Quick Start
 

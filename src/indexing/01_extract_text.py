@@ -181,54 +181,11 @@ def save_to_json(data, output_file):
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-def test_patterns():
-    """Test the regex patterns with sample text."""
-    sample_text = """
-    PHẦN 1. TỔNG QUAN VỀ TÂM LÝ HỌC
-
-    1.1. Khái niệm về tâm lý học
-    Tâm lý học là khoa học nghiên cứu về hoạt động tâm lý của con người. Đây là một ngành khoa học quan trọng giúp hiểu được bản chất của con người.
-
-    1.2. Đối tượng nghiên cứu của tâm lý học
-    Đối tượng nghiên cứu của tâm lý học bao gồm các hiện tượng tâm lý như nhận thức, cảm xúc, hành vi và các quá trình tâm lý khác.
-
-    PHẦN 2. CÁC PHƯƠNG PHÁP NGHIÊN CỨU
-
-    2.1. Phương pháp quan sát
-    Quan sát là phương pháp nghiên cứu cơ bản trong tâm lý học. Phương pháp này cho phép nghiên cứu viên quan sát hành vi tự nhiên của đối tượng nghiên cứu.
-
-    2.2. Phương pháp thử nghiệm
-    Thử nghiệm cho phép nghiên cứu mối quan hệ nhân quả giữa các biến số. Đây là phương pháp có tính khoa học cao và được sử dụng rộng rãi.
-    """
-    
-    print("🧪 Testing extraction patterns...")
-    print("=" * 60)
-    chunks = preprocess_and_chunk_text(sample_text)
-    
-    print(f"📊 Number of chunks extracted: {len(chunks)}")
-    print("=" * 60)
-    
-    for i, chunk in enumerate(chunks, 1):
-        print(f"\n📝 Chunk {i}:")
-        print(f"📌 Title: {chunk['title']}")
-        print(f"📄 Context: {chunk['context'][:100]}...")
-        print("-" * 40)
-    
-    print(f"\n✅ Test completed! Expected format:")
-    print(f"   Title: 'PHẦN X: Title, Section'")
-    print(f"   Context: 'Content of that section'")
-    
-    return chunks
-
 # Example usage
 if __name__ == "__main__":
     import sys
     from pathlib import Path
-    
-    # Check if user wants to test patterns
-    if len(sys.argv) > 1 and sys.argv[1] == "test":
-        test_patterns()
-    elif len(sys.argv) > 1 and sys.argv[1] == "all":
+    if len(sys.argv) > 1 and sys.argv[1] == "all":
         # Process all PDFs in data/raw/
         raw_dir = Path("../../data/raw/")
         pdf_files = list(raw_dir.glob("*.pdf"))
@@ -257,20 +214,3 @@ if __name__ == "__main__":
                 print("\n" + "-"*60)
         
         print(f"\n🎉 Finished processing all {len(pdf_files)} PDF files!")
-        
-    else:
-        # Process single PDF (default behavior)
-        pdf_path = "../../data/raw/MOET_SoTay_ThucHanh_CTXH_TrongTruongHoc_vi.pdf"
-        output_json = "output.json"
-        
-        # Choose the extraction method: "pypdf2" or "fitz"
-        extraction_method = "fitz"  # Change to "pypdf2" if needed
-        
-        try:
-            process_pdf(pdf_path, output_json, extraction_method)
-        except FileNotFoundError:
-            print(f"❌ PDF file not found: {pdf_path}")
-            print("💡 Usage:")
-            print("   python 01_extract_text.py       # Process default PDF")
-            print("   python 01_extract_text.py test  # Test patterns")
-            print("   python 01_extract_text.py all   # Process all PDFs in data/raw/")
