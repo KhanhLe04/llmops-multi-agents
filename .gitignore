@@ -21,7 +21,6 @@ logs/
 
 # Environment / secrets
 .env
-.env.*
 
 # OS junk
 .DS_Store

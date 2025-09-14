@@ -13,6 +13,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferMemory
+from system_prompt import prompt as system_message
 
 # Qdrant client
 from qdrant_client import QdrantClient
@@ -26,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Orchestrator Agent - Mental Health Chatbot",
-    description="An intelligent orchestrator agent with RAG capabilities for Vietnamese mental health support",
+    description="",
     version="2.0.0",
 )
 
@@ -44,19 +45,13 @@ class OrchestratorAgent:
     def __init__(self):
         """Initialize the Orchestrator Agent with RAG capabilities"""
         self.gemini_api_key = os.getenv("GEMINI_API_KEY")
-        self.qdrant_host = os.getenv("QDRANT_HOST", "localhost")
-        self.qdrant_port = int(os.getenv("QDRANT_PORT", "6333"))
-        self.collection_name = os.getenv("QDRANT_COLLECTION", "mental_health_docs")
         
         if not self.gemini_api_key:
             raise ValueError("GEMINI_API_KEY environment variable is required")
         
         # Initialize components
         self._init_llm()
-        self._init_qdrant_client()
         self._init_embeddings()
-        self._init_vector_store()
-        self._init_rag_chain()
         
         # Store conversation sessions
         self.sessions = {}
@@ -73,20 +68,6 @@ class OrchestratorAgent:
         )
         logger.info("LLM initialized")
     
-    def _init_qdrant_client(self):
-        """Initialize Qdrant client"""
-        try:
-            self.qdrant_client = QdrantClient(
-                host=self.qdrant_host,
-                port=self.qdrant_port
-            )
-            # Test connection
-            collections = self.qdrant_client.get_collections()
-            logger.info(f"Connected to Qdrant at {self.qdrant_host}:{self.qdrant_port}")
-        except Exception as e:
-            logger.error(f"Failed to connect to Qdrant: {e}")
-            raise
-    
     def _init_embeddings(self):
         """Initialize embeddings model"""
         self.embeddings = GoogleGenerativeAIEmbeddings(
@@ -94,128 +75,7 @@ class OrchestratorAgent:
             google_api_key=self.gemini_api_key
         )
         logger.info("Embeddings model initialized")
-    
-    def _init_vector_store(self):
-        """Initialize vector store connection to Qdrant"""
-        try:
-            self.vector_store = Qdrant(
-                client=self.qdrant_client,
-                collection_name=self.collection_name,
-                embeddings=self.embeddings
-            )
-            logger.info(f"Vector store connected to collection: {self.collection_name}")
-            
-            # Test retrieval to check data quality
-            try:
-                test_results = self.vector_store.similarity_search("test", k=1)
-                logger.info("Vector store test retrieval successful")
-            except Exception as e:
-                logger.warning(f"Vector store test failed: {e}")
-                
-        except Exception as e:
-            logger.error(f"Failed to initialize vector store: {e}")
-            # Don't raise here, allow fallback mode
-            self.vector_store = None
-    
-    def _init_rag_chain(self):
-        """Initialize RAG chain with custom prompt for Vietnamese mental health"""
-        # Check if vector store is available
-        if self.vector_store is None:
-            logger.warning("Vector store not available, initializing fallback mode")
-            self.rag_chain = None
-            return
-            
-        # Create custom prompt template
-        system_template = """
-        Bạn là một chuyên gia tư vấn tâm lý được đào tạo chuyên sâu về sức khỏe tâm thần của học sinh, sinh viên Việt Nam.
-
-        Nhiệm vụ của bạn:
-        1. Cung cấp lời khuyên chuyên nghiệp, empathetic và phù hợp với văn hóa Việt Nam
-        2. Sử dụng thông tin từ các tài liệu chuyên môn được cung cấp trong context
-        3. Luôn khuyến khích tìm kiếm sự giúp đỡ chuyên nghiệp khi cần thiết
-        4. Trả lời bằng tiếng Việt một cách tự nhiên và dễ hiểu
-
-        Context từ tài liệu chuyên môn:
-        {context}
-
-        Lịch sử cuộc trò chuyện:
-        {chat_history}
-
-        Hãy trả lời câu hỏi một cách chu đáo và hữu ích.
-        """
-
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", system_template),
-            MessagesPlaceholder(variable_name="chat_history"),
-            ("human", "{question}")
-        ])
-        
-        try:
-            # Create custom retriever with validation
-            retriever = self._create_safe_retriever()
-            
-            # Create retrieval chain
-            self.rag_chain = RetrievalQA.from_chain_type(
-                llm=self.llm,
-                chain_type="stuff",
-                retriever=retriever,
-                return_source_documents=True,
-                chain_type_kwargs={
-                    "prompt": prompt,
-                    "memory": ConversationBufferMemory(
-                        memory_key="chat_history",
-                        return_messages=True
-                    )
-                }
-            )
-            logger.info("RAG chain initialized")
-        except Exception as e:
-            logger.error(f"Failed to initialize RAG chain: {e}")
-            self.rag_chain = None
-    
-    def _create_safe_retriever(self):
-        """Create a retriever with document validation"""
-        from langchain.schema import Document
-        
-        class SafeRetriever:
-            def __init__(self, vector_store):
-                self.vector_store = vector_store
-            
-            def get_relevant_documents(self, query: str):
-                """Get documents with validation"""
-                try:
-                    docs = self.vector_store.similarity_search(query, k=5)
-                    
-                    # Filter out invalid documents
-                    valid_docs = []
-                    for doc in docs:
-                        if hasattr(doc, 'page_content') and doc.page_content is not None:
-                            # Ensure page_content is string
-                            if isinstance(doc.page_content, str) and doc.page_content.strip():
-                                valid_docs.append(doc)
-                            else:
-                                logger.warning(f"Skipping document with invalid content: {type(doc.page_content)}")
-                        else:
-                            # Create a fallback document
-                            logger.warning("Found document with None page_content, creating fallback")
-                            fallback_doc = Document(
-                                page_content="Tài liệu hỗ trợ về sức khỏe tâm thần học sinh, sinh viên.",
-                                metadata=getattr(doc, 'metadata', {})
-                            )
-                            valid_docs.append(fallback_doc)
-                    
-                    return valid_docs
-                    
-                except Exception as e:
-                    logger.error(f"Error in document retrieval: {e}")
-                    # Return fallback documents
-                    return [Document(
-                        page_content="Thông tin về sức khỏe tâm thần và hỗ trợ tâm lý cho học sinh, sinh viên.",
-                        metadata={"source": "fallback"}
-                    )]
-        
-        return SafeRetriever(self.vector_store)
-    
+      
     def get_or_create_session(self, session_id: str):
         """Get or create conversation session"""
         if session_id not in self.sessions:
@@ -225,66 +85,11 @@ class OrchestratorAgent:
             )
         return self.sessions[session_id]
     
-    async def chat(self, message: str, session_id: str = "default") -> ChatResponse:
-        """Process chat message with RAG or fallback"""
+    async def chat(self, message: str, session_id: str) -> ChatResponse:
+        """Response without RAG, direct LLM usage"""
         try:
             # Get session memory
             memory = self.get_or_create_session(session_id)
-            
-            # Check if RAG is available
-            if self.rag_chain is None:
-                logger.warning("RAG chain not available, using fallback mode")
-                return await self._fallback_chat(message, session_id, memory)
-            
-            # Get chat history
-            chat_history = memory.chat_memory.messages
-            
-            # Process with RAG
-            try:
-                result = self.rag_chain(
-                    {
-                        "query": message,
-                        "chat_history": chat_history
-                    }
-                )
-                
-                response_text = result["result"]
-                source_docs = result.get("source_documents", [])
-                
-                # Extract sources
-                sources = []
-                for doc in source_docs:
-                    if hasattr(doc, 'metadata') and 'source' in doc.metadata:
-                        sources.append(doc.metadata['source'])
-                
-                # Update memory
-                memory.chat_memory.add_user_message(message)
-                memory.chat_memory.add_ai_message(response_text)
-                
-                return ChatResponse(
-                    response=response_text,
-                    session_id=session_id,
-                    sources=sources[:3]  # Limit to top 3 sources
-                )
-                
-            except Exception as rag_error:
-                logger.error(f"RAG processing failed: {rag_error}")
-                logger.info("Falling back to direct LLM response")
-                return await self._fallback_chat(message, session_id, memory)
-            
-        except Exception as e:
-            logger.error(f"Error in chat processing: {e}")
-            raise HTTPException(status_code=500, detail=f"Error processing chat: {str(e)}")
-    
-    async def _fallback_chat(self, message: str, session_id: str, memory) -> ChatResponse:
-        """Fallback chat without RAG"""
-        try:
-            # Create a simple prompt for direct LLM usage
-            system_message = """Bạn là một chuyên gia tư vấn tâm lý chuyên về sức khỏe tâm thần của học sinh, sinh viên Việt Nam.
-
-Hãy cung cấp lời khuyên hữu ích, empathetic và phù hợp với văn hóa Việt Nam. 
-Luôn khuyến khích tìm kiếm sự giúp đỡ chuyên nghiệp khi cần thiết.
-Trả lời bằng tiếng Việt một cách tự nhiên và dễ hiểu."""
 
             # Get chat history
             chat_history = memory.chat_memory.messages
@@ -380,34 +185,7 @@ async def chat_endpoint(chat_message: ChatMessage):
         logger.error(f"Chat endpoint error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# @app.post("/orchestrate")
-# async def orchestrate_request(request: dict):
-#     """Orchestration endpoint to coordinate with other agents"""
-#     try:
-#         task_type = request.get("task_type", "general")
-#         message = request.get("message", "")
-#         session_id = request.get("session_id", "default")
-        
-#         # Determine which agent to route to based on task type
-#         if task_type == "emergency":
-#             # Route to emergency agent (port 7010)
-#             return {"agent": "emergency", "status": "routed", "message": "Routing to emergency agent"}
-#         elif task_type == "empathy":
-#             # Route to empathy agent (port 7015)  
-#             return {"agent": "empathy", "status": "routed", "message": "Routing to empathy agent"}
-#         else:
-#             # Handle with RAG agent or local RAG
-#             response = await orchestrator.chat(message, session_id)
-#             return {
-#                 "agent": "rag",
-#                 "status": "processed",
-#                 "response": response.response,
-#                 "sources": response.sources
-#             }
-            
-#     except Exception as e:
-#         logger.error(f"Orchestration error: {e}")
-#         raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.delete("/sessions/{session_id}")
 async def clear_session(session_id: str):
