@@ -7,8 +7,7 @@ Orchestrator Agent là thành phần trung tâm của hệ thống LLMOps Multi-
 ## Tính năng chính
 
 ### 🤖 RAG-powered Chatbot
-- Tích hợp LangChain với Gemini 1.5 Pro
-- Retrieval từ Qdrant vector database
+- Tích hợp LangChain với model gemma-3n-e2b-it
 - Conversation memory cho session management
 - Hỗ trợ tiếng Việt chuyên biệt cho tâm lý học
 
@@ -37,11 +36,6 @@ Tạo file `.env` với nội dung:
 # Gemini API Configuration
 GEMINI_API_KEY=your_gemini_api_key_here
 
-# Qdrant Configuration  
-QDRANT_HOST=localhost
-QDRANT_PORT=6333
-QDRANT_COLLECTION=mental_health_docs
-
 # Service URLs
 RAG_AGENT_URL=http://localhost:7005
 CONTEXT_RETRIEVAL_URL=http://localhost:5005
@@ -63,7 +57,6 @@ docker run -p 7000:7000 --env-file .env orchestrator-agent
 
 ### Chat Endpoints
 - `POST /chat` - Gửi tin nhắn tới chatbot
-- `POST /orchestrate` - Điều phối request tới agents khác
 
 ### Session Management  
 - `GET /sessions` - Liệt kê các sessions đang hoạt động
@@ -80,7 +73,7 @@ docker run -p 7000:7000 --env-file .env orchestrator-agent
 1. **User Input** → Embedding với Google Generative AI
 2. **Vector Search** → Qdrant similarity search  
 3. **Context Retrieval** → Top-k relevant documents
-4. **Generation** → Gemini 1.5 Pro với context
+4. **Generation** → gemma-3n-e2b-it với context
 5. **Response** → Formatted output với sources
 
 ### Agent Orchestration
@@ -98,42 +91,7 @@ User Request → Orchestrator → Task Classification → Agent Routing
 - Memory-efficient conversation management
 - Caching cho frequent queries
 
-### Reliability  
-- Comprehensive error handling
-- Health checks và monitoring
-- Graceful degradation
-- Retry mechanisms
-
-### Scalability
-- Horizontal scaling support
-- Load balancing ready
-- Session persistence options
-- Microservice architecture
-
-## Monitoring
-
-### Metrics Available
-- Response time per endpoint
-- Qdrant connection status  
-- Active session count
-- Error rates và types
-
-### Logging
-- Structured logging với levels
-- Request/response tracing
-- Error stack traces
-- Performance metrics
-
 ## Development
-
-### Testing
-```bash
-# Unit tests
-pytest tests/
-
-# Integration tests  
-python test_scripts/test_integration.py
-```
 
 ### Debugging
 - Set `log_level="debug"` trong uvicorn.run()
@@ -152,7 +110,6 @@ services:
       - "7000:7000"
     environment:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - QDRANT_HOST=qdrant
     depends_on:
       - qdrant
 ```

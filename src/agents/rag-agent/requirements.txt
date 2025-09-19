@@ -4,7 +4,11 @@ python-dotenv
 langchain
 langchain-community
 langchain-google-genai
+langchain-huggingface
 pydantic
 python-multipart
-requests
 google-generativeai
+qdrant-client
+sentence-transformers
+transformers
+torch

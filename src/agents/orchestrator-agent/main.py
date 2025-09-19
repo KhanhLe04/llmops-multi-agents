@@ -8,16 +8,11 @@ from dotenv import load_dotenv
 
 # LangChain imports
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import Qdrant
 from langchain.chains import RetrievalQA
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferMemory
 from system_prompt import prompt as system_message
-
-# Qdrant client
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams
 
 load_dotenv()
 
@@ -28,7 +23,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title="Orchestrator Agent - Mental Health Chatbot",
     description="",
-    version="2.0.0",
+    version="1.0.0",
 )
 
 # Pydantic models
@@ -117,13 +112,12 @@ class OrchestratorAgent:
             memory.chat_memory.add_ai_message(response_text)
             
             return ChatResponse(
-                response=response_text + "\n\n⚠️ Lưu ý: Đang hoạt động ở chế độ cơ bản (không có tài liệu tham khảo).",
-                session_id=session_id,
-                sources=["fallback_mode"]
+                response=response_text + "⚠️ Lưu ý: Đang hoạt động ở chế độ cơ bản (không có tài liệu tham khảo).",
+                session_id=session_id
             )
             
         except Exception as e:
-            logger.error(f"Fallback chat failed: {e}")
+            logger.error(f"Chat failed: {e}")
             # Last resort fallback
             default_response = """
             Xin lỗi, tôi đang gặp một số vấn đề kỹ thuật. 
@@ -151,24 +145,15 @@ async def root():
     """Health check endpoint"""
     return {
         "message": "Orchestrator Agent - Mental Health Chatbot is running",
-        "version": "2.0.0",
+        "version": "1.0.0",
         "status": "healthy"
     }
 
 @app.get("/health")
 async def health_check():
     """Detailed health check"""
-    try:
-        # Test Qdrant connection
-        collections = orchestrator.qdrant_client.get_collections()
-        qdrant_status = "connected"
-    except Exception as e:
-        qdrant_status = f"error: {str(e)}"
-    
     return {
         "status": "healthy",
-        "qdrant": qdrant_status,
-        "collection": orchestrator.collection_name,
         "sessions": len(orchestrator.sessions)
     }
 
