@@ -185,32 +185,31 @@ def save_to_json(data, output_file):
 if __name__ == "__main__":
     import sys
     from pathlib import Path
-    if len(sys.argv) > 1 and sys.argv[1] == "all":
-        # Process all PDFs in data/raw/
-        raw_dir = Path("../../data/raw/")
-        pdf_files = list(raw_dir.glob("*.pdf"))
+    # Process all PDFs in data/raw/
+    raw_dir = Path("../../data/raw/")
+    pdf_files = list(raw_dir.glob("*.pdf"))
         
-        if not pdf_files:
-            print("❌ No PDF files found in data/raw/")
-            sys.exit(1)
+    if not pdf_files:
+        print("❌ No PDF files found in data/raw/")
+        sys.exit(1)
         
-        print(f"📚 Found {len(pdf_files)} PDF files to process:")
-        for pdf in pdf_files:
-            print(f"   - {pdf.name}")
+    print(f"📚 Found {len(pdf_files)} PDF files to process:")
+    for pdf in pdf_files:
+        print(f"   - {pdf.name}")
         
         print("\n" + "="*80)
         
-        for i, pdf_path in enumerate(pdf_files, 1):
-            print(f"\n🔄 Processing {i}/{len(pdf_files)}: {pdf_path.name}")
-            output_json = f"../../data/processed/chunks/{pdf_path.stem}.json"
+    for i, pdf_path in enumerate(pdf_files, 1):
+        print(f"\n🔄 Processing {i}/{len(pdf_files)}: {pdf_path.name}")
+        output_json = f"../../data/processed/chunks/{pdf_path.stem}.json"
             
-            try:
-                process_pdf(str(pdf_path), output_json, "fitz")
-                print(f"✅ Completed: {pdf_path.name}")
-            except Exception as e:
-                print(f"❌ Failed: {pdf_path.name} - {e}")
+        try:
+            process_pdf(str(pdf_path), output_json, "fitz")
+            print(f"✅ Completed: {pdf_path.name}")
+        except Exception as e:
+            print(f"❌ Failed: {pdf_path.name} - {e}")
             
-            if i < len(pdf_files):
-                print("\n" + "-"*60)
+        if i < len(pdf_files):
+            print("\n" + "-"*60)
         
-        print(f"\n🎉 Finished processing all {len(pdf_files)} PDF files!")
+    print(f"\n🎉 Finished processing all {len(pdf_files)} PDF files!")

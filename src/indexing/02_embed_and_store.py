@@ -5,6 +5,7 @@ Script embedding cơ bản với LangChain để tạo embeddings và lưu vào 
 
 import json
 import logging
+import re
 from pathlib import Path
 from typing import List, Dict, Any
 from tqdm import tqdm
@@ -22,7 +23,7 @@ logger = logging.getLogger(__name__)
 class SimpleEmbeddingProcessor:
     """Processor đơn giản để tạo embeddings và lưu vào Qdrant"""
     
-    def __init__(self, model_name: str = "dangvantuan/vietnamese-embedding", 
+    def __init__(self, model_name: str = "BAAI/bge-m3", 
                  qdrant_url: str = "http://localhost:6333",
                  collection_name: str = "mental_health_vi"):
         self.model_name = model_name
@@ -51,10 +52,9 @@ class SimpleEmbeddingProcessor:
             
             if self.collection_name not in collection_names:
                 logger.info(f"Creating collection: {self.collection_name}")
-                # Tạo collection mới với 768 dimensions (cho vietnamese-embedding)
                 self.qdrant_client.create_collection(
                     collection_name=self.collection_name,
-                    vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+                    vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
                 )
             else:
                 logger.info(f"Collection '{self.collection_name}' already exists")
@@ -67,18 +67,118 @@ class SimpleEmbeddingProcessor:
             logger.error(f"Error setting up collection: {e}")
             raise
     
+    def extract_source_info(self, json_file: Path) -> Dict[str, str]:
+        """Extract source information from filename"""
+        filename = json_file.stem
+        
+        # Parse different filename patterns
+        source_info = {
+            "source_name": filename,
+            "organization": "Unknown",
+            "document_type": "Document",
+            "language": "vi"
+        }
+        
+        # Common patterns for Vietnamese mental health documents
+        if "MOET" in filename:
+            source_info["organization"] = "MOET"
+            if "SoTay" in filename:
+                source_info["document_type"] = "Sổ Tay"
+            elif "TaiLieu" in filename:
+                source_info["document_type"] = "Tài Liệu"
+        elif "UNICEF" in filename:
+            source_info["organization"] = "UNICEF"
+            if "SoTay" in filename:
+                source_info["document_type"] = "Sổ Tay"
+            elif "TaiLieu" in filename:
+                source_info["document_type"] = "Tài Liệu"
+            elif "BanTomTat" in filename:
+                source_info["document_type"] = "Bản Tóm Tắt"
+        elif "USSH" in filename:
+            source_info["organization"] = "USSH"
+            if "VaccineTinhThan" in filename:
+                source_info["document_type"] = "Vaccine Tinh Thần"
+        
+        return source_info
+
+    def extract_page_info(self, title: str) -> str:
+        """Extract page information from title if available"""
+        import re
+        
+        # Look for page numbers in title
+        page_patterns = [
+            r'(?:Trang|Page)\s*(\d+)',  # "Trang 15" or "Page 15"
+            r'^(\d+)\s*$',  # Just a number
+            r'^(\d+)\s*\n',  # Number at start of title
+        ]
+        
+        for pattern in page_patterns:
+            match = re.search(pattern, title, re.IGNORECASE)
+            if match:
+                return match.group(1)
+        
+        return None
+
+    def clean_section_title(self, title: str) -> str:
+        """Clean and extract meaningful section title"""
+        if not title:
+            return "Untitled Section"
+        
+        # Remove common prefixes and clean up
+        lines = title.split('\n')
+        meaningful_lines = []
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            
+            # Skip pure numbers or page indicators
+            if line.isdigit():
+                continue
+            
+            # Skip common document headers
+            skip_patterns = [
+                r'^SỔ TAY$',
+                r'^HƯỚNG DẪN',
+                r'^\d{4}$',  # Years
+                r'^Hà Nội',
+                r'^tháng \d+',
+            ]
+            
+            should_skip = False
+            for pattern in skip_patterns:
+                if re.match(pattern, line, re.IGNORECASE):
+                    should_skip = True
+                    break
+            
+            if not should_skip:
+                meaningful_lines.append(line)
+        
+        if meaningful_lines:
+            # Take the first meaningful line as section title
+            section_title = meaningful_lines[0]
+            # Limit length and clean up
+            if len(section_title) > 100:
+                section_title = section_title[:100] + "..."
+            return section_title
+        else:
+            return "Untitled Section"
+
     def load_chunks_from_json(self, json_file: Path) -> List[Document]:
-        """Load chunks từ file JSON và convert thành LangChain Documents"""
+        """Load chunks từ file JSON và convert thành LangChain Documents với metadata mới"""
         logger.info(f"Loading chunks from: {json_file}")
         
         with open(json_file, 'r', encoding='utf-8') as f:
             chunks_data = json.load(f)
         
+        # Extract source information from filename
+        source_info = self.extract_source_info(json_file)
+        
         documents = []
-        doc_name = json_file.stem  # Tên file làm document name
         
         for i, chunk in enumerate(chunks_data):
-            # Tạo Document với title và context
+            # Get raw data
             title = chunk.get('title', '').strip()
             context = chunk.get('context', '').strip()
             
@@ -86,27 +186,49 @@ class SimpleEmbeddingProcessor:
                 logger.warning(f"Skipping chunk {i} - empty context")
                 continue
             
-            # Kết hợp title và context
-            if title:
-                full_text = f"{title}\n\n{context}"
-            else:
-                full_text = context
+            # Extract enhanced metadata
+            page = self.extract_page_info(title)
+            section_title = self.clean_section_title(title)
             
-            # Tạo metadata
+            # Create content - use context as main content
+            content = context
+            
+            # Enhanced metadata với fields mới
             metadata = {
-                "document": doc_name,
-                "chunk_id": f"{doc_name}_{i:05d}",
-                "title": title,
-                "source": "json_chunks"
+                # New simplified fields
+                "source_name": source_info["source_name"],
+                "page": page,
+                "section_title": section_title,
+                "content": content[:1000],  # First 1000 chars for metadata
+                
+                # Additional metadata for context
+                "chunk_id": f"{source_info['source_name']}_{i:05d}",
+                "organization": source_info["organization"],
+                "document_type": source_info["document_type"],
+                "language": source_info["language"],
+                "chunk_index": i,
+                
+                # Legacy fields for backward compatibility
+                "title": title[:200],  # Original title (truncated)
+                "document": source_info["source_name"],
+                "source": source_info["organization"]
             }
             
+            # Create document with full content
             doc = Document(
-                page_content=full_text,
+                page_content=content,
                 metadata=metadata
             )
             documents.append(doc)
         
         logger.info(f"Loaded {len(documents)} documents from {json_file}")
+        logger.info(f"Source info: {source_info}")
+        
+        # Log some sample metadata for verification
+        if documents:
+            sample_doc = documents[0]
+            logger.info(f"Sample metadata: {sample_doc.metadata}")
+        
         return documents
     
     def process_single_file(self, json_file: Path) -> int:
@@ -145,13 +267,29 @@ class SimpleEmbeddingProcessor:
                     for j, (text, metadata, vector) in enumerate(zip(texts, metadatas, embeddings_vectors)):
                         point_id = str(uuid.uuid4())
                         
-                        # Clean metadata for Qdrant (ensure all values are serializable)
+                        # Clean metadata for Qdrant với structure mới
                         clean_metadata = {
-                            "text": text[:1000],  # Limit text length in metadata
-                            "document": str(metadata.get("document", "")),
+                            # Primary fields for RAG Agent
+                            "source_name": str(metadata.get("source_name", "")),
+                            "page": metadata.get("page"),  # Can be None
+                            "section_title": str(metadata.get("section_title", ""))[:200],
+                            "content": str(metadata.get("content", ""))[:1000],
+                            
+                            # Unique identifiers
+                            "id": point_id,
                             "chunk_id": str(metadata.get("chunk_id", "")),
-                            "title": str(metadata.get("title", ""))[:200],  # Limit title length
-                            "source": str(metadata.get("source", ""))
+                            
+                            # Additional metadata
+                            "organization": str(metadata.get("organization", "")),
+                            "document_type": str(metadata.get("document_type", "")),
+                            "language": str(metadata.get("language", "vi")),
+                            "chunk_index": metadata.get("chunk_index", 0),
+                            
+                            # Legacy fields for backward compatibility
+                            "title": str(metadata.get("title", ""))[:200],
+                            "document": str(metadata.get("document", "")),
+                            "source": str(metadata.get("source", "")),
+                            "text": text[:1000]  # Keep for fallback
                         }
                         
                         point = PointStruct(
@@ -239,10 +377,20 @@ class SimpleEmbeddingProcessor:
         return summary
 
 def main():
-    """Main function"""
+    """
+    Main function để chạy embedding process với enhanced metadata
+    
+    Metadata structure mới:
+    - source_name: Tên file nguồn (VD: MOET_SoTay_ThucHanh_CTXH_TrongTruongHoc_vi)
+    - page: Số trang nếu có (extracted từ title)
+    - section_title: Tiêu đề section được clean
+    - content: Nội dung chính từ context field
+    - organization: MOET, UNICEF, USSH, etc.
+    - document_type: Sổ Tay, Tài Liệu, etc.
+    """
     # Configuration
     chunks_dir = Path("../../data/processed/chunks")
-    model_name = "dangvantuan/vietnamese-embedding"
+    model_name = "BAAI/bge-m3"
     qdrant_url = "http://localhost:6333"
     collection_name = "mental_health_vi"
     
