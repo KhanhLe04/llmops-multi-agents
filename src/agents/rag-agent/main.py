@@ -11,12 +11,11 @@ from dotenv import load_dotenv
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.schema import HumanMessage, AIMessage
-# Simple session management instead of LangChain memory
 from collections import defaultdict, deque
 from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
+from system_prompt import prompt
 
 load_dotenv()
 
@@ -39,7 +38,7 @@ async def lifespan(app: FastAPI):
     global qdrant_client
     
     # Startup
-    logger.info("Starting Self-Contained RAG Agent...")
+    logger.info("Starting RAG Agent...")
     
     # Initialize Qdrant client
     try:
@@ -57,7 +56,7 @@ async def lifespan(app: FastAPI):
             try:
                 collection_info = qdrant_client.get_collection(QDRANT_COLLECTION)
                 # Use collection_info.dict() to access all properties safely
-                info_dict = collection_info.dict() if hasattr(collection_info, 'dict') else vars(collection_info)
+                info_dict = collection_info.model_dump() if hasattr(collection_info, 'model_dump') else vars(collection_info)
                 points_count = info_dict.get('points_count', 'unknown')
                 vectors_count = info_dict.get('vectors_count', 'unknown')
                 logger.info(f"Collection info: {points_count} points, {vectors_count} vectors")
@@ -82,39 +81,48 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Pydantic models
+# Base  model lưu message và session id
 class ChatMessage(BaseModel):
     message: str
     session_id: Optional[str] = "default"
 
+# Base model lưu query và các tham số tìm kiếm
+class SearchQuery(BaseModel):
+    query: str # query tìm kiếm
+    limit: Optional[int] = 5 # số lượng kết quả tìm kiếm
+    score_threshold: Optional[float] = 0.7 # ngưỡng điểm tương đồng
+    filters: Optional[Dict[str, Any]] = None # các tham số tìm kiếm
+
+# Text cần embed
+class EmbeddingRequest(BaseModel):
+    text: str
+
+# Base model lưu response của đoạn chat kèm source
 class ChatResponse(BaseModel):
     response: str
     session_id: str
     sources: Optional[List[str]] = None
 
-class SearchQuery(BaseModel):
-    query: str
-    limit: Optional[int] = 5
-    score_threshold: Optional[float] = 0.7
-    filters: Optional[Dict[str, Any]] = None
 
+
+# Base model lưu kết quả tìm kiếm
 class DocumentChunk(BaseModel):
-    id: str
-    chunk_id: str
-    source_name: str
-    page: Optional[str] = None  # Can be "1-3" for multiple pages
-    section_title: str
-    content: str  # The actual text content
-    score: float
+    id: str # id của đoạn văn bản
+    chunk_id: str # id của đoạn văn bản
+    source_name: str # tên nguồn của đoạn văn bản
+    page: Optional[str] = None  # trang của đoạn văn bản
+    section_title: str # tiêu đề của đoạn văn bản
+    content: str  # nội dung của đoạn văn bản
+    score: float # điểm tương đồng
 
+# Base model kết quả tìm kiếm đầy đủ kèm metadata
 class SearchResponse(BaseModel):
     query: str
     results: List[DocumentChunk]
     total_found: int
     search_time_ms: float
 
-class EmbeddingRequest(BaseModel):
-    text: str
+
 
 class EmbeddingResponse(BaseModel):
     embedding: List[float]
@@ -267,12 +275,7 @@ class RAGAgent:
             # DEBUG: Log search parameters
             logger.info(f"🔍 Search parameters:")
             logger.info(f"   Query: '{search_query.query[:50]}...'")
-            logger.info(f"   Collection: {QDRANT_COLLECTION}")
-            logger.info(f"   Embedding dim: {len(query_embedding)}")
-            logger.info(f"   Limit: {min(search_query.limit, MAX_RESULTS)}")
-            logger.info(f"   Score threshold: {search_query.score_threshold}")
-            logger.info(f"   Filter: {qdrant_filter}")
-            
+
             # Use old reliable search API
             search_results = qdrant_client.search(
                 collection_name=QDRANT_COLLECTION,
@@ -385,11 +388,7 @@ class RAGAgent:
             chat_history = self.get_session_history(session_id, limit=6)
             
             # Build conversation context
-            conversation_context = """
-            Bạn là một trợ lý AI chuyên về sức khỏe tâm thần cho học sinh, sinh viên Việt Nam. 
-            Hãy trả lời dựa trên thông tin được cung cấp và kinh nghiệm của bạn. 
-            Luôn ưu tiên sự an toàn và khuyến khích tìm kiếm sự hỗ trợ chuyên nghiệp khi cần thiết.\n\n
-            """
+            conversation_context = prompt
             
             if context_text:
                 conversation_context += f"Thông tin tham khảo:\n{context_text}\n\n"
@@ -682,5 +681,4 @@ async def get_collection_info(collection_name: str):
         }
     except Exception as e:
         logger.error(f"Failed to get collection info: {e}")
-        raise HTTPException(status_code=404, detail=f"Collection not found: {str(e)}")
-
+    raise HTTPException(status_code=404, detail=f"Collection not found: {str(e)}")

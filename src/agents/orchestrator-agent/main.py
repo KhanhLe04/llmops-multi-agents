@@ -112,7 +112,7 @@ class OrchestratorAgent:
             memory.chat_memory.add_ai_message(response_text)
             
             return ChatResponse(
-                response=response_text + "⚠️ Lưu ý: Đang hoạt động ở chế độ cơ bản (không có tài liệu tham khảo).",
+                response=response_text,
                 session_id=session_id
             )
             
@@ -132,8 +132,7 @@ class OrchestratorAgent:
 
             return ChatResponse(
                 response=default_response,
-                session_id=session_id,
-                sources=["emergency_fallback"]
+                session_id=session_id
             )
 
 # Initialize the agent
