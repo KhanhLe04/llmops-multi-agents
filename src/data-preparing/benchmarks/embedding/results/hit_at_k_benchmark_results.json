@@ -1,0 +1,80 @@
+{
+  "intfloat/multilingual-e5-base": {
+    "model_name": "intfloat/multilingual-e5-base",
+    "display_name": "intfloat/multilingual-e5-base",
+    "hit_at_1": 78.8,
+    "hit_at_4": 93.4,
+    "hit_at_10": 98.0,
+    "query_time": 5.049967288970947,
+    "candidate_time": 4.429984092712402,
+    "total_time": 9.47995138168335,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  },
+  "Alibaba-NLP/gte-multilingual-base": {
+    "model_name": "Alibaba-NLP/gte-multilingual-base",
+    "display_name": "Alibaba-NLP/gte-multilingual-base",
+    "hit_at_1": 77.4,
+    "hit_at_4": 92.2,
+    "hit_at_10": 96.6,
+    "query_time": 6.951325178146362,
+    "candidate_time": 6.82214093208313,
+    "total_time": 13.773466110229492,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  },
+  "keepitreal/vietnamese-sbert": {
+    "model_name": "keepitreal/vietnamese-sbert",
+    "display_name": "keepitreal/vietnamese-sbert",
+    "hit_at_1": 76.8,
+    "hit_at_4": 94.39999999999999,
+    "hit_at_10": 97.8,
+    "query_time": 4.751657724380493,
+    "candidate_time": 4.5856733322143555,
+    "total_time": 9.337331056594849,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  },
+  "Qwen/Qwen3-Embedding-0.6B": {
+    "model_name": "Qwen/Qwen3-Embedding-0.6B",
+    "display_name": "Qwen/Qwen3-Embedding-0.6B",
+    "hit_at_1": 79.60000000000001,
+    "hit_at_4": 94.39999999999999,
+    "hit_at_10": 98.0,
+    "query_time": 30.62175416946411,
+    "candidate_time": 28.50962734222412,
+    "total_time": 59.13138151168823,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  },
+  "BAAI/bge-m3": {
+    "model_name": "BAAI/bge-m3",
+    "display_name": "BAAI/bge-m3",
+    "hit_at_1": 80.4,
+    "hit_at_4": 92.4,
+    "hit_at_10": 95.6,
+    "query_time": 18.49650239944458,
+    "candidate_time": 17.402567386627197,
+    "total_time": 35.89906978607178,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  },
+  "intfloat/multilingual-e5-large-instruct": {
+    "model_name": "intfloat/multilingual-e5-large-instruct",
+    "display_name": "intfloat/multilingual-e5-large-instruct",
+    "hit_at_1": 79.2,
+    "hit_at_4": 93.4,
+    "hit_at_10": 97.0,
+    "query_time": 17.430100202560425,
+    "candidate_time": 17.618065118789673,
+    "total_time": 35.0481653213501,
+    "n_queries": 500,
+    "n_candidates": 500,
+    "status": "success"
+  }
+}
