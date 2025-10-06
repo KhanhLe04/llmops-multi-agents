@@ -15,7 +15,7 @@ from datetime import datetime
 from utils.pdf_processor import PDFProcessor
 from utils.embedding_manager import EmbeddingManager
 from utils.qdrant_manager import QdrantManager
-from config import Config, MENTAL_HEALTH_KEYWORDS
+from config import Config
 
 class MentalHealthDataIngestion:
     def __init__(self):
@@ -23,7 +23,6 @@ class MentalHealthDataIngestion:
         Khởi tạo pipeline nạp dữ liệu cho domain tâm lý
         """
         print("🧠 Khởi tạo Mental Health Data Ingestion Pipeline...")
-        print(f"   Domain: {Config.DOMAIN}")
         print(f"   Collection: {Config.COLLECTION_NAME}")
         
         # Khởi tạo các components
@@ -102,71 +101,43 @@ class MentalHealthDataIngestion:
     
     def analyze_pdf_content(self, pdf_files: List[str]) -> Dict:
         """
-        Phân tích sơ bộ nội dung PDF để đánh giá quality
+        Phân tích cơ bản nội dung PDF
         """
-        print(f"\n📊 Phân tích nội dung {len(pdf_files)} PDF files...")
+        print(f"\n📊 Kiểm tra {len(pdf_files)} PDF files...")
         
         analysis = {
             "total_files": len(pdf_files),
             "successfully_analyzed": 0,
-            "mental_health_relevant": 0,
-            "student_focused": 0,
-            "crisis_support": 0,
             "files_analysis": []
         }
         
         for pdf_file in pdf_files:
             try:
-                print(f"\n🔍 Phân tích: {Path(pdf_file).name}")
+                print(f"\n🔍 Kiểm tra: {Path(pdf_file).name}")
                 
-                # Trích xuất text mẫu để phân tích
+                # Trích xuất text để kiểm tra khả năng đọc
                 text_sample = self.pdf_processor.extract_text_from_pdf(pdf_file)
                 
                 if not text_sample:
                     print("   ❌ Không trích xuất được text")
                     continue
                 
-                sample_text = text_sample[:2000].lower()  # Lấy 2000 ký tự đầu
-                
-                # Phân tích keywords
-                mental_health_score = sum(1 for keyword in MENTAL_HEALTH_KEYWORDS["psychological_conditions"] if keyword.lower() in sample_text)
-                student_score = sum(1 for keyword in MENTAL_HEALTH_KEYWORDS["student_specific"] if keyword.lower() in sample_text)
-                crisis_score = sum(1 for keyword in MENTAL_HEALTH_KEYWORDS["crisis_indicators"] if keyword.lower() in sample_text)
-                intervention_score = sum(1 for keyword in MENTAL_HEALTH_KEYWORDS["interventions"] if keyword.lower() in sample_text)
-                
                 file_analysis = {
                     "file": Path(pdf_file).name,
                     "text_length": len(text_sample),
-                    "mental_health_keywords": mental_health_score,
-                    "student_keywords": student_score,
-                    "crisis_keywords": crisis_score,
-                    "intervention_keywords": intervention_score,
-                    "relevance_score": mental_health_score + student_score + intervention_score,
-                    "is_relevant": (mental_health_score + student_score + intervention_score) > 2
+                    "readable": True
                 }
                 
                 analysis["files_analysis"].append(file_analysis)
                 analysis["successfully_analyzed"] += 1
-                
-                if file_analysis["is_relevant"]:
-                    analysis["mental_health_relevant"] += 1
-                    print(f"   ✅ Relevant (score: {file_analysis['relevance_score']})")
-                
-                if student_score > 0:
-                    analysis["student_focused"] += 1
-                
-                if crisis_score > 0:
-                    analysis["crisis_support"] += 1
+                print(f"   ✅ Readable ({len(text_sample)} chars)")
                 
             except Exception as e:
-                print(f"   ❌ Lỗi phân tích: {e}")
+                print(f"   ❌ Lỗi đọc file: {e}")
                 continue
         
-        print(f"\n📊 Kết quả phân tích:")
-        print(f"   - Files analyzed: {analysis['successfully_analyzed']}/{analysis['total_files']}")
-        print(f"   - Mental health relevant: {analysis['mental_health_relevant']}")
-        print(f"   - Student focused: {analysis['student_focused']}")
-        print(f"   - Crisis support: {analysis['crisis_support']}")
+        print(f"\n📊 Kết quả kiểm tra:")
+        print(f"   - Files readable: {analysis['successfully_analyzed']}/{analysis['total_files']}")
         
         return analysis
     
@@ -200,15 +171,15 @@ class MentalHealthDataIngestion:
                     success_count += 1
                     print(f"   ✅ Tạo được {len(documents)} chunks")
                     
-                    # Thống kê content types
-                    content_types = {}
+                    # Thống kê sections
+                    sections = {}
                     for doc in documents:
-                        ctype = doc["content_type"]
-                        content_types[ctype] = content_types.get(ctype, 0) + 1
+                        section = doc["section"]
+                        sections[section] = sections.get(section, 0) + 1
                     
-                    print(f"   📊 Content types:")
-                    for ctype, count in content_types.items():
-                        print(f"      - {ctype}: {count}")
+                    print(f"   📊 Sections:")
+                    for section, count in sections.items():
+                        print(f"      - {section}: {count}")
                 else:
                     print(f"   ⚠️  Không tạo được chunk nào")
                     
@@ -279,13 +250,14 @@ class MentalHealthDataIngestion:
                 print(f"✅ Đã lưu thành công!")
                 print(f"   Collection: {stats.get('collection_name')}")
                 print(f"   Vectors: {stats.get('vectors_count', 0)}")
-                print(f"   Content types: {stats.get('total_content_types', 0)}")
+                print(f"   Sources: {stats.get('total_sources', 0)}")
+                print(f"   Sections: {stats.get('total_sections', 0)}")
                 
-                # In phân bố content types
-                if "content_type_distribution" in stats:
-                    print(f"   📊 Content type distribution:")
-                    for ctype, count in stats["content_type_distribution"].items():
-                        print(f"      - {ctype}: {count}")
+                # In phân bố sections
+                if "section_distribution" in stats:
+                    print(f"   📊 Section distribution:")
+                    for section, count in stats["section_distribution"].items():
+                        print(f"      - {section}: {count}")
             
             return success
             
@@ -325,12 +297,12 @@ class MentalHealthDataIngestion:
         analysis = self.analyze_pdf_content(pdf_files)
         
         if analyze_only:
-            print(f"\n📊 PHÂN TÍCH HOÀN TẤT!")
+            print(f"\n📊 KIỂM TRA HOÀN TẤT!")
             return True
         
-        if analysis["mental_health_relevant"] == 0:
-            print("⚠️  Không tìm thấy PDF nào có nội dung tâm lý phù hợp!")
-            print("💡 Hãy kiểm tra lại nội dung các file PDF")
+        if analysis["successfully_analyzed"] == 0:
+            print("⚠️  Không đọc được PDF nào!")
+            print("💡 Hãy kiểm tra lại các file PDF")
             return False
         
         # Bước 4: Xử lý PDFs
@@ -428,7 +400,8 @@ Ví dụ sử dụng:
                 print(f"\n📊 Trạng thái hiện tại:")
                 print(f"   Collection: {Config.COLLECTION_NAME}")
                 print(f"   Vectors: {stats.get('vectors_count', 0)}")
-                print(f"   Content types: {stats.get('total_content_types', 0)}")
+                print(f"   Sources: {stats.get('total_sources', 0)}")
+                print(f"   Sections: {stats.get('total_sections', 0)}")
             except:
                 print(f"\n📊 Collection chưa tồn tại")
         sys.exit(0 if success else 1)
