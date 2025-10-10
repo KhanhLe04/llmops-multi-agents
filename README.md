@@ -21,4 +21,4 @@
 | **Cloud Platform** | AWS or GCP |
 #### LLM và Embedding Model
 - **LLM Model**: Gemini API
-- **Embedding Model**: [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3)
+- **Embedding Model**: [intfloat/multilingual-e5-base](https://huggingface.co/intfloat/multilingual-e5-base)
