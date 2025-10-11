@@ -369,6 +369,61 @@ class RAGAgent:
         
         context = "\n" + ("="*50 + "\n").join(context_parts)
         return context
+    
+    def health_check(self) -> Dict[str, Any]:
+        try:
+            if not self.llm:
+                logger.error("LLM model chưa được khởi tạo")
+                llm_status = "unhealthy"
+            else:
+                llm_status = "healthy"
+            if not self.qdrant_client:
+                logger.error("Qdrant Client chưa được khởi tạo")
+                qdrant_status = "unhealthy"
+            else:
+                qdrant_status = "healthy"
+            if not self.embeddings:
+                logger.error("Embedding model chưa được khởi tạo")
+                embedding_status = "unhealthy"
+            else:
+                embedding_status = "healthy"
+            if not self.vector_store:
+                logger.error("Vector store chưa được khởi tạo")
+                vector_store_status = "unhealthy"
+            else:
+                vector_store_status = "healthy"
+            
+            return {
+                "status": "healthy",
+                "components": {
+                    "llm": {
+                        "llm_model": Config.GOOGLE_LLM_MODEL,
+                        "status": llm_status
+                    },
+                    "qdrant_client": {
+                        "status": qdrant_status
+                    },
+                    "embedding": {
+                        "embedding_model": Config.EMBEDDING_MODEL,
+                        "status": embedding_status
+                    },
+                    "vector_store": {
+                        "status": vector_store_status
+                    }
+                },
+                "protocol": "A2A",
+                "qdrant_url": Config.QDRANT_URL,
+                "collection_name": Config.COLLECTION_NAME,
+                "workflow_type": "LangGraph",
+                "workflow_nodes": list(self.workflow.nodes.keys())
+            }
+            
+        except Exception as e:
+            logger.error(f"Health check failed: {e}")
+            return {
+                "status": "unhealthy",
+                "error": str(e)
+            }
         
 
            

@@ -1,80 +1,71 @@
+from a2a.server.apps import A2AFastAPIApplication
+from a2a.server.request_handlers import DefaultRequestHandler, RESTHandler
+from a2a.server.tasks import InMemoryTaskStore, InMemoryPushNotificationConfigStore, BasePushNotificationSender
+from a2a.types import AgentCapabilities, AgentCard, AgentSkill
+from agent_executor import RAGAgentExecutor
+import logging
+import click
 import uvicorn
+import sys
+import httpx
 
-from a2a.server.apps import A2AStarletteApplication
-from a2a.server.request_handlers import DefaultRequestHandler
-from a2a.server.tasks import InMemoryTaskStore
-from a2a.types import (
-    AgentCapabilities,
-    AgentCard,
-    AgentSkill,
-)
-from agent_executor import (
-    RAGAgentExecutor,  # type: ignore[import-untyped]
-)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-if __name__ == '__main__':
-    # --8<-- [start:AgentSkill]
-    skill = AgentSkill(
-        id='mental_health_advisor',
-        name='Mental health advisor',
-        description='Mental health advisor',
-        tags=['mental health'],
-        examples=[
-            'Tôi đang áp lực vì học tập', 
-            'Stress là gì'
-        ],
-    )
-    # --8<-- [end:AgentSkill]
+@click.command()
+@click.option('--host', default='localhost')
+@click.option('--port', default=7005)
+def main(host, port):
+    try:
 
-    # extended_skill = AgentSkill(
-    #     id='super_hello_world',
-    #     name='Returns a SUPER Hello World',
-    #     description='A more enthusiastic greeting, only for authenticated users.',
-    #     tags=['hello world', 'super', 'extended'],
-    #     examples=['super hi', 'give me a super hello'],
-    # )
+        logger.info(f"Starting server on {host}:{port}")
+        capabilities = AgentCapabilities(streaming=True, push_notifications=True)
+        skills = AgentSkill(
+            id="mental_health_consultation",
+            name="Tư vấn sức khỏe tinh thần",
+            description="Hỗ trợ tư vấn và cung cấp thông tin về sức khỏe tinh thần.",
+            tags=["sức khỏe", "tinh thần", "tư vấn"],
+            examples=[
+                "Tôi cảm thấy căng thẳng và lo lắng, bạn có thể giúp tôi không?",
+                "Làm thế nào để tôi có thể cải thiện giấc ngủ của mình?",
+                "Bạn có thể cung cấp cho tôi một số kỹ thuật thư giãn không?"
+            ]
+        )
 
-    # --8<-- [start:AgentCard]
-    # This will be the public-facing agent card
-    public_agent_card = AgentCard(
-        name='Mental health advisor Agent',
-        description='Mental health advisor Agent',
-        url='http://localhost:9999/',
-        version='1.0.0',
-        default_input_modes=['text'],
-        default_output_modes=['text'],
-        capabilities=AgentCapabilities(streaming=True),
-        skills=[skill],  # Only the basic skill for the public card
-        # supports_authenticated_extended_card=True,
-    )
-    # --8<-- [end:AgentCard]
+        agent_card = AgentCard(
+            name="RAG Mental Health Agent",
+            description="Một trợ lý ảo sử dụng Retrieval-Augmented Generation (RAG) để cung cấp thông tin và hỗ trợ về sức khỏe tinh thần.",
+            url=f'http://{host}:{port}',
+            version="1.0.0",
+            default_input_modes=["text/plain"],
+            default_output_modes=["text/plain"],
+            capabilities=capabilities,
+            skills=[skills]
+        )
+        httpx_client = httpx.AsyncClient()
+        push_config_store=InMemoryPushNotificationConfigStore()
+        push_sender = BasePushNotificationSender(
+            httpx_client=httpx_client,
+            config_store=push_config_store
+        )
+        request_handler = DefaultRequestHandler(
+            agent_executor=RAGAgentExecutor(),
+            task_store=InMemoryTaskStore(),
+            push_config_store=push_config_store,
+            push_sender=push_sender
+        )
 
-    # # This will be the authenticated extended agent card
-    # # It includes the additional 'extended_skill'
-    # specific_extended_agent_card = public_agent_card.model_copy(
-    #     update={
-    #         'name': 'Hello World Agent - Extended Edition',  # Different name for clarity
-    #         'description': 'The full-featured hello world agent for authenticated users.',
-    #         'version': '1.0.1',  # Could even be a different version
-    #         # Capabilities and other fields like url, default_input_modes, default_output_modes,
-    #         # supports_authenticated_extended_card are inherited from public_agent_card unless specified here.
-    #         'skills': [
-    #             skill,
-    #             extended_skill,
-    #         ],  # Both skills for the extended card
-    #     }
-    # )
+        server = A2AFastAPIApplication(
+            agent_card=agent_card,
+            http_handler=request_handler
+        )
 
-    request_handler = DefaultRequestHandler(
-        agent_executor=RAGAgentExecutor(),
-        task_store=InMemoryTaskStore(),
-    )
+        uvicorn.run(server.build(), host=host, port=port)
+    except Exception as e:
+        logger.error(f"Không thể khởi tạo server: {e}")
+        sys.exit(1)
 
-    server = A2AStarletteApplication(
-        agent_card=public_agent_card,
-        http_handler=request_handler
-        # extended_agent_card=specific_extended_agent_card,
-    )
 
-    uvicorn.run(server.build(), host='0.0.0.0', port=9999)
+if __name__ == "__main__":
+    main()
