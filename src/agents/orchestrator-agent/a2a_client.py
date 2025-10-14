@@ -39,7 +39,7 @@ class RAGAgentA2AClient:
             agent_card=self.agent_card,
             url=self.base_url,
         )
-
+        print("A2A Client được khởi tạo thành công")
         print(f"Kết nối tới Agent thành công: {self.agent_card.name}")
         print(f"Thông tin: {self.agent_card.description}")
         print(f"URL: {self.agent_card.url}")
@@ -59,7 +59,7 @@ class RAGAgentA2AClient:
     
     async def send_message(self, message: str, stream: bool = False) -> dict:
         if not self.client:
-            await self.initialize()
+            await self._initialize()
 
         send_message_payload: dict[str, Any] = {
             'message': {
@@ -172,9 +172,9 @@ async def test_query():
     finally:
         await client.close()
         
-async def main():
-    await test_query()
+# async def main():
+#     await test_query()
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# if __name__ == "__main__":
+#     asyncio.run(main())

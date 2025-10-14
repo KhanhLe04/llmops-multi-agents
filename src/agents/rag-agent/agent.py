@@ -2,6 +2,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http.models import Distance, VectorParams
 from langchain_qdrant import QdrantVectorStore
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai.chat_models import ChatGoogleGenerativeAIError
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.messages import BaseMessage
 from langchain.schema import HumanMessage, AIMessage
@@ -67,7 +68,7 @@ class RAGAgent:
 
             )
             logger.info(f"Khởi tạo model LLM {Config.GOOGLE_LLM_MODEL} thành công")
-        except Exception as e:
+        except ChatGoogleGenerativeAIError as e:
             logger.error(f"Lỗi khi khởi tạo model LLM {Config.GOOGLE_LLM_MODEL}: {e}")
             exit(1)
         
