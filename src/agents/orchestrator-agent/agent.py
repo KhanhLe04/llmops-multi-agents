@@ -16,8 +16,8 @@ logger = logging.getLogger(__name__)
 class OrchestratorAgent:
     def __init__(self):
         self.llm = None
-        # Initialize A2A client with configured RAG agent URL
-        self.a2a_client = RAGAgentA2AClient(base_url=Config.RAG_AGENT_URL)
+        # Khởi tạo A2A Client nếu có RAG Agent được cấu hình
+        self.a2a_client: Optional[RAGAgentA2AClient] = None
         self.prompt_template = None
         self._initialized = False
         
@@ -38,14 +38,23 @@ class OrchestratorAgent:
             except ChatGoogleGenerativeAIError as e:
                 logger.error(f"Lỗi khi khởi tạo LLM Model {Config.GOOGLE_LLM_MODEL}: {e}")
                 exit(1)
+    
+    async def _init_a2a_client(self):
+        try:
+            self.a2a_client = RAGAgentA2AClient(base_url=Config.RAG_AGENT_URL)
+            if not self.a2a_client._initialized:
+                await self.a2a_client._initialize()
+        except Exception as e:
+            logger.warning(f"Lỗi khi khởi tạo A2A Client: {e}")
+            self.a2a_client = None
 
     async def _initialize(self):
         if self._initialized:
             return
         try:
-            if not self.a2a_client._initialized:
-                await self.a2a_client._initialize()
+            
             self._init_llm()
+            await self._init_a2a_client()
             self._setup_prompt()
             self._initialized = True
         except Exception as e:
