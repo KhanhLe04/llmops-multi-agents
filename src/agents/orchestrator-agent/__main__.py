@@ -97,7 +97,7 @@ async def get_history(user_id: str, session_id: str):
     }
 
 def main():
-    uvicorn.run(app, host=Config.ORCHESTRATOR_AGENT_HOST, port=Config.ORCHESTRATOR_AGENT_PORT)
+    uvicorn.run(app, host="0.0.0.0", port=7010)
 
 if __name__ == "__main__":
     main()

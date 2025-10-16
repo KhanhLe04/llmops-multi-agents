@@ -77,6 +77,7 @@ class RAGAgent:
         
         # Kết nối tới Qdrant DB
         self.qdrant_client = QdrantClient(url=Config.QDRANT_URL)
+        logger.info(f"Kết nối tới Qdrant DB thành công")
 
         # Kiểm tra collection đã có chưa, nếu không thì tạo mới
         if not self.qdrant_client.collection_exists(Config.COLLECTION_NAME):

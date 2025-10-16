@@ -11,9 +11,10 @@ import httpx
 import asyncio
 from uuid import uuid4
 from typing import Dict, Any
+from config import Config
 
 class RAGAgentA2AClient:
-    def __init__(self, base_url: str = "http://localhost:7005"):
+    def __init__(self, base_url: str = Config.RAG_AGENT_URL):
         self.base_url = base_url
         self.httpx_client = None
         self.client = None

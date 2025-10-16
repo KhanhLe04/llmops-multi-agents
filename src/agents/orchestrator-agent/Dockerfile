@@ -17,17 +17,8 @@ RUN pip install --no-cache-dir uv==0.9.3
 COPY pyproject.toml uv.lock ./
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --no-install-project --no-dev
+
 COPY . .
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
+EXPOSE 7010
 
-
-# === Stage 2: Run ===
-FROM python:3.13-slim
-RUN pip install --no-cache-dir uv==0.9.3
-WORKDIR /app
-COPY --from=build /app .
-
-EXPOSE 7005
-
-CMD ["uv", "run", ".", "--host", "0.0.0.0", "--port", "7005"]
+CMD ["uv", "run", "."]
