@@ -9,17 +9,16 @@ dependencies = [
     "a2a-sdk>=0.3.7",
     
     "python-dotenv>=1.0.0",
-    "sentence-transformers>=2.2.0",
 
     # LangChain
     "langchain>=0.1.0",
     "langchain-google-genai==2.1.9",
-    "langchain-core>=0.1.0",
 
     "uvicorn>=0.35.0",
     "pydantic>=2.11.5",
     "fastapi>=0.118.0",
     "redis>=6.3.0",
+    "httpx>=0.25",
 ]
 
 [tool.uv.workspace]
