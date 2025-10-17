@@ -152,26 +152,45 @@ class RAGAgentA2AClient:
                 "task_id": request.id,
                 "raw_response": response_data
             }
+    def health_check(self) -> Dict[str, Any]:
+        try:
+            if not self.client:
+                self._initialize()
+            else:
+                return {
+                    "connected": True,
+                    "available_agent": "RAG Agent",
+                    "agent_card": {
+                        "name": self.agent_card.name,
+                        "description": self.agent_card.description,
+                        "url": self.agent_card.url,
+                    }
+                }
+        except Exception as e:
+            return {
+                "connected": False,
+                "error": str(e)
+            }
 
-async def test_query():
-    demo_question = "Stress là gì?"
+# async def test_query():
+#     demo_question = "Stress là gì?"
 
-    client = RAGAgentA2AClient()
-    try:
-        await client._initialize()
-        print("A2A Client được khởi tạo thành công")
-        print(f"Thử query với câu hỏi: {demo_question}")
+#     client = RAGAgentA2AClient()
+#     try:
+#         await client._initialize()
+#         print("A2A Client được khởi tạo thành công")
+#         print(f"Thử query với câu hỏi: {demo_question}")
 
-        result = await client.send_message(demo_question, stream=False)
-        if result["status"] == "success":
-            print(f"Agent trả lời: {result['content']}")
-            print(f"Nguồn tham khảo: {result['sources']}")
-        else:
-            print(f"Lỗi: {result['error']}")
+#         result = await client.send_message(demo_question, stream=False)
+#         if result["status"] == "success":
+#             print(f"Agent trả lời: {result['content']}")
+#             print(f"Nguồn tham khảo: {result['sources']}")
+#         else:
+#             print(f"Lỗi: {result['error']}")
 
-        await asyncio.sleep(1)
-    finally:
-        await client.close()
+#         await asyncio.sleep(1)
+#     finally:
+#         await client.close()
         
 # async def main():
 #     await test_query()

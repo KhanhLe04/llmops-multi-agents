@@ -15,6 +15,9 @@ class Config:
     COLLECTION_NAME = os.getenv("COLLECTION_NAME", "mental_health_advisor")
     TOP_K_DOCUMENTS = os.getenv("TOP_K_DOCUMENTS",5)
     SIMILARITY_THRESHOLD = os.getenv("SIMILARITY_THRESHOLD",0.7)
+
+    HOST = os.getenv("HOST", "0.0.0.0")
+    PORT = int(os.getenv("PORT", 7005))
     
     # Hugging Face Embeddings
     EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "intfloat/multilingual-e5-base")

@@ -28,6 +28,7 @@ import json
 import logging
 from typing import Any, Dict, List, Optional
 from datetime import datetime
+from langchain.schema import BaseMessage, HumanMessage, AIMessage
 
 import redis.asyncio as aioredis
 
@@ -134,10 +135,18 @@ class RedisManager:
     @staticmethod
     def chat_history_key(user_id: str, session_id: str) -> str:
         return f"chat_history:{user_id}:{session_id}"
-
+    
     @staticmethod
     def chat_history_user_pattern(user_id: str) -> str:
         return f"chat_history:{user_id}:*"
+
+    @staticmethod
+    def langchain_history_key(user_id: str, session_id: str) -> str:
+        return f"langchain_history:{user_id}:{session_id}"
+
+    @staticmethod
+    def langchain_history_pattern (user_id: str) -> str:
+        return f"langchain_history:{user_id}:*"
 
 
 class ChatHistory:
@@ -260,3 +269,108 @@ class ChatHistoryStore:
             if len(parts) >= 3:
                 sessions.append(":".join(parts[2:]))
         return sessions
+    
+
+class LangChainHistory:
+    def __init__(self) -> None:
+        self.turns: List[Dict[str, str]] = []
+
+    def add_turn(self, turn_type: str, content: str) -> None:
+        kind = (turn_type or "").lower()
+        if kind not in ("human", "ai"):
+            kind = "human" if kind in ("user", "human") else "ai"
+        self.turns.append({"type": kind, "content": content})
+
+    def to_list(self) -> List[Dict[str, str]]:
+        return list(self.turns)
+
+    @classmethod
+    def from_list(cls, payload: Optional[List[Dict[str, str]]]) -> "LangChainHistory":
+        inst = cls()
+        if payload:
+            for item in payload:
+                if isinstance(item, dict) and "type" in item and "content" in item:
+                    inst.add_turn(str(item["type"]), str(item["content"]))
+        return inst
+
+
+class LangChainHistoryStore:
+    """Lớp thao tác Redis với key `langchain_history:{user_id}:{session_id}`."""
+
+    def __init__(self, redis_manager: RedisManager) -> None:
+        self.redis = redis_manager
+
+    async def load(self, user_id: str, session_id: str) -> LangChainHistory:
+        if not self.redis.is_ready():
+            return LangChainHistory()
+        key = RedisManager.langchain_history_key(user_id, session_id)
+        raw = await self.redis.client.get(key)  # type: ignore[attr-defined]
+        try:
+            turns = json.loads(raw) if raw else []
+        except Exception:
+            turns = []
+        return LangChainHistory.from_list(turns)
+
+    async def save(
+        self,
+        user_id: str,
+        session_id: str,
+        history: LangChainHistory,
+        ttl_seconds: Optional[int] = None,
+    ) -> None:
+        if not self.redis.is_ready():
+            return
+        key = RedisManager.langchain_history_key(user_id, session_id)
+        ttl = ttl_seconds or Config.REDIS_TTL_SECONDS
+        payload = json.dumps(history.to_list(), ensure_ascii=False)
+        await self.redis.client.set(key, payload, ex=ttl)  # type: ignore[attr-defined]
+
+    async def append_turn(
+        self,
+        user_id: str,
+        session_id: str,
+        *,
+        turn_type: str,
+        content: str,
+        trim_to: Optional[int] = None,
+    ) -> LangChainHistory:
+        history = await self.load(user_id, session_id)
+        history.add_turn(turn_type, content)
+        if trim_to and trim_to > 0:
+            history.turns = history.turns[-trim_to:]
+        await self.save(user_id, session_id, history)
+        return history
+
+    async def get(self, user_id: str, session_id: str) -> List[Dict[str, str]]:
+        history = await self.load(user_id, session_id)
+        return history.to_list()
+
+    async def clear(self, user_id: str, session_id: str) -> None:
+        if not self.redis.is_ready():
+            return
+        key = RedisManager.langchain_history_key(user_id, session_id)
+        await self.redis.delete(key)
+
+    async def list_sessions(self, user_id: str) -> List[str]:
+        if not self.redis.is_ready():
+            return []
+        keys = await self.redis.keys(RedisManager.langchain_history_user_pattern(user_id))
+        sessions: List[str] = []
+        for key in keys:
+            parts = key.split(":")
+            if len(parts) >= 3:
+                sessions.append(":".join(parts[2:]))
+        return sessions
+    
+    async def convert_history(self, user_id: str, session_id: str) -> List[BaseMessage]:
+        history = await self.get(user_id, session_id)
+        converted = []
+        for item in history:
+            role = (item.get("type") or "").lower()
+            content = item.get("content") or ""
+            if role in ("human", "user"):
+                converted.append(HumanMessage(content=content))
+            elif role in ("ai", "assistant"):
+                converted.append(AIMessage(content=content))
+        return converted
+

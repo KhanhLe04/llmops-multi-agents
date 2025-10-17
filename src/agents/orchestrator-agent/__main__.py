@@ -1,18 +1,13 @@
 # Main - FastAPI app cho orchestrator agent
 
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
 from pydantic import BaseModel
 from typing import Optional, List
 from agent import OrchestratorAgent
 from config import Config
 import uvicorn
-from redis_memory import RedisManager, ChatHistoryStore
-app = FastAPI(
-    title="Orchestrator Agent",
-    description="Orchestrator Agent for managing and coordinating tasks.",
-    version="1.0.0"
-)
-
+from redis_memory import RedisManager, ChatHistoryStore, LangChainHistoryStore
 
 class ChatRequest(BaseModel):
     message: str
@@ -26,10 +21,29 @@ class ChatResponse(BaseModel):
     sources: Optional[List[str]] = None
     error: Optional[str] = None
 
-
 agent = OrchestratorAgent()
 redis_manager = RedisManager()
 chat_store: Optional[ChatHistoryStore] = None
+langchain_store: Optional[LangChainHistoryStore] = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await agent.initialize()
+    await redis_manager.initialize()
+    global chat_store
+    chat_store = ChatHistoryStore(redis_manager)
+    global langchain_store
+    langchain_store = LangChainHistoryStore(redis_manager)
+    yield
+
+
+app = FastAPI(
+    title="Orchestrator Agent",
+    description="Orchestrator Agent for managing and coordinating tasks.",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
 
 
 
@@ -37,20 +51,14 @@ chat_store: Optional[ChatHistoryStore] = None
 @app.get("/health")
 async def health():
     # include redis health if available
-    redis = await redis_manager.health_check() if redis_manager else {"connected": False}
-    return {"status": "ok", "redis": redis}
+    try:    
+        redis_health = await redis_manager.health_check() if redis_manager else {"connected": False}
+        agent_health = await agent.health_check() if agent else {"status": "unhealthy"}
+        return {"status": "healthy", "redis": redis_health, "agent": agent_health}
+    except Exception as e:
+        return {"status": "unhealthy", "redis": {"connected": False}, "agent": {"status": "unhealthy", "error": str(e)}}
 
-
-@app.on_event("startup")
-async def on_startup():
-    try:
-        await redis_manager.initialize()
-    except Exception:
-        pass
-    global chat_store
-    chat_store = ChatHistoryStore(redis_manager)
-
-
+    
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     # Ensure minimal identifiers
@@ -60,6 +68,8 @@ async def chat(req: ChatRequest):
     # Append user message to chat history
     if chat_store and redis_manager.is_ready():
         await chat_store.append_message(user_id, session_id, role="user", content=req.message)
+    if langchain_store and redis_manager.is_ready():
+        await langchain_store.append_turn(user_id, session_id, turn_type="human", content=req.message)
 
     result = await agent.process_message(req.message)
     # Normalize output shape
@@ -76,6 +86,8 @@ async def chat(req: ChatRequest):
             agent_used=result.get("selected_agent") or "Orchestrator",
             source=sources if isinstance(sources, list) else [],
         )
+    if langchain_store and redis_manager.is_ready():
+        await langchain_store.append_turn(user_id, session_id, turn_type="ai", content=response_text)
 
     return {
         "selected_agent": result.get("selected_agent"),
@@ -94,6 +106,24 @@ async def get_history(user_id: str, session_id: str):
         "messages": chat.messages,
         "created_at": chat.created_at.isoformat(),
         "last_updated": chat.last_updated.isoformat(),
+    }
+
+@app.get("/history/langchain/{user_id}/{session_id}")
+async def get_history(user_id: str, session_id: str):
+    if not langchain_store or not redis_manager.is_ready():
+        return {"error": "Redis not available"}
+    chat = await langchain_store.load(user_id, session_id)
+    return {
+        "messages": chat
+    }
+
+@app.get("/sessions/{user_id}")
+async def get_user_sessions(user_id: str):
+    if not chat_store or not redis_manager.is_ready():
+        return {"error": "Cannot get user session !"}
+    sessions = await chat_store.list_sessions(user_id)
+    return {
+        "sessions": sessions
     }
 
 def main():

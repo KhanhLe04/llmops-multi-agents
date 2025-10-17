@@ -1,9 +1,11 @@
 from a2a.types import A2A
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAIError
-from langchain.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 from config import Config
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
+from langchain.schema import HumanMessage, AIMessage, SystemMessage
+from langchain_core.messages import trim_messages
 import logging
 import re
 import json
@@ -48,7 +50,7 @@ class OrchestratorAgent:
             logger.warning(f"Lỗi khi khởi tạo A2A Client: {e}")
             self.a2a_client = None
 
-    async def _initialize(self):
+    async def initialize(self):
         if self._initialized:
             return
         try:
@@ -62,13 +64,34 @@ class OrchestratorAgent:
             exit(1)
         
 
+    # def _setup_prompt(self):
+    #     input_vars = ["user_message"]
+    #     self.prompt_template = PromptTemplate(
+    #         input_variables=input_vars,
+    #         template=f"""{ROOT_INSTRUCTION}
+    #         **Message từ người dùng**: 
+    #         {{user_message}}
+    #         **Nhiệm vụ của bạn**:
+    #         1. Phân tích, làm rõ message từ người dùng để xác định context chính xác.
+    #         2. Xác định agent nào phù hợp nhất để xử lý message này dựa trên context đã xác định.
+    #         3. Trả về phản hồi ở định dạng JSON như sau:
+    #         {{{{
+    #             "selected_agent": "Tên Agent, có thể là RAG Agent nếu sử dụng RAG Agent hoặc null nếu trả lời trực tiếp",
+    #             "response": "Câu trả lời cuối cùng cho người dùng",
+    #             "sources": "Các tài liệu liên quan từ RAG Agent"
+    #         }}}}
+    #         **Lưu ý:**
+    #         - Nếu là các câu hỏi đơn giản hoặc chitchat, hãy trả lời trực tiếp mà không cần sử dụng agent nào khác.
+    #         - Nếu câu hỏi yêu cầu thông tin chuyên sâu, hãy chọn RAG Agent.
+    #         - Chỉ chọn Agent khi thực sự cần thiết.
+    #         - Nếu trả lời sử dụng Agent, hãy để trường "direct_response" = null, trường "response" sẽ là câu trả lời của RAG Agent.
+    #         - Nếu có thể trả lời trực tiếp, hãy để trường "selected_agent" = null, sources = null và cung cấp câu trả lời trong trường "direct_response".
+    #         """
+    #     )
+
     def _setup_prompt(self):
-        input_vars = ["user_message", "available_agents"]
-        self.prompt_template = PromptTemplate(
-            input_variables=input_vars,
-            template=f"""{ROOT_INSTRUCTION}
-            **Message từ người dùng**: 
-            {{user_message}}
+        system_prompt = f"""
+            {ROOT_INSTRUCTION}
             **Nhiệm vụ của bạn**:
             1. Phân tích, làm rõ message từ người dùng để xác định context chính xác.
             2. Xác định agent nào phù hợp nhất để xử lý message này dựa trên context đã xác định.
@@ -85,15 +108,16 @@ class OrchestratorAgent:
             - Nếu trả lời sử dụng Agent, hãy để trường "direct_response" = null, trường "response" sẽ là câu trả lời của RAG Agent.
             - Nếu có thể trả lời trực tiếp, hãy để trường "selected_agent" = null, sources = null và cung cấp câu trả lời trong trường "direct_response".
             """
-        )
+        system_message = SystemMessage(content=system_prompt)
 
-    async def process_message(self, message: str) -> Dict[str, Any]:
+        
+
+    async def process_message(self, message: str, history: Optional[List[Dict[str, str]]] = None) -> Dict[str, Any]:
         # Ensure components are initialized
         if not self._initialized:
-            await self._initialize()
-        formatted_query = self.prompt_template.format(
-            user_message=message,
-            available_agents="RAG Agent",
+            await self.initialize()
+        formatted_query = self.prompt_template.format_message(
+            user_message=message
         )
         try:
             result = await self.llm.ainvoke(formatted_query)
@@ -124,6 +148,42 @@ class OrchestratorAgent:
                 return {"selected_agent": None, "direct_response": "Xin lỗi, hiện tôi không thể xử lý yêu cầu.", "error": str(e)}
         except Exception as e:
             return {"selected_agent": None, "direct_response": "Xin lỗi, hiện tôi không thể xử lý yêu cầu.", "error": str(e)}
+        
+    async def health_check(self) -> Dict[str, Any]:
+        try:
+            if not self.llm:
+                logger.error("LLM model chưa được khởi tạo")
+                llm_status = "unhealthy"
+            else:
+                llm_status = "healthy"
+
+            if not self.a2a_client:
+                logger.warning("A2A Client chưa được khởi tạo hoặc không cấu hình")
+                a2a_status = "unhealthy"
+            else:
+                health = self.a2a_client.health_check()
+                a2a_status = health
+
+            return {
+                "status": "healthy",
+                "protocol": "A2A",
+                "components": {
+                    "llm": {
+                        "llm_model": Config.GOOGLE_LLM_MODEL,
+                        "status": llm_status
+                    },
+                    "a2a_client": {
+                        "status": a2a_status
+                    }
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Health check failed: {e}")
+            return {
+                "status": "unhealthy",
+                "error": str(e)
+            }
 
 
 # if __name__ == "__main__":

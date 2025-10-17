@@ -152,6 +152,7 @@ class RAGAgentA2AClient:
                 "raw_response": response_data
             }
 
+
 async def test_query():
     demo_question = "Stress là gì?"
 

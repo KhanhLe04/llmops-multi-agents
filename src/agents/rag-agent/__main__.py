@@ -3,19 +3,19 @@ from a2a.server.request_handlers import DefaultRequestHandler, RESTHandler
 from a2a.server.tasks import InMemoryTaskStore, InMemoryPushNotificationConfigStore, BasePushNotificationSender
 from a2a.types import AgentCapabilities, AgentCard, AgentSkill
 from agent_executor import RAGAgentExecutor
+from config import Config
 import logging
 import click
 import uvicorn
 import sys
 import httpx
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 @click.command()
-@click.option('--host', default='localhost')
-@click.option('--port', default=7005)
+@click.option('--host', default=Config.HOST)
+@click.option('--port', default=Config.PORT)
 def main(host, port):
     try:
 
