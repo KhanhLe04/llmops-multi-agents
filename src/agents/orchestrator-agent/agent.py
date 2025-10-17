@@ -5,7 +5,7 @@ from langchain.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceh
 from config import Config
 from typing import Dict, Any, Optional, List
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
-from langchain_core.messages import trim_messages
+from langchain_core.messages import trim_messages, BaseMessage
 import logging
 import re
 import json
@@ -64,63 +64,53 @@ class OrchestratorAgent:
             exit(1)
         
 
-    # def _setup_prompt(self):
-    #     input_vars = ["user_message"]
-    #     self.prompt_template = PromptTemplate(
-    #         input_variables=input_vars,
-    #         template=f"""{ROOT_INSTRUCTION}
-    #         **Message từ người dùng**: 
-    #         {{user_message}}
-    #         **Nhiệm vụ của bạn**:
-    #         1. Phân tích, làm rõ message từ người dùng để xác định context chính xác.
-    #         2. Xác định agent nào phù hợp nhất để xử lý message này dựa trên context đã xác định.
-    #         3. Trả về phản hồi ở định dạng JSON như sau:
-    #         {{{{
-    #             "selected_agent": "Tên Agent, có thể là RAG Agent nếu sử dụng RAG Agent hoặc null nếu trả lời trực tiếp",
-    #             "response": "Câu trả lời cuối cùng cho người dùng",
-    #             "sources": "Các tài liệu liên quan từ RAG Agent"
-    #         }}}}
-    #         **Lưu ý:**
-    #         - Nếu là các câu hỏi đơn giản hoặc chitchat, hãy trả lời trực tiếp mà không cần sử dụng agent nào khác.
-    #         - Nếu câu hỏi yêu cầu thông tin chuyên sâu, hãy chọn RAG Agent.
-    #         - Chỉ chọn Agent khi thực sự cần thiết.
-    #         - Nếu trả lời sử dụng Agent, hãy để trường "direct_response" = null, trường "response" sẽ là câu trả lời của RAG Agent.
-    #         - Nếu có thể trả lời trực tiếp, hãy để trường "selected_agent" = null, sources = null và cung cấp câu trả lời trong trường "direct_response".
-    #         """
-    #     )
-
     def _setup_prompt(self):
-        system_prompt = f"""
-            {ROOT_INSTRUCTION}
-            **Nhiệm vụ của bạn**:
-            1. Phân tích, làm rõ message từ người dùng để xác định context chính xác.
-            2. Xác định agent nào phù hợp nhất để xử lý message này dựa trên context đã xác định.
-            3. Trả về phản hồi ở định dạng JSON như sau:
-            {{{{
-                "selected_agent": "Tên Agent, có thể là RAG Agent nếu sử dụng RAG Agent hoặc null nếu trả lời trực tiếp",
-                "response": "Câu trả lời cuối cùng cho người dùng",
-                "sources": "Các tài liệu liên quan từ RAG Agent"
-            }}}}
-            **Lưu ý:**
-            - Nếu là các câu hỏi đơn giản hoặc chitchat, hãy trả lời trực tiếp mà không cần sử dụng agent nào khác.
-            - Nếu câu hỏi yêu cầu thông tin chuyên sâu, hãy chọn RAG Agent.
-            - Chỉ chọn Agent khi thực sự cần thiết.
-            - Nếu trả lời sử dụng Agent, hãy để trường "direct_response" = null, trường "response" sẽ là câu trả lời của RAG Agent.
-            - Nếu có thể trả lời trực tiếp, hãy để trường "selected_agent" = null, sources = null và cung cấp câu trả lời trong trường "direct_response".
+        input_vars = ["user_message", "chat_history"]
+        self.prompt_template = PromptTemplate(
+            input_variables=input_vars,
+            template=f"""{ROOT_INSTRUCTION}
+                [Thông tin cung cấp]
+                - Lịch sử hội thoại gần đây (nếu có): 
+                {{chat_history}}
+                - Câu hỏi hiện tại của người dùng:
+                {{user_message}}
+
+                [Nhiệm vụ]
+                1. Đánh giá xem người dùng đang hỏi mới hay đang nối tiếp ý trước. 
+                - Nếu họ nhắc lại, điều chỉnh ngữ cảnh từ cuộc trò chuyện nhưng tránh lặp nguyên văn câu trả lời cũ; giải thích thêm hoặc cung cấp góc nhìn khác.
+                - Nếu câu hỏi chỉ xây dựng trên câu hỏi cũ nhưng cần thêm thông tin mới, hãy ưu tiên bổ sung nội dung liên quan.
+                2. Nếu câu hỏi thuộc dạng chitchat đơn giản hoặc chỉ cần động viên, hãy trả lời trực tiếp và đảm bảo hướng tới mục tiêu hỗ trợ tinh thần.
+                3. Nếu câu hỏi đòi hỏi kiến thức chuyên sâu hoặc cần trích dẫn tài liệu (ví dụ: kỹ thuật chăm sóc sức khỏe tinh thần, khuyến nghị chuyên môn), hãy chọn RAG Agent để lấy thông tin chính xác hơn.
+                4. LUÔN LUÔN Trả về JSON với cấu trúc:
+                {{{{
+                    "selected_agent": "RAG Agent" hoặc "null"
+                    "response": "Câu trả lời cuối cùng dành cho người dùng",
+                    "sources": ["nguồn 1", "nguồn 2", ...] hoặc []
+                }}}}
+
+                [Lưu ý quan trọng]
+                - Chỉ gọi RAG Agent khi thực sự cần dẫn chứng hoặc kiến thức chuyên sâu; nếu không hãy trả lời trực tiếp và đặt "selected_agent": null, "sources": [].
+                - Khi gọi RAG Agent, đặt "selected_agent": "RAG Agent"
+                - Tránh lặp lại nguyên văn phản hồi cũ; hãy diễn giải lại, mở rộng hoặc bổ trợ thông tin mới phù hợp ngữ cảnh.
+                - Khi phát hiện tín hiệu nguy cấp (tự hại, bạo lực...), hãy khuyến khích người dùng kết nối ngay với người thân, thầy cô hoặc chuyên gia tâm lý.
+                - Nếu lịch sử đã trả lời câu hỏi tương tự, hãy dựa vào ý chính để trả lời lại nhưng nhớ cập nhật/điều chỉnh (không copy nguyên văn).
             """
-        system_message = SystemMessage(content=system_prompt)
+        )
 
-        
+    
 
-    async def process_message(self, message: str, history: Optional[List[Dict[str, str]]] = None) -> Dict[str, Any]:
+         
+
+    async def process_message(self, message: str, history: List[Dict[str, str]] = None) -> Dict[str, Any]:
         # Ensure components are initialized
         if not self._initialized:
             await self.initialize()
-        formatted_query = self.prompt_template.format_message(
-            user_message=message
+        formatted_messages = self.prompt_template.format(
+            user_message=message,
+            chat_history=history or None
         )
         try:
-            result = await self.llm.ainvoke(formatted_query)
+            result = await self.llm.ainvoke(formatted_messages)
             content = getattr(result, "content", str(result))
             try:
                 match = re.search(r"\{[\s\S]*\}", content)

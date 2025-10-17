@@ -8,6 +8,7 @@ from agent import OrchestratorAgent
 from config import Config
 import uvicorn
 from redis_memory import RedisManager, ChatHistoryStore, LangChainHistoryStore
+from langchain_core.messages import BaseMessage
 
 class ChatRequest(BaseModel):
     message: str
@@ -58,7 +59,8 @@ async def health():
     except Exception as e:
         return {"status": "unhealthy", "redis": {"connected": False}, "agent": {"status": "unhealthy", "error": str(e)}}
 
-    
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     # Ensure minimal identifiers
@@ -70,8 +72,9 @@ async def chat(req: ChatRequest):
         await chat_store.append_message(user_id, session_id, role="user", content=req.message)
     if langchain_store and redis_manager.is_ready():
         await langchain_store.append_turn(user_id, session_id, turn_type="human", content=req.message)
+        context = await langchain_store.get_history_context(user_id, session_id)
 
-    result = await agent.process_message(req.message)
+    result = await agent.process_message(req.message, context)
     # Normalize output shape
     response_text = result.get("response")
 
@@ -125,6 +128,13 @@ async def get_user_sessions(user_id: str):
     return {
         "sessions": sessions
     }
+
+@app.get("/context/{user_id}/{session_id}")
+async def get_context(user_id: str, session_id: str):
+    if not langchain_store or not redis_manager.is_ready():
+        return {"error": "Cannot get user session !"}
+    context = await langchain_store.get_history_context(user_id, session_id)
+    return context
 
 def main():
     uvicorn.run(app, host="0.0.0.0", port=7010)

@@ -16,6 +16,8 @@ class Config:
     TOP_K_DOCUMENTS = os.getenv("TOP_K_DOCUMENTS",5)
     SIMILARITY_THRESHOLD = os.getenv("SIMILARITY_THRESHOLD",0.7)
 
+    RAG_AGENT_URL = os.getenv("RAG_AGENT_URL", "http://localhost:7005")
+
     HOST = os.getenv("HOST", "0.0.0.0")
     PORT = int(os.getenv("PORT", 7005))
     

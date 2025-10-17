@@ -40,7 +40,7 @@ class RAGAgentA2AClient:
             agent_card=self.agent_card,
             url=self.base_url,
         )
-        print("A2A Client được khởi tạo thành công")
+
         print(f"Kết nối tới Agent thành công: {self.agent_card.name}")
         print(f"Thông tin: {self.agent_card.description}")
         print(f"URL: {self.agent_card.url}")
@@ -60,7 +60,7 @@ class RAGAgentA2AClient:
     
     async def send_message(self, message: str, stream: bool = False) -> dict:
         if not self.client:
-            await self._initialize()
+            await self.initialize()
 
         send_message_payload: dict[str, Any] = {
             'message': {
@@ -152,49 +152,31 @@ class RAGAgentA2AClient:
                 "task_id": request.id,
                 "raw_response": response_data
             }
-    def health_check(self) -> Dict[str, Any]:
-        try:
-            if not self.client:
-                self._initialize()
-            else:
-                return {
-                    "connected": True,
-                    "available_agent": "RAG Agent",
-                    "agent_card": {
-                        "name": self.agent_card.name,
-                        "description": self.agent_card.description,
-                        "url": self.agent_card.url,
-                    }
-                }
-        except Exception as e:
-            return {
-                "connected": False,
-                "error": str(e)
-            }
 
-# async def test_query():
-#     demo_question = "Stress là gì?"
 
-#     client = RAGAgentA2AClient()
-#     try:
-#         await client._initialize()
-#         print("A2A Client được khởi tạo thành công")
-#         print(f"Thử query với câu hỏi: {demo_question}")
+async def test_query():
+    demo_question = "Stress là gì?"
 
-#         result = await client.send_message(demo_question, stream=False)
-#         if result["status"] == "success":
-#             print(f"Agent trả lời: {result['content']}")
-#             print(f"Nguồn tham khảo: {result['sources']}")
-#         else:
-#             print(f"Lỗi: {result['error']}")
+    client = RAGAgentA2AClient()
+    try:
+        await client._initialize()
+        print("A2A Client được khởi tạo thành công")
+        print(f"Thử query với câu hỏi: {demo_question}")
 
-#         await asyncio.sleep(1)
-#     finally:
-#         await client.close()
+        result = await client.send_message(demo_question, stream=False)
+        if result["status"] == "success":
+            print(f"Agent trả lời: {result['content']}")
+            print(f"Nguồn tham khảo: {result['sources']}")
+        else:
+            print(f"Lỗi: {result['error']}")
+
+        await asyncio.sleep(1)
+    finally:
+        await client.close()
         
-# async def main():
-#     await test_query()
+async def main():
+    await test_query()
 
 
-# if __name__ == "__main__":
-#     asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

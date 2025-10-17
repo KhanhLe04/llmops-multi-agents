@@ -361,6 +361,20 @@ class LangChainHistoryStore:
             if len(parts) >= 3:
                 sessions.append(":".join(parts[2:]))
         return sessions
+
+    async def get_history_context(
+        self,
+        user_id: str,
+        session_id: str,
+        limit: int = 20,
+    ) -> List[Dict[str, str]]:
+        """Lấy N lượt hội thoại gần nhất để dựng context (mặc định 20)."""
+        history_list = await self.get(user_id, session_id)
+        if not history_list:
+            return []
+        if limit is None or limit <= 0:
+            return history_list
+        return history_list[-limit:] if len(history_list) > limit else history_list
     
     async def convert_history(self, user_id: str, session_id: str) -> List[BaseMessage]:
         history = await self.get(user_id, session_id)

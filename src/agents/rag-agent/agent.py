@@ -236,17 +236,11 @@ class RAGAgent:
                 {state["query"]}
 
                 Yêu cầu phản hồi:
-                1. Nếu người hỏi là học sinh hoặc sinh viên:
                 - Giải thích rõ ràng, dễ hiểu, tránh ngôn ngữ học thuật phức tạp.
                 - Cung cấp hướng dẫn cụ thể để giúp họ hiểu, đối diện và cải thiện vấn đề sức khỏe tinh thần.
                 - Thể hiện sự lắng nghe, khích lệ và đồng cảm. 
                 - Nếu câu hỏi có dấu hiệu khẩn cấp (liên quan đến tự hại, tự tử, bạo lực, khủng hoảng cảm xúc), hãy ưu tiên **an toàn**:
                     > "Nếu em đang trong tình trạng khủng hoảng hoặc có ý định làm hại bản thân, hãy liên hệ ngay với người thân, bạn bè hoặc chuyên gia tâm lý tại trường. Em không đơn độc và có người sẵn sàng giúp đỡ."
-
-                2. Nếu người hỏi là chuyên gia, nhà tư vấn hoặc giáo viên:
-                - Trả lời chuyên sâu hơn, có thể phân tích về cơ chế tâm lý, liệu pháp can thiệp hoặc hướng dẫn khoa học.
-                - Gợi ý các phương pháp, tài liệu, hoặc chương trình đào tạo phù hợp.
-                - Dựa trên nội dung trong ngữ cảnh, có thể trích dẫn hoặc tóm tắt những điểm chính.
 
                 3. Khi trả lời, luôn giữ thái độ nhân văn, tôn trọng và mang tính hỗ trợ. 
                 - Không đưa ra chẩn đoán y khoa hay kết luận bệnh lý.
@@ -255,7 +249,7 @@ class RAGAgent:
                 Định dạng phản hồi:
                 - Giải thích thân thiện, rõ ràng, có thể chia nhỏ từng ý.
                 - Trình bày tự nhiên, gần gũi với học sinh – sinh viên Việt Nam.
-                - Nếu có trích dẫn từ tài liệu, ghi rõ nguồn (VD: [Tài liệu MOET_UNICEF_2022]).
+                - *LƯU Ý*: KHÔNG trích dẫn nguồn hay viết bất kỳ thứ gì liên quan tới nội dung trích dẫn nguồn như: "Bạn có thể tham khảo tài liệu ..."
             """
 
             response = self.llm.invoke(prompt)
