@@ -250,6 +250,7 @@ class RAGAgent:
                 - Giải thích thân thiện, rõ ràng, có thể chia nhỏ từng ý.
                 - Trình bày tự nhiên, gần gũi với học sinh – sinh viên Việt Nam.
                 - *LƯU Ý*: KHÔNG trích dẫn nguồn hay viết bất kỳ thứ gì liên quan tới nội dung trích dẫn nguồn như: "Bạn có thể tham khảo tài liệu ..."
+                - *LƯU Ý*: KHÔNG nên lúc nào cũng bắt đầu câu trả lời bằng những lời chào như "Xin chào bạn, tôi được hiểu rằng ...", "Rất vui được gặp bạn" (Trừ khi các câu hỏi của người dùng có mục đích để chào hỏi).
             """
 
             response = self.llm.invoke(prompt)

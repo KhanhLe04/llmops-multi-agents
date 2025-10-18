@@ -21,7 +21,7 @@ class OrchestratorAgent:
         # Khởi tạo A2A Client nếu có RAG Agent được cấu hình
         self.a2a_client: Optional[RAGAgentA2AClient] = None
         self.prompt_template = None
-        self._initialized = False
+        self._initialized = None
         
     
     def _init_llm(self):
@@ -51,8 +51,6 @@ class OrchestratorAgent:
             self.a2a_client = None
 
     async def initialize(self):
-        if self._initialized:
-            return
         try:
             
             self._init_llm()
@@ -76,7 +74,7 @@ class OrchestratorAgent:
                 {{user_message}}
 
                 [Nhiệm vụ]
-                1. Đánh giá xem người dùng đang hỏi mới hay đang nối tiếp ý trước. 
+                1. Đánh giá xem người dùng đang hỏi mới hay đang nối tiếp ý trước dựa trên lịch sử hội thoại gần đây (lịch sử sẽ được lưu theo dạng từ cũ nhất tới mới nhất). 
                 - Nếu họ nhắc lại, điều chỉnh ngữ cảnh từ cuộc trò chuyện nhưng tránh lặp nguyên văn câu trả lời cũ; giải thích thêm hoặc cung cấp góc nhìn khác.
                 - Nếu câu hỏi chỉ xây dựng trên câu hỏi cũ nhưng cần thêm thông tin mới, hãy ưu tiên bổ sung nội dung liên quan.
                 2. Nếu câu hỏi thuộc dạng chitchat đơn giản hoặc chỉ cần động viên, hãy trả lời trực tiếp và đảm bảo hướng tới mục tiêu hỗ trợ tinh thần.
@@ -89,6 +87,8 @@ class OrchestratorAgent:
                 }}}}
 
                 [Lưu ý quan trọng]
+                - Không nên lúc nào cũng bắt đầu câu trả lời bằng những lời chào như "Xin chào bạn, tôi được hiểu rằng ...", "Rất vui được gặp bạn" (Trừ khi các câu hỏi của người dùng có mục đích để chào hỏi).
+                - Lịch sử hội thoại sẽ là các cặp thông tin như "type": "ai nếu như là tin nhắn của AI, human nếu như là tin nhắn của con người", "content": "Nội dung của tin nhắn đó". Hãy tổng hợp các context của lịch sử hội thoại này, và dùng nó hỗ trợ trả lời câu hỏi sắp tới
                 - Chỉ gọi RAG Agent khi thực sự cần dẫn chứng hoặc kiến thức chuyên sâu; nếu không hãy trả lời trực tiếp và đặt "selected_agent": null, "sources": [].
                 - Khi gọi RAG Agent, đặt "selected_agent": "RAG Agent"
                 - Tránh lặp lại nguyên văn phản hồi cũ; hãy diễn giải lại, mở rộng hoặc bổ trợ thông tin mới phù hợp ngữ cảnh.
@@ -120,13 +120,18 @@ class OrchestratorAgent:
                     if isinstance(decision, dict) and decision.get("selected_agent") == "RAG Agent":
                         # ensure A2A client initialized
                         if not self.a2a_client._initialized:
-                            await self.a2a_client._initialize()
-                        rag_result = await self.a2a_client.send_message(message, stream=False)
-                        return {
-                            "selected_agent": "RAG Agent",
-                            "response": rag_result.get("content", ""),
-                            "sources": rag_result.get("sources", []),
-                        }
+                            return {
+                                "selected_agent": None,
+                                "response": decision.get("response", ""),
+                                "sources": None,
+                            }
+                        else:
+                            rag_result = await self.a2a_client.send_message(message, stream=False)
+                            return {
+                                "selected_agent": "RAG Agent",
+                                "response": rag_result.get("content", ""),
+                                "sources": rag_result.get("sources", []),
+                            }
                     elif isinstance(decision, dict) and decision.get("selected_agent") is None:
                         return {
                             "selected_agent": None,
@@ -141,21 +146,26 @@ class OrchestratorAgent:
         
     async def health_check(self) -> Dict[str, Any]:
         try:
-            if not self.llm:
-                logger.error("LLM model chưa được khởi tạo")
-                llm_status = "unhealthy"
+            await self.initialize()
+            if not self._initialized:
+                if not self.llm:
+                    logger.error("LLM model chưa được khởi tạo")
+                    llm_status = "unhealthy"
+                               
+                if not self.a2a_client:
+                    logger.warning("A2A Client chưa được khởi tạo hoặc không cấu hình")
+                    a2a_status = "unhealthy"
+                else:
+                    health = await self.a2a_client.health_check()
+                    a2a_status = health
             else:
+                status = "healthy"
                 llm_status = "healthy"
-
-            if not self.a2a_client:
-                logger.warning("A2A Client chưa được khởi tạo hoặc không cấu hình")
-                a2a_status = "unhealthy"
-            else:
-                health = self.a2a_client.health_check()
-                a2a_status = health
+                a2a_status = await self.a2a_client.health_check() 
+            
 
             return {
-                "status": "healthy",
+                "status": status,
                 "protocol": "A2A",
                 "components": {
                     "llm": {
@@ -167,7 +177,6 @@ class OrchestratorAgent:
                     }
                 }
             }
-            
         except Exception as e:
             logger.error(f"Health check failed: {e}")
             return {

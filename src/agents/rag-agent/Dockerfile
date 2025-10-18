@@ -1,33 +1,17 @@
-# ===========================
-#  🚧 Stage 1: Builder
-# ===========================
-FROM python:3.13-slim AS build
-
-# Environment settings
-ENV DEBIAN_FRONTEND=noninteractive
-ENV UV_COMPILE_BYTECODE=1 
-ENV UV_LINK_MODE=copy
-# Set working directory
+FROM python:3.13-slim AS builder
 WORKDIR /app
-
-# Install uv
+COPY pyproject.toml /app/
 RUN pip install --no-cache-dir uv==0.9.3
-
-# Install dependencies
-COPY pyproject.toml uv.lock ./
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --no-install-project --no-dev
-COPY . .
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
+RUN uv pip install --no-cache-dir -r pyproject.toml --target=/app/requirements 
 
 
-# === Stage 2: Run ===
+
 FROM python:3.13-slim
-RUN pip install --no-cache-dir uv==0.9.3
 WORKDIR /app
-COPY --from=build /app .
-
+# Install dependencies
+COPY --from=builder /app/requirements /usr/local/lib/python3.13/site-packages/
+COPY . /app
 EXPOSE 7005
+RUN pip install --no-cache-dir uv==0.9.3
 
 CMD ["uv", "run", ".", "--host", "0.0.0.0", "--port", "7005"]

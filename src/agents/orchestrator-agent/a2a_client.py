@@ -24,35 +24,38 @@ class RAGAgentA2AClient:
     async def _initialize(self):
         if self._initialized:
             return
-        
-        self.httpx_client = httpx.AsyncClient()
+        try:
 
-        card_resolver = A2ACardResolver(
-            base_url= self.base_url,
-            httpx_client= self.httpx_client,
-            agent_card_path="/.well-known/agent-card.json"
-        )
+            self.httpx_client = httpx.AsyncClient()
 
-        self.agent_card = await card_resolver.get_agent_card()
+            card_resolver = A2ACardResolver(
+                base_url= self.base_url,
+                httpx_client= self.httpx_client,
+                agent_card_path="/.well-known/agent-card.json"
+            )
 
-        self.client = A2AClient(
-            httpx_client=self.httpx_client,
-            agent_card=self.agent_card,
-            url=self.base_url,
-        )
+            self.agent_card = await card_resolver.get_agent_card()
 
-        print(f"Kết nối tới Agent thành công: {self.agent_card.name}")
-        print(f"Thông tin: {self.agent_card.description}")
-        print(f"URL: {self.agent_card.url}")
-        if hasattr(self.agent_card, 'skills') and self.agent_card.skills:
-            print(f"Các skill: {len(self.agent_card.skills)}")
-            for skill in self.agent_card.skills:
-                print(f"   - {skill.name}: {skill.description}")
-        else:
-            print("🛠️ Không có skill cụ thể nào được liệt kê")
-        print("─" * 50)
+            self.client = A2AClient(
+                httpx_client=self.httpx_client,
+                agent_card=self.agent_card,
+                url=self.base_url,
+            )
 
-        self._initialized = True
+            print(f"Kết nối tới Agent thành công: {self.agent_card.name}")
+            print(f"Thông tin: {self.agent_card.description}")
+            print(f"URL: {self.agent_card.url}")
+            if hasattr(self.agent_card, 'skills') and self.agent_card.skills:
+                print(f"Các skill: {len(self.agent_card.skills)}")
+                for skill in self.agent_card.skills:
+                    print(f"   - {skill.name}: {skill.description}")
+            else:
+                print("🛠️ Không có skill cụ thể nào được liệt kê")
+            print("─" * 50)
+
+            self._initialized = True
+        except Exception as e:
+            self._initialized = False
     
     async def close(self):
         if self.httpx_client:
@@ -152,31 +155,56 @@ class RAGAgentA2AClient:
                 "task_id": request.id,
                 "raw_response": response_data
             }
+    async def health_check(self):
+        try:
+            await self._initialize()    
+            status = "healthy"
+            if not self._initialized:
+                status = "unhealthy"
+                return {
+                    "status": status
+                }
+            else: 
+                return {
+                    "status": status,
+                    "agent_card": {
+                        "name": self.agent_card.name,
+                        "description": self.agent_card.description,
+                        "url": self.agent_card.url
+                    }
+                }
+        except Exception as e:
+            return {
+                "status": "unhealthy",
+                "error": {e}
+            }
 
 
-async def test_query():
-    demo_question = "Stress là gì?"
+# async def test_query():
+#     demo_question = "Stress là gì?"
 
-    client = RAGAgentA2AClient()
-    try:
-        await client._initialize()
-        print("A2A Client được khởi tạo thành công")
-        print(f"Thử query với câu hỏi: {demo_question}")
+#     client = RAGAgentA2AClient()
+#     try:
+#         await client._initialize()
+#         print("A2A Client được khởi tạo thành công")
+#         print(f"Thử query với câu hỏi: {demo_question}")
 
-        result = await client.send_message(demo_question, stream=False)
-        if result["status"] == "success":
-            print(f"Agent trả lời: {result['content']}")
-            print(f"Nguồn tham khảo: {result['sources']}")
-        else:
-            print(f"Lỗi: {result['error']}")
+#         result = await client.send_message(demo_question, stream=False)
+#         if result["status"] == "success":
+#             print(f"Agent trả lời: {result['content']}")
+#             print(f"Nguồn tham khảo: {result['sources']}")
+#         else:
+#             print(f"Lỗi: {result['error']}")
 
-        await asyncio.sleep(1)
-    finally:
-        await client.close()
+#         await asyncio.sleep(1)
+#     finally:
+#         await client.close()
+
+
         
-async def main():
-    await test_query()
+# async def main():
+#     await test_query()
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# if __name__ == "__main__":
+#     asyncio.run(main())
