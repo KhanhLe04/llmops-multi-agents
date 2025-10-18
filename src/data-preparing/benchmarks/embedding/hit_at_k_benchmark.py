@@ -339,7 +339,7 @@ class HitAtKBenchmark:
     
     def plot_results(self, df: pd.DataFrame, save_path: str = None):
         """
-        Create visualization như hình benchmark
+        Create comprehensive visualization với performance và timing charts
         """
         # Filter successful models
         successful_df = df[df['Status'] == 'Success'].copy()
@@ -348,41 +348,72 @@ class HitAtKBenchmark:
             print("❌ No successful models to plot")
             return
         
-        # Sort by Hit@1 descending
-        successful_df = successful_df.sort_values('Hit@1', ascending=True)
+        # Create 2x1 subplot (vertical layout)
+        fig, axes = plt.subplots(2, 1, figsize=(14, 12))
+        fig.suptitle('Hit@K Benchmark Results', fontsize=16, fontweight='bold')
         
-        # Create plot
-        fig, ax = plt.subplots(figsize=(12, 8))
+        # Sort by Hit@1 for consistent ordering
+        performance_sorted = successful_df.sort_values('Hit@1', ascending=True)
+        timing_sorted = successful_df.sort_values('Total Time (s)', ascending=True)
         
-        # Set positions
-        y_pos = np.arange(len(successful_df))
+        # 1. Performance Chart (Hit@1 and Hit@4)
+        ax1 = axes[0]
+        y_pos1 = np.arange(len(performance_sorted))
         
-        # Plot Hit@1 and Hit@4
-        bars1 = ax.barh(y_pos - 0.2, successful_df['Hit@1'], 0.4, 
-                       label='Hit@1', color='#FF8C00', alpha=0.8)
-        bars4 = ax.barh(y_pos + 0.2, successful_df['Hit@4'], 0.4,
-                       label='Hit@4', color='#FF6347', alpha=0.8)
+        bars1 = ax1.barh(y_pos1 - 0.2, performance_sorted['Hit@1'], 0.4, 
+                        label='Hit@1', color='#FF8C00', alpha=0.8)
+        bars4 = ax1.barh(y_pos1 + 0.2, performance_sorted['Hit@4'], 0.4,
+                        label='Hit@4', color='#FF6347', alpha=0.8)
         
-        # Customize plot
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(successful_df['Model'])
-        ax.set_xlabel('Score (%)')
-        ax.set_title('Hit@1 and Hit@4 for Different Embedding Models (Sorted Ascending)', 
-                    fontsize=14, fontweight='bold')
-        ax.legend()
-        ax.grid(True, alpha=0.3)
-        ax.set_xlim(0, 100)
+        ax1.set_yticks(y_pos1)
+        ax1.set_yticklabels(performance_sorted['Model'])
+        ax1.set_xlabel('Score (%)')
+        ax1.set_title('Performance Ranking (Hit@1 and Hit@4)')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        ax1.set_xlim(0, 100)
         
-        # Add value labels on bars
+        # Add value labels for performance
         for bar in bars1:
             width = bar.get_width()
-            ax.text(width + 1, bar.get_y() + bar.get_height()/2, 
-                   f'{width:.1f}%', ha='left', va='center', fontsize=9)
+            ax1.text(width + 1, bar.get_y() + bar.get_height()/2, 
+                    f'{width:.1f}%', ha='left', va='center', fontsize=9, fontweight='bold')
         
         for bar in bars4:
             width = bar.get_width()
-            ax.text(width + 1, bar.get_y() + bar.get_height()/2,
-                   f'{width:.1f}%', ha='left', va='center', fontsize=9)
+            ax1.text(width + 1, bar.get_y() + bar.get_height()/2,
+                    f'{width:.1f}%', ha='left', va='center', fontsize=9, fontweight='bold')
+        
+        # 2. Timing Chart
+        ax2 = axes[1]
+        y_pos2 = np.arange(len(timing_sorted))
+        
+        # Color gradient based on speed (green = fast, red = slow)
+        max_time = timing_sorted['Total Time (s)'].max()
+        colors = plt.cm.RdYlGn_r(timing_sorted['Total Time (s)'] / max_time)
+        
+        bars_time = ax2.barh(y_pos2, timing_sorted['Total Time (s)'], 
+                            color=colors, alpha=0.8)
+        
+        ax2.set_yticks(y_pos2)
+        ax2.set_yticklabels(timing_sorted['Model'])
+        ax2.set_xlabel('Processing Time (seconds)')
+        ax2.set_title('Processing Time Ranking (Lower is Better)')
+        ax2.grid(True, alpha=0.3)
+        
+        # Add value labels for timing
+        for i, bar in enumerate(bars_time):
+            width = bar.get_width()
+            # Color label based on speed: green for fast, red for slow
+            label_color = 'green' if width < 15 else 'orange' if width < 40 else 'red'
+            ax2.text(width + max_time * 0.01, bar.get_y() + bar.get_height()/2, 
+                    f'{width:.1f}s', ha='left', va='center', fontsize=10, 
+                    fontweight='bold', color=label_color)
+        
+        # Add speed categories as text annotations
+        ax2.text(0.02, 0.98, 'Fast: <15s   Medium: 15-40s   Slow: >40s', 
+                transform=ax2.transAxes, fontsize=10, verticalalignment='top',
+                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
         
         plt.tight_layout()
         
@@ -391,36 +422,41 @@ class HitAtKBenchmark:
             print(f"📊 Chart saved to: {save_path}")
         
         plt.show()
+        return fig
     
     def save_results(self, df: pd.DataFrame, timestamp: str = None):
         """
-        Save results to files
+        Save results to files in results directory
         """
         if timestamp is None:
             from datetime import datetime
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # Get current script directory
+        # Get current script directory and create results subdirectory
         script_dir = os.path.dirname(os.path.abspath(__file__))
+        results_dir = os.path.join(script_dir, "results")
+        
+        # Create results directory if it doesn't exist
+        os.makedirs(results_dir, exist_ok=True)
         
         # Save detailed results
-        results_file = os.path.join(script_dir, f"hit_at_k_benchmark_results.json")
+        results_file = os.path.join(results_dir, f"hit_at_k_benchmark_results.json")
         import json
         with open(results_file, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, ensure_ascii=False, indent=2)
         
         # Save summary CSV
-        csv_file = os.path.join(script_dir, f"hit_at_k_benchmark_summary.csv")
+        csv_file = os.path.join(results_dir, f"hit_at_k_benchmark_summary.csv")
         df.to_csv(csv_file, index=False, encoding='utf-8')
         
         # Save chart
-        chart_file = os.path.join(script_dir, f"hit_at_k_benchmark_chart.png")
+        chart_file = os.path.join(results_dir, f"hit_at_k_benchmark_chart.png")
         self.plot_results(df, save_path=chart_file)
         
-        print(f"💾 Results saved:")
-        print(f"   - {results_file} (detailed JSON)")
-        print(f"   - {csv_file} (summary CSV)")
-        print(f"   - {chart_file} (chart PNG)")
+        print(f"💾 Results saved to results/ directory:")
+        print(f"   - {os.path.relpath(results_file, script_dir)} (detailed JSON)")
+        print(f"   - {os.path.relpath(csv_file, script_dir)} (summary CSV)")
+        print(f"   - {os.path.relpath(chart_file, script_dir)} (chart PNG)")
 
 def main():
     """

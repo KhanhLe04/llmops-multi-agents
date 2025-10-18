@@ -1,7 +1,7 @@
 Model,Model Path,Pearson (%),Spearman (%),Encoding Time (s),Pairs Tested,Status
-intfloat/multilingual-e5-base,intfloat/multilingual-e5-base,76.60317648182038,74.96544729638686,20.464898586273193,1000,Success
-Alibaba-NLP/gte-multilingual-base,Alibaba-NLP/gte-multilingual-base,75.78653527873561,75.30287105279464,25.695456981658936,1000,Success
-keepitreal/vietnamese-sbert,keepitreal/vietnamese-sbert,76.7323469331704,74.82454289107106,16.27885365486145,1000,Success
-Qwen/Qwen3-Embedding-0.6B,Qwen/Qwen3-Embedding-0.6B,77.1439819963849,74.74063019256818,111.50679612159729,1000,Success
-BAAI/bge-m3,BAAI/bge-m3,78.55624902828708,77.78152773430475,73.01034426689148,1000,Success
-intfloat/multilingual-e5-large-instruct,intfloat/multilingual-e5-large-instruct,72.23314753609513,73.14067661694597,69.96135187149048,1000,Success
+intfloat/multilingual-e5-base,intfloat/multilingual-e5-base,76.60317648182038,74.96544729638686,20.18523931503296,1000,Success
+Alibaba-NLP/gte-multilingual-base,Alibaba-NLP/gte-multilingual-base,75.78653527873561,75.30287105279464,27.227945566177368,1000,Success
+keepitreal/vietnamese-sbert,keepitreal/vietnamese-sbert,76.7323469331704,74.82454289107106,19.888395071029663,1000,Success
+Qwen/Qwen3-Embedding-0.6B,Qwen/Qwen3-Embedding-0.6B,77.1439819963849,74.74063019256818,125.51460552215576,1000,Success
+BAAI/bge-m3,BAAI/bge-m3,78.55624902828708,77.78152773430475,71.34908127784729,1000,Success
+intfloat/multilingual-e5-large-instruct,intfloat/multilingual-e5-large-instruct,72.23314753609513,73.14067661694597,68.87318420410156,1000,Success

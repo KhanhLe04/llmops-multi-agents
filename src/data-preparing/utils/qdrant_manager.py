@@ -13,7 +13,7 @@ from qdrant_client.models import (
     MatchValue, SearchRequest, ScoredPoint
 )
 import uuid
-from config import Config, MENTAL_HEALTH_KEYWORDS
+from config import Config
 
 class QdrantManager:
     def __init__(self):
@@ -125,7 +125,7 @@ class QdrantManager:
     
     def add_documents(self, documents_with_embeddings: List[Dict]):
         """
-        Thêm documents vào collection với metadata phong phú
+        Thêm documents vào collection với metadata đơn giản
         """
         if not documents_with_embeddings:
             print("⚠️  Không có documents để thêm")
@@ -140,30 +140,13 @@ class QdrantManager:
                     print(f"⚠️  Document {i} không có embedding, bỏ qua")
                     continue
                 
-                # Tạo payload với metadata phong phú
+                # Tạo payload với metadata tối giản
                 payload = {
                     "content": doc["content"],
                     "source": doc["source"],
-                    "chunk_id": doc["chunk_id"],
-                    "content_type": doc["content_type"],
-                    
-                    # Metadata từ processing
-                    "char_count": doc["metadata"]["char_count"],
-                    "word_count": doc["metadata"]["word_count"],
-                    "chunk_index": doc["metadata"]["chunk_index"],
-                    "total_chunks": doc["metadata"]["total_chunks"],
-                    
-                    # Domain-specific metadata
-                    "domain": Config.DOMAIN,
-                    "embedding_model": doc["embedding_model"],
-                    
-                    # Content analysis
-                    "contains_crisis_keywords": self._contains_crisis_keywords(doc["content"]),
-                    "contains_student_keywords": self._contains_student_keywords(doc["content"]),
-                    "priority_level": self._assess_content_priority(doc["content"], doc["content_type"]),
-                    
-                    # Searchable tags
-                    "tags": self._extract_content_tags(doc["content"], doc["content_type"])
+                    "chunk_index": doc["chunk_index"],
+                    "doc_id": doc["doc_id"],
+                    "section": doc["section"]
                 }
                 
                 point = PointStruct(
@@ -204,39 +187,6 @@ class QdrantManager:
             print(f"❌ Lỗi thêm documents: {e}")
             return False
     
-    def _contains_crisis_keywords(self, content: str) -> bool:
-        """Kiểm tra nội dung có chứa từ khóa khủng hoảng không"""
-        content_lower = content.lower()
-        return any(keyword in content_lower for keyword in MENTAL_HEALTH_KEYWORDS["crisis_indicators"])
-    
-    def _contains_student_keywords(self, content: str) -> bool:
-        """Kiểm tra nội dung có liên quan đến học sinh sinh viên không"""
-        content_lower = content.lower()
-        return any(keyword in content_lower for keyword in MENTAL_HEALTH_KEYWORDS["student_specific"])
-    
-    def _assess_content_priority(self, content: str, content_type: str) -> str:
-        """Đánh giá mức độ ưu tiên của nội dung"""
-        if content_type == "crisis_support":
-            return "critical"
-        elif content_type == "intervention_guidance":
-            return "high"
-        elif content_type == "student_focused":
-            return "medium"
-        else:
-            return "normal"
-    
-    def _extract_content_tags(self, content: str, content_type: str) -> List[str]:
-        """Trích xuất tags từ nội dung"""
-        tags = [content_type]
-        content_lower = content.lower()
-        
-        # Thêm tags dựa trên keywords
-        for category, keywords in MENTAL_HEALTH_KEYWORDS.items():
-            for keyword in keywords:
-                if keyword.lower() in content_lower:
-                    tags.append(f"{category}:{keyword}")
-        
-        return list(set(tags))  # Remove duplicates
     
     def search_similar_documents(self, query_embedding: List[float], 
                                limit: int = None, 
@@ -290,21 +240,13 @@ class QdrantManager:
                     "score": result.score,
                     "content": result.payload["content"],
                     "source": result.payload["source"],
-                    "chunk_id": result.payload["chunk_id"],
-                    "content_type": result.payload["content_type"],
-                    "priority_level": result.payload.get("priority_level", "normal"),
-                    "contains_crisis_keywords": result.payload.get("contains_crisis_keywords", False),
-                    "contains_student_keywords": result.payload.get("contains_student_keywords", False),
-                    "tags": result.payload.get("tags", [])
+                    "chunk_index": result.payload["chunk_index"],
+                    "doc_id": result.payload["doc_id"],
+                    "section": result.payload["section"]
                 }
                 results.append(doc)
             
             print(f"✅ Tìm thấy {len(results)} documents")
-            
-            # Log priority content
-            crisis_docs = [d for d in results if d["contains_crisis_keywords"]]
-            if crisis_docs:
-                print(f"⚠️  Tìm thấy {len(crisis_docs)} documents có nội dung khủng hoảng")
             
             return results
             
@@ -358,25 +300,26 @@ class QdrantManager:
             print(f"❌ Lỗi xóa collection: {e}")
             return False
     
-    def search_by_content_type(self, query_embedding: List[float], 
-                              content_types: List[str], 
-                              limit: int = None) -> List[Dict]:
+    def search_by_source(self, query_embedding: List[float], 
+                        sources: List[str], 
+                        limit: int = None) -> List[Dict]:
         """
-        Tìm kiếm documents theo loại nội dung cụ thể
+        Tìm kiếm documents theo source cụ thể
         """
-        filter_conditions = {"content_type": content_types}
+        filter_conditions = {"source": sources}
         return self.search_similar_documents(
             query_embedding=query_embedding,
             limit=limit,
             filter_conditions=filter_conditions
         )
     
-    def search_crisis_content(self, query_embedding: List[float], 
-                             limit: int = 5) -> List[Dict]:
+    def search_by_section(self, query_embedding: List[float], 
+                         sections: List[str], 
+                         limit: int = None) -> List[Dict]:
         """
-        Tìm kiếm nội dung hỗ trợ khủng hoảng
+        Tìm kiếm documents theo section cụ thể
         """
-        filter_conditions = {"contains_crisis_keywords": True}
+        filter_conditions = {"section": sections}
         return self.search_similar_documents(
             query_embedding=query_embedding,
             limit=limit,
@@ -393,8 +336,9 @@ class QdrantManager:
             if "error" in info:
                 return info
             
-            # Lấy thống kê theo content type
-            content_type_stats = {}
+            # Lấy thống kê theo sections và sources
+            section_stats = {}
+            source_stats = {}
             try:
                 # Scroll through all points to get stats (for small collections)
                 points, _ = self.client.scroll(
@@ -405,16 +349,20 @@ class QdrantManager:
                 )
                 
                 for point in points:
-                    content_type = point.payload.get("content_type", "unknown")
-                    content_type_stats[content_type] = content_type_stats.get(content_type, 0) + 1
+                    section = point.payload.get("section", "unknown")
+                    source = point.payload.get("source", "unknown")
+                    section_stats[section] = section_stats.get(section, 0) + 1
+                    source_stats[source] = source_stats.get(source, 0) + 1
                     
             except Exception as e:
-                print(f"⚠️  Không thể lấy content type stats: {e}")
+                print(f"⚠️  Không thể lấy stats: {e}")
             
             stats = {
                 **info,
-                "content_type_distribution": content_type_stats,
-                "total_content_types": len(content_type_stats)
+                "section_distribution": section_stats,
+                "source_distribution": source_stats,
+                "total_sections": len(section_stats),
+                "total_sources": len(source_stats)
             }
             
             return stats

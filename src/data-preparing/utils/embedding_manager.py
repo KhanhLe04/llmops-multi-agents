@@ -8,7 +8,7 @@ import numpy as np
 from typing import List, Dict, Optional, Union
 from sentence_transformers import SentenceTransformer
 import torch
-from config import Config, MENTAL_HEALTH_KEYWORDS
+from config import Config
 
 class EmbeddingManager:
     def __init__(self):

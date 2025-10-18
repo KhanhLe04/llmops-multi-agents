@@ -12,8 +12,6 @@ __pycache__/
 .mypy_cache/
 .pytest_cache/
 
-# Data
-data/embeddings/*
 
 # Logs
 logs/
@@ -25,3 +23,5 @@ logs/
 # OS junk
 .DS_Store
 Thumbs.db
+
+uv.lock

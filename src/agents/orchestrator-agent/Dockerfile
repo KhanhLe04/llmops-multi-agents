@@ -1,25 +1,20 @@
-FROM python:3.11-slim
-
+# ===========================
+#  🚧 Stage 1: Builder
+# ===========================
+FROM python:3.13-slim AS builder
 WORKDIR /app
+COPY pyproject.toml /app/
+# Install uv
+RUN pip install --no-cache-dir uv==0.9.3
+RUN uv pip install --no-cache-dir -r pyproject.toml --target=/app/requirements 
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
-
-# Expose port
-EXPOSE 7000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:7000/health || exit 1
-
-# Run the application
-CMD ["python", "main.py"]
+FROM python:3.13-slim
+WORKDIR /app
+# Install dependencies
+COPY --from=builder /app/requirements /usr/local/lib/python3.13/site-packages/
+COPY . /app
+EXPOSE 7010
+RUN pip install --no-cache-dir uv==0.9.3
+CMD ["uv", "run", "."]

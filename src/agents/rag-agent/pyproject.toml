@@ -1,0 +1,49 @@
+[project]
+name = "rag-agent"
+version = "1.0.0"
+description = "RAG Agent"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # A2A Protocol
+    "a2a-sdk>=0.3.7",
+    "a2a-sdk[http-server]>=0.3.7",
+    
+    "python-dotenv>=1.0.0",
+    "qdrant-client>=1.7.0",
+    "sentence-transformers>=2.2.0",
+    "torch>=2.0.0",
+    "transformers>=4.57.1",
+
+    # LangChain
+    "langchain>=0.1.0",
+    "langchain-qdrant>=0.2.1",
+    "langchain-huggingface>=0.2.0",
+    "langchain-google-genai==2.1.9",
+    "langgraph>=0.6.5",
+
+    "uvicorn>=0.35.0",
+    "pydantic>=2.11.5",
+    "httpx>=0.28.1",
+    "click>=8.3.0",
+
+]
+
+[tool.uv.workspace]
+members = [
+    "rag-agent",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu" },
+]
+torchvision = [
+  { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+

@@ -274,7 +274,7 @@ class STSCorrelationBenchmark:
     
     def plot_results(self, df: pd.DataFrame, save_path: str = None):
         """
-        Create comprehensive visualization như hit_at_k benchmark
+        Create comprehensive visualization với correlation và timing charts
         """
         # Filter successful models
         successful_df = df[df['Status'] == 'Success'].copy()
@@ -283,16 +283,14 @@ class STSCorrelationBenchmark:
             print("❌ No successful models to plot")
             return
         
-        # Sort by Pearson correlation descending
-        successful_df = successful_df.sort_values('Pearson (%)', ascending=True)
-        
-        # Create 2x1 subplot (vertical layout)
-        fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+        # Create 3x1 subplot (vertical layout)
+        fig, axes = plt.subplots(3, 1, figsize=(14, 15))
         fig.suptitle('Semantic Textual Similarity Benchmark Results', fontsize=16, fontweight='bold')
         
-        # Sort by Pearson for consistent ordering
+        # Sort data for different charts
         pearson_sorted = successful_df.sort_values('Pearson (%)', ascending=True)
         spearman_sorted = successful_df.sort_values('Spearman (%)', ascending=True)
+        timing_sorted = successful_df.sort_values('Encoding Time (s)', ascending=True)
         
         # 1. Pearson Correlation (Horizontal Bar Chart)
         ax1 = axes[0]
@@ -334,6 +332,37 @@ class STSCorrelationBenchmark:
             ax2.text(width + 1, bar.get_y() + bar.get_height()/2, 
                     f'{width:.1f}%', ha='left', va='center', fontsize=10, fontweight='bold')
         
+        # 3. Encoding Time Chart
+        ax3 = axes[2]
+        y_pos3 = np.arange(len(timing_sorted))
+        
+        # Color gradient based on speed (green = fast, red = slow)
+        max_time = timing_sorted['Encoding Time (s)'].max()
+        colors = plt.cm.RdYlGn_r(timing_sorted['Encoding Time (s)'] / max_time)
+        
+        bars_time = ax3.barh(y_pos3, timing_sorted['Encoding Time (s)'], 
+                            color=colors, alpha=0.8)
+        
+        ax3.set_yticks(y_pos3)
+        ax3.set_yticklabels(timing_sorted['Model'])
+        ax3.set_xlabel('Encoding Time (seconds)')
+        ax3.set_title('Encoding Time Ranking (Lower is Better)')
+        ax3.grid(True, alpha=0.3)
+        
+        # Add value labels for timing
+        for i, bar in enumerate(bars_time):
+            width = bar.get_width()
+            # Color label based on speed: green for fast, red for slow
+            label_color = 'green' if width < 25 else 'orange' if width < 70 else 'red'
+            ax3.text(width + max_time * 0.01, bar.get_y() + bar.get_height()/2, 
+                    f'{width:.1f}s', ha='left', va='center', fontsize=10, 
+                    fontweight='bold', color=label_color)
+        
+        # Add speed categories as text annotations
+        ax3.text(0.02, 0.98, ' Fast: <25s   Medium: 25-70s   Slow: >70s', 
+                transform=ax3.transAxes, fontsize=10, verticalalignment='top',
+                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+        
         plt.tight_layout()
         
         if save_path:
@@ -345,33 +374,37 @@ class STSCorrelationBenchmark:
     
     def save_results(self, df: pd.DataFrame, timestamp: str = None):
         """
-        Save results to files
+        Save results to files in results directory
         """
         if timestamp is None:
             from datetime import datetime
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # Get current script directory
+        # Get current script directory and create results subdirectory
         script_dir = os.path.dirname(os.path.abspath(__file__))
+        results_dir = os.path.join(script_dir, "results")
+        
+        # Create results directory if it doesn't exist
+        os.makedirs(results_dir, exist_ok=True)
         
         # Save detailed results
-        results_file = os.path.join(script_dir, f"sts_correlation_benchmark_results.json")
+        results_file = os.path.join(results_dir, f"sts_correlation_benchmark_results.json")
         import json
         with open(results_file, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, ensure_ascii=False, indent=2)
         
         # Save summary CSV
-        csv_file = os.path.join(script_dir, f"sts_correlation_benchmark_summary.csv")
+        csv_file = os.path.join(results_dir, f"sts_correlation_benchmark_summary.csv")
         df.to_csv(csv_file, index=False, encoding='utf-8')
         
         # Save chart
-        chart_file = os.path.join(script_dir, f"sts_correlation_benchmark_chart.png")
+        chart_file = os.path.join(results_dir, f"sts_correlation_benchmark_chart.png")
         self.plot_results(df, save_path=chart_file)
         
-        print(f"💾 Results saved:")
-        print(f"   - {results_file} (detailed JSON)")
-        print(f"   - {csv_file} (summary CSV)")
-        print(f"   - {chart_file} (chart PNG)")
+        print(f"💾 Results saved to results/ directory:")
+        print(f"   - {os.path.relpath(results_file, script_dir)} (detailed JSON)")
+        print(f"   - {os.path.relpath(csv_file, script_dir)} (summary CSV)")
+        print(f"   - {os.path.relpath(chart_file, script_dir)} (chart PNG)")
 
 def main():
     """

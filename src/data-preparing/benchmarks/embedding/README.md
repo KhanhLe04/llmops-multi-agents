@@ -67,15 +67,23 @@ Bộ công cụ đánh giá này cung cấp hai phương pháp đánh giá bổ 
 ## 🚀 Cách Sử Dụng
 
 ### Bắt Đầu Nhanh
+Cài đặt uv và dependencies
+```bash
+# Cài đặt uv
+pip install uv
+
+# Cài đặt dependencies
+uv pip sync pyproject.toml
+```
 
 Chạy các benchmark riêng lẻ:
 
 ```bash
 # Hit@K Benchmark
-python hit_at_k_benchmark.py
+uv run hit_at_k_benchmark.py
 
 # STS Correlation Benchmark  
-python sts_correlation_benchmark.py
+uv run sts_correlation_benchmark.py
 ```
 
 ### Cấu Hình
@@ -112,13 +120,61 @@ Mỗi benchmark tạo ra:
 ### Hit@K Benchmark
 - `hit_at_k_benchmark_results.json` - Kết quả chi tiết với thông tin thời gian
 - `hit_at_k_benchmark_summary.csv` - Bảng tóm tắt với các chỉ số chính
-- `hit_at_k_benchmark_chart.png` - Biểu đồ so sánh Hit@1 và Hit@4
+- `hit_at_k_benchmark_chart.png` - Biểu đồ kết hợp:
+  - **Performance Chart**: So sánh Hit@1 và Hit@4
+  - **Timing Chart**: Thời gian xử lý với color-coding (🟢 Fast <15s, 🟡 Medium 15-40s, 🔴 Slow >40s)
 
 ### STS Correlation Benchmark
 - `sts_correlation_benchmark_results.json` - Kết quả tương quan chi tiết
 - `sts_correlation_benchmark_summary.csv` - Bảng tóm tắt với các tương quan
-- `sts_correlation_benchmark_chart.png` - Xếp hạng Pearson và Spearman riêng biệt
+- `sts_correlation_benchmark_chart.png` - Biểu đồ ba phần:
+  - **Pearson Correlation Ranking**: Tương quan tuyến tính
+  - **Spearman Correlation Ranking**: Tương quan thứ hạng
+  - **Encoding Time Ranking**: Thời gian mã hóa với color-coding (🟢 Fast <25s, 🟡 Medium 25-70s, 🔴 Slow >70s)
 
+## 📊 Giải Thích Kết Quả
+
+### Chỉ Số Hit@K
+- **Càng cao càng tốt** (0-100%)
+- **Hit@1 > 50%**: Hiệu suất truy xuất xuất sắc
+- **Hit@4 > 70%**: Hiệu suất truy xuất tốt
+- **Hit@10 > 80%**: Hiệu suất truy xuất chấp nhận được
+
+### Chỉ Số STS Correlation
+- **Càng cao càng tốt** (0-100%, chuyển đổi từ tương quan -1 đến 1)
+- **Pearson > 80%**: Tương quan tuyến tính xuất sắc với đánh giá của con người
+- **Spearman > 80%**: Tương quan thứ hạng xuất sắc với đánh giá của con người
+- **Correlation > 70%**: Hiểu biết ngữ nghĩa tốt
+
+### Chỉ Số Thời Gian Xử Lý
+- **Càng thấp càng tốt** (giây)
+- **Hit@K Timing**: <15s (Fast), 15-40s (Medium), >40s (Slow)
+- **STS Encoding**: <25s (Fast), 25-70s (Medium), >70s (Slow)
+- **Quan trọng cho production**: Models nhanh phù hợp cho real-time applications
+
+### Lựa Chọn Mô Hình
+
+**Cho các tác vụ chuyên biệt tiếng Việt**:
+- `keepitreal/vietnamese-sbert` - Tốt nhất cho nội dung tiếng Việt
+- `intfloat/multilingual-e5-base` - Cân bằng tốt giữa hiệu suất và tốc độ
+
+**Cho các tác vụ đa ngôn ngữ**:
+- `Alibaba-NLP/gte-multilingual-base` - Hiệu suất tiên tiến
+- `intfloat/multilingual-e5-large-instruct` - Hiệu suất tổng thể tốt nhất
+
+**Cho các ứng dụng production/yêu cầu tốc độ cao**:
+- `intfloat/multilingual-e5-base` - Cân bằng tốt giữa tốc độ và chất lượng
+- Cân nhắc sự đánh đổi giữa kích thước mô hình và hiệu suất
+
+## 🔧 Chi Tiết Kỹ Thuật
+
+### Thư Viện Phụ Thuộc
+- `sentence-transformers` - Tải và mã hóa mô hình
+- `datasets` - Tải bộ dữ liệu ViSTS
+- `scikit-learn` - Tính toán độ tương đồng
+- `scipy` - Tương quan thống kê
+- `matplotlib`, `seaborn` - Trực quan hóa
+- `pandas`, `numpy` - Xử lý dữ liệu
 
 ### Xử Lý Lỗi
 - Tự động `trust_remote_code=True` cho các mô hình yêu cầu

@@ -21,11 +21,4 @@
 | **Cloud Platform** | AWS or GCP |
 #### LLM và Embedding Model
 - **LLM Model**: Gemini API
-- **Embedding Model**: [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3)
-
-## 2. Luồng hoạt động của hệ thống
-### 2.1. Luồng hoạt động tổng quan của hệ thống
-![](images/architecture_flows.png)
-
-### 2.2. Luồng hoạt động của Context Retrieval
-![Flow hoạt động của Context Retrieval](images/context_retrieval.png)
+- **Embedding Model**: [intfloat/multilingual-e5-base](https://huggingface.co/intfloat/multilingual-e5-base)

@@ -4,7 +4,7 @@
     "display_name": "intfloat/multilingual-e5-base",
     "pearson_correlation": 76.60317648182038,
     "spearman_correlation": 74.96544729638686,
-    "encoding_time": 20.464898586273193,
+    "encoding_time": 20.18523931503296,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.9225575923919678,
@@ -217,7 +217,7 @@
     "display_name": "Alibaba-NLP/gte-multilingual-base",
     "pearson_correlation": 75.78653527873561,
     "spearman_correlation": 75.30287105279464,
-    "encoding_time": 25.695456981658936,
+    "encoding_time": 27.227945566177368,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.7483904361724854,
@@ -430,7 +430,7 @@
     "display_name": "keepitreal/vietnamese-sbert",
     "pearson_correlation": 76.7323469331704,
     "spearman_correlation": 74.82454289107106,
-    "encoding_time": 16.27885365486145,
+    "encoding_time": 19.888395071029663,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.4504408836364746,
@@ -643,7 +643,7 @@
     "display_name": "Qwen/Qwen3-Embedding-0.6B",
     "pearson_correlation": 77.1439819963849,
     "spearman_correlation": 74.74063019256818,
-    "encoding_time": 111.50679612159729,
+    "encoding_time": 125.51460552215576,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.6906684637069702,
@@ -856,7 +856,7 @@
     "display_name": "BAAI/bge-m3",
     "pearson_correlation": 78.55624902828708,
     "spearman_correlation": 77.78152773430475,
-    "encoding_time": 73.01034426689148,
+    "encoding_time": 71.34908127784729,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.6617119312286377,
@@ -1069,7 +1069,7 @@
     "display_name": "intfloat/multilingual-e5-large-instruct",
     "pearson_correlation": 72.23314753609513,
     "spearman_correlation": 73.14067661694597,
-    "encoding_time": 69.96135187149048,
+    "encoding_time": 68.87318420410156,
     "n_pairs": 1000,
     "cosine_similarities": [
       0.9347983002662659,
