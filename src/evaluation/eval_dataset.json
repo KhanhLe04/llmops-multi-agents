@@ -1,0 +1,647 @@
+[
+  {
+    "question": "Stress có thể biểu hiện như thế nào về mặt cảm xúc?",
+    "ground_truth": "Stress thường biểu hiện rõ rệt qua những thay đổi về mặt cảm xúc. Người đang chịu căng thẳng có thể cảm thấy khó chịu, bực bội hoặc dễ cáu gắt mà không rõ lý do. Họ thường xuyên lo lắng, bất an, luôn trong trạng thái căng thẳng. Nhiều người rơi vào cảm giác buồn bã, chán nản, mất hứng thú với những điều từng yêu thích. Ở mức độ cao hơn, stress còn khiến họ cảm thấy thờ ơ với mọi thứ xung quanh, mất niềm tin vào bản thân và cảm giác như đánh mất giá trị của chính mình.",
+    "answer": "Stress có thể biểu hiện đa dạng về mặt cảm xúc, bao gồm cảm giác lo lắng, bồn chồn, dễ cáu gắt, khó tập trung, thậm chí là cảm thấy trống rỗng hoặc mất kiểm soát. Một số người có thể cảm thấy buồn bã, chán nản hoặc mất hứng thú với những việc thường làm. Những thay đổi về tâm trạng, giấc ngủ và thói quen ăn uống cũng có thể là dấu hiệu của stress. Bạn có muốn tìm hiểu thêm về các cách đối phó với stress không?",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Stress có thể biểu hiện đa dạng về mặt cảm xúc, bao gồm cảm giác lo lắng, bồn chồn, dễ cáu gắt, khó tập trung, thậm chí là cảm thấy trống rỗng hoặc mất kiểm soát. Một số người có thể cảm thấy buồn bã, chán nản hoặc mất hứng thú với những việc thường làm. Những thay đổi về tâm trạng, giấc ngủ và thói quen ăn uống cũng có thể là dấu hiệu của stress. Bạn có muốn tìm hiểu thêm về các cách đối phó với stress không?",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Stress ảnh hưởng như thế nào đến hành vi?",
+    "ground_truth": "Stress có thể tác động mạnh mẽ đến hành vi của con người, khiến họ thay đổi cách ứng xử trong cuộc sống hằng ngày. Một người đang chịu căng thẳng thường dễ nổi cáu, bực bội hoặc trở nên nóng nảy hơn bình thường. Họ có xu hướng tìm đến các chất kích thích như rượu, thuốc lá để giải tỏa tạm thời. Các thói quen sinh hoạt cũng dễ bị xáo trộn — ăn uống thất thường, mất ngủ hoặc ngủ quá nhiều. Ngoài ra, stress còn khiến con người mất tập trung, hay quên, đưa ra những quyết định thiếu lý trí, hành động vội vàng, hấp tấp, thậm chí trở nên vụng về trong công việc và cuộc sống.",
+    "answer": "Stress có thể ảnh hưởng đến hành vi theo nhiều cách khác nhau. Về mặt thể chất, stress có thể dẫn đến thay đổi trong giấc ngủ, ăn uống và mức năng lượng. Bạn có thể cảm thấy mệt mỏi, khó ngủ hoặc ăn nhiều hơn/ít hơn bình thường. Về mặt cảm xúc, stress có thể gây ra cảm giác lo lắng, bồn chồn, cáu kỉnh hoặc thậm chí là trầm cảm. Nó cũng có thể ảnh hưởng đến khả năng tập trung và đưa ra quyết định. Trong các mối quan hệ, stress có thể dẫn đến xung đột hoặc khó khăn trong giao tiếp. Để hiểu rõ hơn về cách stress ảnh hưởng đến bạn, bạn có thể thử theo dõi các thay đổi trong hành vi và cảm xúc của mình khi bạn cảm thấy căng thẳng.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Stress có thể ảnh hưởng đến hành vi theo nhiều cách khác nhau. Về mặt thể chất, stress có thể dẫn đến thay đổi trong giấc ngủ, ăn uống và mức năng lượng. Bạn có thể cảm thấy mệt mỏi, khó ngủ hoặc ăn nhiều hơn/ít hơn bình thường. Về mặt cảm xúc, stress có thể gây ra cảm giác lo lắng, bồn chồn, cáu kỉnh hoặc thậm chí là trầm cảm. Nó cũng có thể ảnh hưởng đến khả năng tập trung và đưa ra quyết định. Trong các mối quan hệ, stress có thể dẫn đến xung đột hoặc khó khăn trong giao tiếp. Để hiểu rõ hơn về cách stress ảnh hưởng đến bạn, bạn có thể thử theo dõi các thay đổi trong hành vi và cảm xúc của mình khi bạn cảm thấy căng thẳng.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Stress có phải lúc nào cũng xấu không?",
+    "ground_truth": "Stress không phải lúc nào cũng là điều tiêu cực. Thực tế, mỗi người đều có thể trải qua stress ở một thời điểm nào đó trong cuộc sống — đôi khi chỉ trong thời gian ngắn, đôi khi kéo dài hoặc lặp đi lặp lại. Ở mức độ vừa phải, stress có thể đóng vai trò tích cực, giúp con người có thêm động lực, tập trung và thích nghi tốt hơn với thử thách. Tuy nhiên, khi stress trở nên quá mức và kéo dài vượt quá khả năng kiểm soát của bản thân, nó sẽ gây ra những tác động tiêu cực đến sức khỏe. Cụ thể, stress mãn tính có thể dẫn đến các bệnh lý như tim mạch, tăng huyết áp, tiểu đường, cũng như các rối loạn tâm lý như lo âu hoặc trầm cảm.",
+    "answer": "Stress không phải lúc nào cũng là điều tiêu cực. Nó có thể là một phản ứng tự nhiên của cơ thể khi đối mặt với áp lực, giúp chúng ta tập trung và hoàn thành công việc. Tuy nhiên, khi stress kéo dài hoặc vượt quá khả năng kiểm soát, nó có thể gây ra những ảnh hưởng tiêu cực đến sức khỏe thể chất và tinh thần. Điều quan trọng là học cách quản lý stress một cách lành mạnh.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Stress không phải lúc nào cũng là điều tiêu cực. Nó có thể là một phản ứng tự nhiên của cơ thể khi đối mặt với áp lực, giúp chúng ta tập trung và hoàn thành công việc. Tuy nhiên, khi stress kéo dài hoặc vượt quá khả năng kiểm soát, nó có thể gây ra những ảnh hưởng tiêu cực đến sức khỏe thể chất và tinh thần. Điều quan trọng là học cách quản lý stress một cách lành mạnh.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi bị stress, cơ thể thường có phản ứng ra sao?",
+    "ground_truth": "Khi bị stress, cơ thể thường xuất hiện nhiều phản ứng về thể chất do hệ thần kinh và nội tiết hoạt động quá mức. Một người đang căng thẳng có thể bị đau đầu, căng hoặc đau mỏi cơ bắp, đặc biệt ở vùng vai, cổ và lưng. Họ cũng có thể gặp các triệu chứng như đau bụng, rối loạn tiêu hóa, đổ mồ hôi nhiều, chóng mặt hoặc cảm giác khó thở, đau tức ngực. Ngoài ra, stress còn có thể gây khô miệng, ngứa ngáy trên cơ thể và ảnh hưởng đến đời sống tình dục. Những phản ứng này là cách cơ thể phản ứng lại với áp lực, nhưng nếu kéo dài, chúng có thể gây ra nhiều vấn đề nghiêm trọng cho sức khỏe.",
+    "answer": "Khi bị stress, cơ thể có thể có nhiều phản ứng khác nhau, cả về thể chất lẫn tinh thần. Về thể chất, bạn có thể cảm thấy tim đập nhanh hơn, thở gấp, cơ bắp căng cứng, đau đầu, hoặc thậm chí là khó tiêu. Về tinh thần, bạn có thể cảm thấy bồn chồn, khó tập trung, dễ cáu gắt, hoặc thậm chí là mất ngủ. Những phản ứng này là cơ chế tự nhiên của cơ thể để đối phó với căng thẳng, nhưng nếu kéo dài có thể gây ảnh hưởng tiêu cực đến sức khỏe.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Khi bị stress, cơ thể có thể có nhiều phản ứng khác nhau, cả về thể chất lẫn tinh thần. Về thể chất, bạn có thể cảm thấy tim đập nhanh hơn, thở gấp, cơ bắp căng cứng, đau đầu, hoặc thậm chí là khó tiêu. Về tinh thần, bạn có thể cảm thấy bồn chồn, khó tập trung, dễ cáu gắt, hoặc thậm chí là mất ngủ. Những phản ứng này là cơ chế tự nhiên của cơ thể để đối phó với căng thẳng, nhưng nếu kéo dài có thể gây ảnh hưởng tiêu cực đến sức khỏe.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Sinh viên thường bị stress trong những tình huống nào?",
+    "ground_truth": "Có nhiều yếu tố có thể gây ra stress cho sinh viên, đến từ cả môi trường bên ngoài, các mối quan hệ xã hội, cũng như từ chính bản thân. Môi trường bên ngoài như thời tiết khắc nghiệt, tiếng ồn, tình trạng giao thông đông đúc, bụi bẩn và ô nhiễm đều có thể tạo áp lực tinh thần. Những căng thẳng từ xã hội và gia đình — chẳng hạn như áp lực học tập, công việc, tài chính, mất mát người thân hoặc mâu thuẫn với gia đình, bạn bè — cũng là nguồn stress phổ biến. Bên cạnh đó, suy nghĩ và niềm tin về bản thân như tư duy tiêu cực, bi quan hay thiếu tự tin sẽ làm tăng mức độ căng thẳng. Cuối cùng, các vấn đề về thể chất như thay đổi cơ thể, ốm đau hoặc chế độ dinh dưỡng không đầy đủ cũng góp phần gây ra stress.",
+    "answer": "Sinh viên thường gặp nhiều áp lực trong học tập, thi cử, và việc chuẩn bị cho tương lai. Ngoài ra, họ cũng có thể đối mặt với những vấn đề về tài chính, mối quan hệ xã hội, và sự nghiệp. Những tình huống này có thể dẫn đến stress, lo âu, thậm chí là trầm cảm. Để đối phó với những áp lực này, sinh viên có thể tìm kiếm sự hỗ trợ từ bạn bè, gia đình, hoặc các dịch vụ tư vấn tâm lý.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Sinh viên thường gặp nhiều áp lực trong học tập, thi cử, và việc chuẩn bị cho tương lai. Ngoài ra, họ cũng có thể đối mặt với những vấn đề về tài chính, mối quan hệ xã hội, và sự nghiệp. Những tình huống này có thể dẫn đến stress, lo âu, thậm chí là trầm cảm. Để đối phó với những áp lực này, sinh viên có thể tìm kiếm sự hỗ trợ từ bạn bè, gia đình, hoặc các dịch vụ tư vấn tâm lý.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Làm thế nào để phòng ngừa và kiểm soát stress hiệu quả?",
+    "ground_truth": "Stress có thể được phòng ngừa và kiểm soát bằng nhiều phương pháp kết hợp giữa chăm sóc bản thân và quản lý cảm xúc. Một số biện pháp hiệu quả bao gồm: chậm lại, thư giãn và hít thở sâu; duy trì thói quen tập thể dục và rèn luyện thể thao; ăn uống hợp lý và chăm sóc sức khỏe; quản lý thời gian hiệu quả và đảm bảo giấc ngủ cân bằng. Bên cạnh đó, xây dựng mạng lưới quan hệ xã hội hỗ trợ, thảo luận và tìm giải pháp cho các vấn đề gặp phải, học các kỹ thuật thư giãn như hít thở sâu, thở hình vuông, yoga hoặc thiền, và tạo danh sách các hoạt động giúp cải thiện tâm trạng cũng rất hữu ích. Cuối cùng, khi stress trở nên quá mức, tìm đến sự trợ giúp của các chuyên gia tâm lý sẽ giúp kiểm soát căng thẳng một cách hiệu quả hơn.",
+    "answer": "Để phòng ngừa và kiểm soát stress hiệu quả, bạn có thể thử một số phương pháp sau:\n\n*   **Tập thể dục thường xuyên:** Vận động giúp giải phóng endorphin, một chất có tác dụng giảm đau và cải thiện tâm trạng.\n*   **Ngủ đủ giấc:** Thiếu ngủ có thể làm tăng mức độ stress. Hãy cố gắng ngủ 7-8 tiếng mỗi đêm.\n*   **Chế độ ăn uống lành mạnh:** Tránh đồ ăn chế biến sẵn, đồ ngọt và caffeine quá nhiều. Ưu tiên rau xanh, trái cây và ngũ cốc nguyên hạt.\n*   **Thực hành các kỹ thuật thư giãn:** Thiền, yoga, hít thở sâu hoặc nghe nhạc có thể giúp bạn giảm căng thẳng.\n*   **Quản lý thời gian:** Lập kế hoạch và ưu tiên công việc để tránh cảm giác quá tải.\n*   **Kết nối với bạn bè và gia đình:** Chia sẻ cảm xúc và nhận được sự hỗ trợ từ những người thân yêu.\n*   **Tìm kiếm sự giúp đỡ chuyên nghiệp:** Nếu bạn cảm thấy quá khó khăn để tự mình đối phó với stress, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia tâm lý.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Để phòng ngừa và kiểm soát stress hiệu quả, bạn có thể thử một số phương pháp sau:\n\n*   **Tập thể dục thường xuyên:** Vận động giúp giải phóng endorphin, một chất có tác dụng giảm đau và cải thiện tâm trạng.\n*   **Ngủ đủ giấc:** Thiếu ngủ có thể làm tăng mức độ stress. Hãy cố gắng ngủ 7-8 tiếng mỗi đêm.\n*   **Chế độ ăn uống lành mạnh:** Tránh đồ ăn chế biến sẵn, đồ ngọt và caffeine quá nhiều. Ưu tiên rau xanh, trái cây và ngũ cốc nguyên hạt.\n*   **Thực hành các kỹ thuật thư giãn:** Thiền, yoga, hít thở sâu hoặc nghe nhạc có thể giúp bạn giảm căng thẳng.\n*   **Quản lý thời gian:** Lập kế hoạch và ưu tiên công việc để tránh cảm giác quá tải.\n*   **Kết nối với bạn bè và gia đình:** Chia sẻ cảm xúc và nhận được sự hỗ trợ từ những người thân yêu.\n*   **Tìm kiếm sự giúp đỡ chuyên nghiệp:** Nếu bạn cảm thấy quá khó khăn để tự mình đối phó với stress, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia tâm lý.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Lo âu là gì?",
+    "ground_truth": "Lo âu là phản ứng tâm lý xuất hiện khi chúng ta đối mặt với những tình huống căng thẳng trong cuộc sống, như áp lực học tập, kỳ vọng từ gia đình, đổ vỡ trong các mối quan hệ, mất mát người thân, khó khăn về tài chính, vấn đề sức khỏe, mất ngủ hay những chấn thương tinh thần và thể chất. Nó thường khiến con người cảm thấy bất an, lo lắng và căng thẳng kéo dài.",
+    "answer": "Lo âu là một cảm xúc tự nhiên mà ai cũng có thể trải qua. Tuy nhiên, khi lo âu trở nên quá mức, kéo dài và ảnh hưởng đến cuộc sống hàng ngày, đó có thể là dấu hiệu của một vấn đề sức khỏe tinh thần. Lo âu có thể biểu hiện qua nhiều triệu chứng khác nhau, như cảm giác bồn chồn, khó tập trung, dễ cáu gắt, hoặc thậm chí là các triệu chứng thể chất như tim đập nhanh, khó thở. \n\nBạn đang cảm thấy lo lắng về điều gì cụ thể vậy? Chia sẻ thêm để tôi có thể hiểu rõ hơn và đưa ra những lời khuyên phù hợp nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Lo âu là một cảm xúc tự nhiên mà ai cũng có thể trải qua. Tuy nhiên, khi lo âu trở nên quá mức, kéo dài và ảnh hưởng đến cuộc sống hàng ngày, đó có thể là dấu hiệu của một vấn đề sức khỏe tinh thần. Lo âu có thể biểu hiện qua nhiều triệu chứng khác nhau, như cảm giác bồn chồn, khó tập trung, dễ cáu gắt, hoặc thậm chí là các triệu chứng thể chất như tim đập nhanh, khó thở. \n\nBạn đang cảm thấy lo lắng về điều gì cụ thể vậy? Chia sẻ thêm để tôi có thể hiểu rõ hơn và đưa ra những lời khuyên phù hợp nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Lo âu có thể xuất phát từ đâu?",
+    "ground_truth": "Lo âu thường bắt nguồn từ những suy nghĩ tiêu cực hoặc những niềm tin không hợp lý mà chúng ta hình thành về bản thân, người khác hoặc thế giới xung quanh. Những cách nhìn nhận này có thể khiến con người dễ cảm thấy lo lắng, bất an và căng thẳng hơn trước các tình huống trong cuộc sống.",
+    "answer": "Lo âu có thể xuất phát từ nhiều nguyên nhân khác nhau, rất khó để chỉ ra một nguyên nhân duy nhất. Một số yếu tố phổ biến bao gồm: \n\n*   **Yếu tố sinh học:** Sự mất cân bằng hóa học trong não bộ, di truyền.\n*   **Yếu tố môi trường:** Áp lực cuộc sống, căng thẳng công việc/học tập, các sự kiện tiêu cực.\n*   **Yếu tố tâm lý:** Những suy nghĩ tiêu cực, niềm tin hạn chế, trải nghiệm đau thương trong quá khứ.\n*   **Các vấn đề sức khỏe:** Một số bệnh lý có thể gây ra hoặc làm trầm trọng thêm các triệu chứng lo âu.\n\nBạn có thể chia sẻ thêm về tình hình của mình không? Điều gì khiến bạn cảm thấy lo lắng nhất?",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Lo âu có thể xuất phát từ nhiều nguyên nhân khác nhau, rất khó để chỉ ra một nguyên nhân duy nhất. Một số yếu tố phổ biến bao gồm: \n\n*   **Yếu tố sinh học:** Sự mất cân bằng hóa học trong não bộ, di truyền.\n*   **Yếu tố môi trường:** Áp lực cuộc sống, căng thẳng công việc/học tập, các sự kiện tiêu cực.\n*   **Yếu tố tâm lý:** Những suy nghĩ tiêu cực, niềm tin hạn chế, trải nghiệm đau thương trong quá khứ.\n*   **Các vấn đề sức khỏe:** Một số bệnh lý có thể gây ra hoặc làm trầm trọng thêm các triệu chứng lo âu.\n\nBạn có thể chia sẻ thêm về tình hình của mình không? Điều gì khiến bạn cảm thấy lo lắng nhất?",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Người bị lo âu thường có những biểu hiện tâm lý nào?",
+    "ground_truth": "Những người trải qua lo âu thường gặp phải các biểu hiện tâm lý như căng thẳng liên tục, cảm giác lo lắng hoặc sợ hãi, dễ hoảng sợ, thậm chí có cảm giác hão huyền hoặc mất kiểm soát. Một số người còn lo sợ bản thân sắp “mất trí”, sắp chết hoặc không thể tự chủ được hành vi và cảm xúc của mình.",
+    "answer": "Người bị lo âu thường có thể trải qua nhiều biểu hiện tâm lý khác nhau, bao gồm cảm giác bồn chồn, khó tập trung, dễ cáu gắt, mất ngủ, hoặc thậm chí là những suy nghĩ tiêu cực liên tục. Những biểu hiện này có thể ảnh hưởng đến cuộc sống hàng ngày, công việc và các mối quan hệ của họ. Nếu bạn đang cảm thấy lo lắng, đừng ngần ngại tìm kiếm sự hỗ trợ từ những người xung quanh hoặc các chuyên gia tâm lý nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Người bị lo âu thường có thể trải qua nhiều biểu hiện tâm lý khác nhau, bao gồm cảm giác bồn chồn, khó tập trung, dễ cáu gắt, mất ngủ, hoặc thậm chí là những suy nghĩ tiêu cực liên tục. Những biểu hiện này có thể ảnh hưởng đến cuộc sống hàng ngày, công việc và các mối quan hệ của họ. Nếu bạn đang cảm thấy lo lắng, đừng ngần ngại tìm kiếm sự hỗ trợ từ những người xung quanh hoặc các chuyên gia tâm lý nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi bị lo âu, cơ thể thường phản ứng ra sao?",
+    "ground_truth": "Khi trải qua lo âu, cơ thể thường xuất hiện nhiều phản ứng rõ rệt. Người bệnh có thể bị chân tay run rẩy, vã mồ hôi, tim đập nhanh, nhức đầu, chóng mặt hoặc căng mỏi cơ. Ngoài ra, họ cũng có thể gặp các triệu chứng về tiêu hóa như buồn nôn, đau dạ dày, cảm giác tê bì, kiến bò trên da, và thậm chí khó thở. Những phản ứng này là biểu hiện của cơ thể khi đang trong trạng thái cảnh giác cao độ trước căng thẳng.",
+    "answer": "Khi bị lo âu, cơ thể có thể phản ứng với nhiều cách khác nhau, bao gồm: tim đập nhanh, thở gấp, căng cơ, đau đầu, khó tiêu, chóng mặt, và cảm giác bồn chồn, mất tập trung. Những phản ứng này là một phần tự nhiên của phản ứng 'chiến đấu hoặc bỏ chạy' của cơ thể khi đối mặt với căng thẳng. Nếu bạn cảm thấy những triệu chứng này ảnh hưởng đến cuộc sống hàng ngày, đừng ngần ngại tìm kiếm sự hỗ trợ từ chuyên gia nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Khi bị lo âu, cơ thể có thể phản ứng với nhiều cách khác nhau, bao gồm: tim đập nhanh, thở gấp, căng cơ, đau đầu, khó tiêu, chóng mặt, và cảm giác bồn chồn, mất tập trung. Những phản ứng này là một phần tự nhiên của phản ứng 'chiến đấu hoặc bỏ chạy' của cơ thể khi đối mặt với căng thẳng. Nếu bạn cảm thấy những triệu chứng này ảnh hưởng đến cuộc sống hàng ngày, đừng ngần ngại tìm kiếm sự hỗ trợ từ chuyên gia nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Lo âu ảnh hưởng như thế nào đến cuộc sống của sinh viên?",
+    "ground_truth": "Lo âu có thể tác động tiêu cực đến nhiều khía cạnh trong cuộc sống của sinh viên, bao gồm học tập, công việc, các mối quan hệ gia đình và xã hội. Nó khiến sinh viên khó tập trung, giảm hiệu quả học tập, gặp khó khăn trong giao tiếp, thậm chí cản trở việc tham gia các hoạt động hàng ngày, từ đó ảnh hưởng đến chất lượng cuộc sống tổng thể.",
+    "answer": "Lo âu có thể ảnh hưởng đến cuộc sống của sinh viên theo nhiều cách khác nhau. Nó có thể gây ra khó khăn trong việc tập trung học tập, giảm hiệu suất làm việc, ảnh hưởng đến giấc ngủ và chế độ ăn uống, cũng như gây ra các vấn đề về mặt xã hội và cảm xúc. Sinh viên lo âu có thể cảm thấy căng thẳng, bồn chồn, dễ cáu gắt và khó thư giãn. Điều này có thể dẫn đến việc né tránh các hoạt động xã hội, giảm tương tác với bạn bè và gia đình, và thậm chí là cô lập bản thân. \n\nNgoài ra, lo âu kéo dài có thể làm tăng nguy cơ mắc các vấn đề sức khỏe tinh thần khác như trầm cảm. Việc quản lý lo âu hiệu quả là rất quan trọng để sinh viên có thể duy trì sức khỏe tinh thần tốt và đạt được thành công trong học tập và cuộc sống.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Lo âu có thể ảnh hưởng đến cuộc sống của sinh viên theo nhiều cách khác nhau. Nó có thể gây ra khó khăn trong việc tập trung học tập, giảm hiệu suất làm việc, ảnh hưởng đến giấc ngủ và chế độ ăn uống, cũng như gây ra các vấn đề về mặt xã hội và cảm xúc. Sinh viên lo âu có thể cảm thấy căng thẳng, bồn chồn, dễ cáu gắt và khó thư giãn. Điều này có thể dẫn đến việc né tránh các hoạt động xã hội, giảm tương tác với bạn bè và gia đình, và thậm chí là cô lập bản thân. \n\nNgoài ra, lo âu kéo dài có thể làm tăng nguy cơ mắc các vấn đề sức khỏe tinh thần khác như trầm cảm. Việc quản lý lo âu hiệu quả là rất quan trọng để sinh viên có thể duy trì sức khỏe tinh thần tốt và đạt được thành công trong học tập và cuộc sống.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi nào nên tìm gặp chuyên gia nếu gặp phải lo âu?",
+    "ground_truth": "Bạn nên gặp chuyên gia khi cảm giác lo âu trở nên kéo dài, quá mức hoặc gây ảnh hưởng rõ rệt đến học tập, công việc, đời sống hằng ngày và các mối quan hệ xã hội. Ngoài ra, nếu lo âu kèm theo các triệu chứng nghiêm trọng như mất ngủ liên tục, ăn uống thất thường, suy nghĩ tiêu cực, khó kiểm soát cảm xúc, hoặc xuất hiện các ý nghĩ tự hại, việc tìm đến chuyên gia tâm lý, bác sĩ tâm thần hoặc tư vấn học đường là rất cần thiết để được đánh giá và hỗ trợ kịp thời.",
+    "answer": "Việc tìm kiếm sự giúp đỡ từ chuyên gia khi gặp lo âu là một quyết định quan trọng và hoàn toàn hợp lý. Không có một mốc thời gian cố định nào, nhưng dưới đây là một số dấu hiệu cho thấy bạn nên cân nhắc tìm kiếm sự hỗ trợ chuyên nghiệp:\n\n*   **Lo âu ảnh hưởng đến cuộc sống hàng ngày:** Nếu lo âu của bạn gây cản trở đến công việc, học tập, các mối quan hệ hoặc các hoạt động thường ngày, đó là một dấu hiệu cần tìm kiếm sự giúp đỡ.\n*   **Cảm giác quá tải:** Khi bạn cảm thấy không thể kiểm soát được những suy nghĩ và cảm xúc lo lắng, và điều này khiến bạn cảm thấy quá tải.\n*   **Các triệu chứng thể chất:** Lo âu có thể gây ra các triệu chứng thể chất như tim đập nhanh, khó thở, đau đầu, hoặc các vấn đề về tiêu hóa. Nếu những triệu chứng này kéo dài và ảnh hưởng đến chất lượng cuộc sống của bạn.\n*   **Suy nghĩ tiêu cực liên tục:** Nếu bạn thường xuyên có những suy nghĩ tiêu cực, bi quan, và không thể thoát khỏi chúng.\n*   **Khó khăn trong việc thư giãn:** Bạn cảm thấy khó khăn trong việc thư giãn, nghỉ ngơi, hoặc tận hưởng những hoạt động mà bạn từng yêu thích.\n*   **Ý nghĩ tự làm hại bản thân:** Nếu bạn có bất kỳ ý nghĩ nào về việc tự làm hại bản thân, hãy tìm kiếm sự giúp đỡ ngay lập tức. Đây là một dấu hiệu nghiêm trọng và cần được can thiệp kịp thời.\n\nBạn có thể bắt đầu bằng việc nói chuyện với một người bạn tin tưởng, một thành viên trong gia đình, hoặc một chuyên gia tâm lý. Họ có thể giúp bạn hiểu rõ hơn về tình trạng của mình và đưa ra những lời khuyên hữu ích.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc tìm kiếm sự giúp đỡ từ chuyên gia khi gặp lo âu là một quyết định quan trọng và hoàn toàn hợp lý. Không có một mốc thời gian cố định nào, nhưng dưới đây là một số dấu hiệu cho thấy bạn nên cân nhắc tìm kiếm sự hỗ trợ chuyên nghiệp:\n\n*   **Lo âu ảnh hưởng đến cuộc sống hàng ngày:** Nếu lo âu của bạn gây cản trở đến công việc, học tập, các mối quan hệ hoặc các hoạt động thường ngày, đó là một dấu hiệu cần tìm kiếm sự giúp đỡ.\n*   **Cảm giác quá tải:** Khi bạn cảm thấy không thể kiểm soát được những suy nghĩ và cảm xúc lo lắng, và điều này khiến bạn cảm thấy quá tải.\n*   **Các triệu chứng thể chất:** Lo âu có thể gây ra các triệu chứng thể chất như tim đập nhanh, khó thở, đau đầu, hoặc các vấn đề về tiêu hóa. Nếu những triệu chứng này kéo dài và ảnh hưởng đến chất lượng cuộc sống của bạn.\n*   **Suy nghĩ tiêu cực liên tục:** Nếu bạn thường xuyên có những suy nghĩ tiêu cực, bi quan, và không thể thoát khỏi chúng.\n*   **Khó khăn trong việc thư giãn:** Bạn cảm thấy khó khăn trong việc thư giãn, nghỉ ngơi, hoặc tận hưởng những hoạt động mà bạn từng yêu thích.\n*   **Ý nghĩ tự làm hại bản thân:** Nếu bạn có bất kỳ ý nghĩ nào về việc tự làm hại bản thân, hãy tìm kiếm sự giúp đỡ ngay lập tức. Đây là một dấu hiệu nghiêm trọng và cần được can thiệp kịp thời.\n\nBạn có thể bắt đầu bằng việc nói chuyện với một người bạn tin tưởng, một thành viên trong gia đình, hoặc một chuyên gia tâm lý. Họ có thể giúp bạn hiểu rõ hơn về tình trạng của mình và đưa ra những lời khuyên hữu ích.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Sinh viên có thể làm gì để giảm bớt lo âu?",
+    "ground_truth": "Khi cảm thấy lo âu, sinh viên có thể áp dụng nhiều phương pháp để cân bằng cảm xúc và duy trì sức khỏe tinh thần. Họ có thể bắt đầu bằng cách chậm lại, thư giãn và hít thở sâu, đồng thời duy trì thói quen tập thể dục hoặc tham gia các hoạt động thể thao để giải tỏa căng thẳng. Chăm sóc bản thân thông qua chế độ ăn uống hợp lý, ngủ đủ giấc và quản lý thời gian khoa học cũng giúp giảm áp lực. Xây dựng mạng lưới quan hệ xã hội hỗ trợ, chia sẻ và thảo luận các giải pháp với người tin cậy sẽ tạo cảm giác an tâm. Ngoài ra, học các kỹ thuật thư giãn như thiền, yoga, hít thở sâu hay thở hình vuông, lập danh sách những hoạt động giúp cải thiện tâm trạng và dần thay đổi những suy nghĩ tiêu cực sẽ rất hiệu quả. Trong những trường hợp lo âu kéo dài hoặc nghiêm trọng, tìm đến sự trợ giúp của chuyên gia tâm lý là bước quan trọng để được hỗ trợ kịp thời.",
+    "answer": "Để giảm bớt lo âu, bạn có thể thử một số phương pháp sau:\n\n*   **Thực hành các bài tập thở sâu:** Hít vào từ từ bằng mũi, giữ hơi trong vài giây rồi thở ra từ từ bằng miệng. Lặp lại vài lần để làm dịu hệ thần kinh.\n*   **Tập thể dục thường xuyên:** Vận động giúp giải phóng endorphin, một loại hormone có tác dụng cải thiện tâm trạng.\n*   **Ngủ đủ giấc:** Thiếu ngủ có thể làm tăng cảm giác lo lắng. Hãy cố gắng ngủ đủ 7-8 tiếng mỗi đêm.\n*   **Thực hành chánh niệm (mindfulness):** Tập trung vào hiện tại, quan sát suy nghĩ và cảm xúc của bạn mà không phán xét.\n*   **Chia nhỏ công việc:** Nếu bạn đang cảm thấy quá tải vì áp lực học tập, hãy chia nhỏ các nhiệm vụ lớn thành các phần nhỏ hơn và tập trung vào từng phần một.\n*   **Tìm kiếm sự hỗ trợ:** Đừng ngần ngại chia sẻ cảm xúc của bạn với bạn bè, gia đình hoặc tìm kiếm sự giúp đỡ từ chuyên gia tâm lý nếu cần thiết.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Để giảm bớt lo âu, bạn có thể thử một số phương pháp sau:\n\n*   **Thực hành các bài tập thở sâu:** Hít vào từ từ bằng mũi, giữ hơi trong vài giây rồi thở ra từ từ bằng miệng. Lặp lại vài lần để làm dịu hệ thần kinh.\n*   **Tập thể dục thường xuyên:** Vận động giúp giải phóng endorphin, một loại hormone có tác dụng cải thiện tâm trạng.\n*   **Ngủ đủ giấc:** Thiếu ngủ có thể làm tăng cảm giác lo lắng. Hãy cố gắng ngủ đủ 7-8 tiếng mỗi đêm.\n*   **Thực hành chánh niệm (mindfulness):** Tập trung vào hiện tại, quan sát suy nghĩ và cảm xúc của bạn mà không phán xét.\n*   **Chia nhỏ công việc:** Nếu bạn đang cảm thấy quá tải vì áp lực học tập, hãy chia nhỏ các nhiệm vụ lớn thành các phần nhỏ hơn và tập trung vào từng phần một.\n*   **Tìm kiếm sự hỗ trợ:** Đừng ngần ngại chia sẻ cảm xúc của bạn với bạn bè, gia đình hoặc tìm kiếm sự giúp đỡ từ chuyên gia tâm lý nếu cần thiết.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Trầm cảm là gì?",
+    "ground_truth": "Trầm cảm là một rối loạn cảm xúc phổ biến nhưng nghiêm trọng, ảnh hưởng sâu sắc đến cách một người cảm nhận, suy nghĩ và thực hiện các hoạt động hàng ngày. Nó có thể gây ra các triệu chứng làm gián đoạn giấc ngủ, thay đổi khẩu vị, giảm hứng thú trong học tập hoặc công việc, và khiến người bệnh khó duy trì các hoạt động bình thường trong đời sống hằng ngày.",
+    "answer": "Trầm cảm là một rối loạn tâm trạng kéo dài gây ra cảm giác buồn bã, mất hứng thú hoặc chán nản, và ảnh hưởng đến khả năng hoạt động hàng ngày của một người. Nó không chỉ đơn thuần là cảm thấy buồn một vài ngày. Trầm cảm có thể biểu hiện khác nhau ở mỗi người, bao gồm các triệu chứng về cảm xúc, suy nghĩ và thể chất. Bạn có muốn tìm hiểu thêm về các triệu chứng, nguyên nhân hoặc cách điều trị không?",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Trầm cảm là một rối loạn tâm trạng kéo dài gây ra cảm giác buồn bã, mất hứng thú hoặc chán nản, và ảnh hưởng đến khả năng hoạt động hàng ngày của một người. Nó không chỉ đơn thuần là cảm thấy buồn một vài ngày. Trầm cảm có thể biểu hiện khác nhau ở mỗi người, bao gồm các triệu chứng về cảm xúc, suy nghĩ và thể chất. Bạn có muốn tìm hiểu thêm về các triệu chứng, nguyên nhân hoặc cách điều trị không?",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi nào một người được xem là mắc trầm cảm?",
+    "ground_truth": "Một người được xem là mắc trầm cảm khi các triệu chứng của rối loạn cảm xúc kéo dài ít nhất hai tuần liên tục. Trong thời gian này, những thay đổi về tâm trạng, suy nghĩ và hành vi phải đủ rõ ràng để ảnh hưởng đáng kể đến khả năng sinh hoạt, học tập hoặc làm việc hàng ngày.",
+    "answer": "Trầm cảm là một rối loạn tâm trạng kéo dài gây ra cảm giác buồn bã, mất hứng thú hoặc mất niềm vui trong các hoạt động thường ngày. Nó không chỉ là cảm giác buồn thoáng qua mà là một tình trạng bệnh lý ảnh hưởng đến suy nghĩ, cảm xúc và hành vi. \n\nTheo tiêu chuẩn chẩn đoán DSM-5 (Cẩm nang Chẩn đoán và Thống kê Rối loạn Tâm thần, phiên bản thứ 5), một người có thể được xem là mắc trầm cảm nếu họ trải qua các triệu chứng sau trong vòng hai tuần trở lên:\n\n*   **Mất hứng thú hoặc niềm vui:** Không còn cảm thấy thích thú với những hoạt động từng yêu thích.\n*   **Thay đổi cân nặng hoặc khẩu vị:** Giảm hoặc tăng cân đáng kể mà không do chế độ ăn uống.\n*   **Rối loạn giấc ngủ:** Khó ngủ, ngủ quá nhiều hoặc ngủ không sâu.\n*   **Mệt mỏi hoặc thiếu năng lượng:** Cảm thấy mệt mỏi, uể oải ngay cả khi đã nghỉ ngơi.\n*   **Cảm giác vô dụng hoặc tội lỗi:** Cảm thấy bản thân vô dụng, không có giá trị hoặc tự trách móc quá mức.\n*   **Khó tập trung:** Khó tập trung, ghi nhớ hoặc đưa ra quyết định.\n*   **Suy nghĩ về cái chết hoặc tự tử:** Có những ý nghĩ về cái chết, tự làm hại bản thân hoặc tự tử.\n\nNếu bạn đang trải qua những triệu chứng này, điều quan trọng là phải tìm kiếm sự giúp đỡ từ chuyên gia sức khỏe tâm thần. Họ có thể giúp bạn chẩn đoán và điều trị trầm cảm một cách hiệu quả.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Trầm cảm là một rối loạn tâm trạng kéo dài gây ra cảm giác buồn bã, mất hứng thú hoặc mất niềm vui trong các hoạt động thường ngày. Nó không chỉ là cảm giác buồn thoáng qua mà là một tình trạng bệnh lý ảnh hưởng đến suy nghĩ, cảm xúc và hành vi. \n\nTheo tiêu chuẩn chẩn đoán DSM-5 (Cẩm nang Chẩn đoán và Thống kê Rối loạn Tâm thần, phiên bản thứ 5), một người có thể được xem là mắc trầm cảm nếu họ trải qua các triệu chứng sau trong vòng hai tuần trở lên:\n\n*   **Mất hứng thú hoặc niềm vui:** Không còn cảm thấy thích thú với những hoạt động từng yêu thích.\n*   **Thay đổi cân nặng hoặc khẩu vị:** Giảm hoặc tăng cân đáng kể mà không do chế độ ăn uống.\n*   **Rối loạn giấc ngủ:** Khó ngủ, ngủ quá nhiều hoặc ngủ không sâu.\n*   **Mệt mỏi hoặc thiếu năng lượng:** Cảm thấy mệt mỏi, uể oải ngay cả khi đã nghỉ ngơi.\n*   **Cảm giác vô dụng hoặc tội lỗi:** Cảm thấy bản thân vô dụng, không có giá trị hoặc tự trách móc quá mức.\n*   **Khó tập trung:** Khó tập trung, ghi nhớ hoặc đưa ra quyết định.\n*   **Suy nghĩ về cái chết hoặc tự tử:** Có những ý nghĩ về cái chết, tự làm hại bản thân hoặc tự tử.\n\nNếu bạn đang trải qua những triệu chứng này, điều quan trọng là phải tìm kiếm sự giúp đỡ từ chuyên gia sức khỏe tâm thần. Họ có thể giúp bạn chẩn đoán và điều trị trầm cảm một cách hiệu quả.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Người bị trầm cảm thường có những biểu hiện cảm xúc như thế nào?",
+    "ground_truth": "Người mắc trầm cảm thường trải qua nhiều biến đổi tiêu cực về cảm xúc. Họ có thể cảm thấy buồn bã, chán nản kéo dài, mất đi sự quan tâm và hứng thú với những hoạt động từng mang lại niềm vui. Ngoài ra, họ thường có xu hướng bi quan, cảm thấy mình vô dụng hoặc không có giá trị, từ đó dẫn đến sự mất động lực và thu mình trong cuộc sống hàng ngày.",
+    "answer": "Người bị trầm cảm có thể biểu hiện nhiều cảm xúc khác nhau, bao gồm buồn bã kéo dài, mất hứng thú với những hoạt động từng yêu thích, cảm giác vô vọng, tội lỗi, hoặc tự trách móc. Họ cũng có thể gặp khó khăn trong việc tập trung, đưa ra quyết định, hoặc thậm chí có những suy nghĩ về cái chết hoặc tự tử. Những biểu hiện này có thể khác nhau ở mỗi người và mức độ nghiêm trọng cũng khác nhau. Nếu bạn hoặc ai đó bạn biết đang trải qua những điều này, hãy tìm kiếm sự giúp đỡ từ chuyên gia tâm lý nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Người bị trầm cảm có thể biểu hiện nhiều cảm xúc khác nhau, bao gồm buồn bã kéo dài, mất hứng thú với những hoạt động từng yêu thích, cảm giác vô vọng, tội lỗi, hoặc tự trách móc. Họ cũng có thể gặp khó khăn trong việc tập trung, đưa ra quyết định, hoặc thậm chí có những suy nghĩ về cái chết hoặc tự tử. Những biểu hiện này có thể khác nhau ở mỗi người và mức độ nghiêm trọng cũng khác nhau. Nếu bạn hoặc ai đó bạn biết đang trải qua những điều này, hãy tìm kiếm sự giúp đỡ từ chuyên gia tâm lý nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Trầm cảm ảnh hưởng như thế nào đến suy nghĩ và hành vi của một người?",
+    "ground_truth": "Trầm cảm có thể tác động mạnh mẽ đến cả suy nghĩ lẫn hành vi. Người mắc trầm cảm thường mang trong mình cảm giác tội lỗi, tự ti hoặc có những suy nghĩ tiêu cực về bản thân. Họ dễ mất tập trung, trí nhớ suy giảm và khó đưa ra quyết định. Bên cạnh đó, người trầm cảm có thể trở nên nhạy cảm, dễ khóc, và trong những trường hợp nghiêm trọng, có thể xuất hiện ý nghĩ về cái chết hoặc hành vi tự tử.",
+    "answer": "Trầm cảm ảnh hưởng đến suy nghĩ và hành vi của một người theo nhiều cách khác nhau. Về mặt suy nghĩ, nó có thể gây ra những suy nghĩ tiêu cực, bi quan, cảm giác vô dụng hoặc tội lỗi. Người bệnh có thể gặp khó khăn trong việc tập trung, đưa ra quyết định và ghi nhớ thông tin. Họ cũng có thể có những suy nghĩ ám ảnh về cái chết hoặc tự tử. \n\nVề hành vi, trầm cảm có thể dẫn đến sự thay đổi trong các hoạt động hàng ngày. Người bệnh có thể mất hứng thú với những việc họ từng yêu thích, trở nên thu mình, ít giao tiếp với người khác. Họ cũng có thể gặp khó khăn trong việc ngủ, ăn uống hoặc duy trì vệ sinh cá nhân. Trong một số trường hợp, trầm cảm có thể dẫn đến các hành vi nguy hiểm như lạm dụng chất kích thích hoặc tự làm hại bản thân. \n\nNếu bạn đang trải qua những triệu chứng của trầm cảm, điều quan trọng là phải tìm kiếm sự giúp đỡ từ chuyên gia tâm lý hoặc bác sĩ. Họ có thể giúp bạn hiểu rõ hơn về tình trạng của mình và đưa ra phương pháp điều trị phù hợp.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Trầm cảm ảnh hưởng đến suy nghĩ và hành vi của một người theo nhiều cách khác nhau. Về mặt suy nghĩ, nó có thể gây ra những suy nghĩ tiêu cực, bi quan, cảm giác vô dụng hoặc tội lỗi. Người bệnh có thể gặp khó khăn trong việc tập trung, đưa ra quyết định và ghi nhớ thông tin. Họ cũng có thể có những suy nghĩ ám ảnh về cái chết hoặc tự tử. \n\nVề hành vi, trầm cảm có thể dẫn đến sự thay đổi trong các hoạt động hàng ngày. Người bệnh có thể mất hứng thú với những việc họ từng yêu thích, trở nên thu mình, ít giao tiếp với người khác. Họ cũng có thể gặp khó khăn trong việc ngủ, ăn uống hoặc duy trì vệ sinh cá nhân. Trong một số trường hợp, trầm cảm có thể dẫn đến các hành vi nguy hiểm như lạm dụng chất kích thích hoặc tự làm hại bản thân. \n\nNếu bạn đang trải qua những triệu chứng của trầm cảm, điều quan trọng là phải tìm kiếm sự giúp đỡ từ chuyên gia tâm lý hoặc bác sĩ. Họ có thể giúp bạn hiểu rõ hơn về tình trạng của mình và đưa ra phương pháp điều trị phù hợp.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Người trầm cảm thường có những dấu hiệu thể chất nào?",
+    "ground_truth": "Người mắc trầm cảm thường xuất hiện các thay đổi rõ rệt về cơ thể. Họ có thể cảm thấy chậm chạp, ủ rũ, mệt mỏi hoặc thiếu năng lượng để thực hiện các hoạt động hàng ngày. Các rối loạn về giấc ngủ, như khó ngủ hoặc ngủ quá nhiều, cũng rất phổ biến. Bên cạnh đó, trầm cảm có thể gây thay đổi khẩu vị, dẫn đến sụt cân hoặc tăng cân không kiểm soát.",
+    "answer": "Dấu hiệu thể chất của người trầm cảm có thể rất đa dạng và khác nhau ở mỗi người. Một số dấu hiệu thường gặp bao gồm:\n\n*   **Thay đổi cân nặng:** Có thể tăng hoặc giảm cân đáng kể mà không do chế độ ăn uống.\n*   **Thay đổi giấc ngủ:** Khó ngủ (mất ngủ), ngủ quá nhiều (sáng ngủ) hoặc giấc ngủ không sâu.\n*   **Mệt mỏi, thiếu năng lượng:** Cảm thấy kiệt sức ngay cả khi không làm gì nhiều.\n*   **Đau đầu, đau cơ:** Các cơn đau không rõ nguyên nhân có thể thường xuyên xảy ra.\n*   **Vấn đề về tiêu hóa:** Đầy hơi, khó tiêu, hoặc các vấn đề khác về đường ruột.\n*   **Thay đổi sự thèm ăn:** Ăn nhiều hơn hoặc ít hơn bình thường.\n*   **Giảm ham muốn tình dục:** Mất hứng thú với các hoạt động tình dục.\n\nTuy nhiên, cần lưu ý rằng không phải ai bị trầm cảm cũng sẽ có tất cả các dấu hiệu này, và một số người có thể không có bất kỳ dấu hiệu thể chất nào. Nếu bạn lo lắng về sức khỏe tinh thần của mình, hãy tìm kiếm sự giúp đỡ từ các chuyên gia nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Dấu hiệu thể chất của người trầm cảm có thể rất đa dạng và khác nhau ở mỗi người. Một số dấu hiệu thường gặp bao gồm:\n\n*   **Thay đổi cân nặng:** Có thể tăng hoặc giảm cân đáng kể mà không do chế độ ăn uống.\n*   **Thay đổi giấc ngủ:** Khó ngủ (mất ngủ), ngủ quá nhiều (sáng ngủ) hoặc giấc ngủ không sâu.\n*   **Mệt mỏi, thiếu năng lượng:** Cảm thấy kiệt sức ngay cả khi không làm gì nhiều.\n*   **Đau đầu, đau cơ:** Các cơn đau không rõ nguyên nhân có thể thường xuyên xảy ra.\n*   **Vấn đề về tiêu hóa:** Đầy hơi, khó tiêu, hoặc các vấn đề khác về đường ruột.\n*   **Thay đổi sự thèm ăn:** Ăn nhiều hơn hoặc ít hơn bình thường.\n*   **Giảm ham muốn tình dục:** Mất hứng thú với các hoạt động tình dục.\n\nTuy nhiên, cần lưu ý rằng không phải ai bị trầm cảm cũng sẽ có tất cả các dấu hiệu này, và một số người có thể không có bất kỳ dấu hiệu thể chất nào. Nếu bạn lo lắng về sức khỏe tinh thần của mình, hãy tìm kiếm sự giúp đỡ từ các chuyên gia nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Trầm cảm ảnh hưởng như thế nào đến khả năng sinh hoạt và các mối quan hệ xã hội của người bệnh?",
+    "ground_truth": "Trầm cảm khiến người bệnh gặp nhiều khó khăn trong việc duy trì các hoạt động hàng ngày. Họ thường thiếu năng lượng, mất động lực nên khó hoàn thành công việc hoặc học tập như trước. Cuộc sống trở nên nặng nề, mọi việc dù nhỏ cũng trở thành thử thách. Ngoài ra, người trầm cảm có xu hướng thu mình, tránh giao tiếp và tách khỏi bạn bè, gia đình cũng như các hoạt động xã hội, khiến tình trạng cô đơn và buồn bã càng trở nên trầm trọng hơn.",
+    "answer": "Trầm cảm có thể ảnh hưởng sâu sắc đến khả năng sinh hoạt hàng ngày và các mối quan hệ xã hội của người bệnh. Về khả năng sinh hoạt, trầm cảm có thể gây ra mệt mỏi kéo dài, giảm động lực, khó tập trung, ảnh hưởng đến công việc, học tập và các hoạt động thường ngày. Người bệnh có thể gặp khó khăn trong việc chăm sóc bản thân, duy trì vệ sinh cá nhân hoặc thực hiện các công việc nhà. \n\nĐối với các mối quan hệ xã hội, trầm cảm có thể dẫn đến sự cô lập, xa lánh bạn bè và gia đình. Người bệnh có thể cảm thấy không muốn giao tiếp, không chia sẻ cảm xúc và dễ cáu gắt, khó chịu. Điều này có thể gây căng thẳng và mâu thuẫn trong các mối quan hệ. Ngoài ra, trầm cảm còn có thể ảnh hưởng đến khả năng duy trì các mối quan hệ tình cảm, khiến người bệnh cảm thấy khó khăn trong việc kết nối và gắn bó với người khác. \n\nNếu bạn đang trải qua những khó khăn tương tự, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia tâm lý hoặc người thân, bạn bè. Việc chia sẻ và được hỗ trợ có thể giúp bạn vượt qua giai đoạn khó khăn này.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Trầm cảm có thể ảnh hưởng sâu sắc đến khả năng sinh hoạt hàng ngày và các mối quan hệ xã hội của người bệnh. Về khả năng sinh hoạt, trầm cảm có thể gây ra mệt mỏi kéo dài, giảm động lực, khó tập trung, ảnh hưởng đến công việc, học tập và các hoạt động thường ngày. Người bệnh có thể gặp khó khăn trong việc chăm sóc bản thân, duy trì vệ sinh cá nhân hoặc thực hiện các công việc nhà. \n\nĐối với các mối quan hệ xã hội, trầm cảm có thể dẫn đến sự cô lập, xa lánh bạn bè và gia đình. Người bệnh có thể cảm thấy không muốn giao tiếp, không chia sẻ cảm xúc và dễ cáu gắt, khó chịu. Điều này có thể gây căng thẳng và mâu thuẫn trong các mối quan hệ. Ngoài ra, trầm cảm còn có thể ảnh hưởng đến khả năng duy trì các mối quan hệ tình cảm, khiến người bệnh cảm thấy khó khăn trong việc kết nối và gắn bó với người khác. \n\nNếu bạn đang trải qua những khó khăn tương tự, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia tâm lý hoặc người thân, bạn bè. Việc chia sẻ và được hỗ trợ có thể giúp bạn vượt qua giai đoạn khó khăn này.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Trầm cảm có thể được điều trị và phục hồi không?",
+    "ground_truth": "Trầm cảm là một vấn đề sức khỏe có thể xảy ra với bất cứ ai, nhưng hoàn toàn có thể được điều trị. Quá trình điều trị thường cần vài tuần mới thấy được tiến triển rõ rệt, bao gồm cải thiện tâm trạng, năng lượng và khả năng sinh hoạt hàng ngày. Tuy nhiên, trầm cảm có thể tái phát nếu sức khỏe thể chất, điều kiện sống hoặc môi trường xung quanh không thuận lợi, vì vậy việc duy trì lối sống lành mạnh và hỗ trợ tâm lý liên tục là rất quan trọng.",
+    "answer": "Trầm cảm hoàn toàn có thể được điều trị và phục hồi. Hiện nay có nhiều phương pháp điều trị hiệu quả, bao gồm liệu pháp tâm lý (như liệu pháp nhận thức hành vi), thuốc và các phương pháp hỗ trợ khác. Quá trình phục hồi có thể khác nhau tùy thuộc vào từng người, mức độ trầm cảm và các yếu tố cá nhân. Điều quan trọng là tìm kiếm sự hỗ trợ từ chuyên gia tâm lý để được đánh giá và xây dựng kế hoạch điều trị phù hợp. Bạn có muốn tìm hiểu thêm về các phương pháp điều trị trầm cảm không?",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Trầm cảm hoàn toàn có thể được điều trị và phục hồi. Hiện nay có nhiều phương pháp điều trị hiệu quả, bao gồm liệu pháp tâm lý (như liệu pháp nhận thức hành vi), thuốc và các phương pháp hỗ trợ khác. Quá trình phục hồi có thể khác nhau tùy thuộc vào từng người, mức độ trầm cảm và các yếu tố cá nhân. Điều quan trọng là tìm kiếm sự hỗ trợ từ chuyên gia tâm lý để được đánh giá và xây dựng kế hoạch điều trị phù hợp. Bạn có muốn tìm hiểu thêm về các phương pháp điều trị trầm cảm không?",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Mệt mỏi là gì?",
+    "ground_truth": "Mệt mỏi là cảm giác kiệt sức, thiếu năng lượng kéo dài và lặp đi lặp lại mà không xác định được nguyên nhân rõ ràng. Tình trạng này không chỉ ảnh hưởng đến khả năng học tập và làm việc mà còn tác động tiêu cực đến các mối quan hệ, đời sống gia đình và chất lượng cuộc sống nói chung.",
+    "answer": "Mệt mỏi là một trạng thái cảm xúc và thể chất khiến bạn cảm thấy thiếu năng lượng, không có động lực và khó tập trung. Nó có thể là phản ứng của cơ thể khi phải đối mặt với căng thẳng, áp lực hoặc thiếu ngủ. Mệt mỏi không chỉ đơn thuần là cảm giác buồn ngủ mà còn ảnh hưởng đến hiệu suất làm việc, học tập và các hoạt động hàng ngày. Nếu bạn cảm thấy mệt mỏi kéo dài, hãy tìm cách giải quyết nguyên nhân gây ra và chăm sóc bản thân kỹ hơn nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Mệt mỏi là một trạng thái cảm xúc và thể chất khiến bạn cảm thấy thiếu năng lượng, không có động lực và khó tập trung. Nó có thể là phản ứng của cơ thể khi phải đối mặt với căng thẳng, áp lực hoặc thiếu ngủ. Mệt mỏi không chỉ đơn thuần là cảm giác buồn ngủ mà còn ảnh hưởng đến hiệu suất làm việc, học tập và các hoạt động hàng ngày. Nếu bạn cảm thấy mệt mỏi kéo dài, hãy tìm cách giải quyết nguyên nhân gây ra và chăm sóc bản thân kỹ hơn nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Mệt mỏi có thể xảy ra với ai?",
+    "ground_truth": "Thực tế, mệt mỏi có thể xuất hiện ở bất kỳ ai và vào bất kỳ thời điểm nào trong cuộc sống. Ai trong chúng ta cũng có thể trải qua những giai đoạn cảm thấy kiệt sức, chán nản hoặc mất động lực. Tuy nhiên, mệt mỏi chỉ trở thành vấn đề cần được can thiệp khi nó kéo dài, ảnh hưởng đến học tập, công việc hoặc các mối quan hệ.",
+    "answer": "Mệt mỏi có thể xảy ra với bất kỳ ai, không phân biệt tuổi tác, giới tính hay hoàn cảnh. Đó là một phản ứng tự nhiên của cơ thể khi phải đối mặt với căng thẳng, áp lực hoặc thiếu ngủ. Có rất nhiều yếu tố có thể gây ra mệt mỏi, từ những vấn đề nhỏ nhặt trong cuộc sống hàng ngày đến những vấn đề sức khỏe nghiêm trọng hơn. Nếu bạn cảm thấy mệt mỏi kéo dài và ảnh hưởng đến cuộc sống, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Mệt mỏi có thể xảy ra với bất kỳ ai, không phân biệt tuổi tác, giới tính hay hoàn cảnh. Đó là một phản ứng tự nhiên của cơ thể khi phải đối mặt với căng thẳng, áp lực hoặc thiếu ngủ. Có rất nhiều yếu tố có thể gây ra mệt mỏi, từ những vấn đề nhỏ nhặt trong cuộc sống hàng ngày đến những vấn đề sức khỏe nghiêm trọng hơn. Nếu bạn cảm thấy mệt mỏi kéo dài và ảnh hưởng đến cuộc sống, đừng ngần ngại tìm kiếm sự giúp đỡ từ chuyên gia nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Mệt mỏi có thể bắt nguồn từ những nguyên nhân nào?",
+    "ground_truth": "Mệt mỏi có thể bắt nguồn từ nhiều nguyên nhân khác nhau, bao gồm cả yếu tố thể chất lẫn tinh thần. Việc ngủ không đủ giấc hoặc ngủ không sâu khiến cơ thể không được phục hồi năng lượng, dẫn đến cảm giác uể oải kéo dài. Một số bệnh lý như huyết áp cao, tiểu đường hoặc thiếu máu cũng có thể khiến cơ thể luôn trong trạng thái suy nhược và dễ mệt mỏi. Bên cạnh đó, căng thẳng, lo âu hay trầm cảm kéo dài là những nguyên nhân tâm lý phổ biến khiến con người mất dần năng lượng sống. Ngoài ra, lối sống và thói quen sinh hoạt không lành mạnh như làm việc quá sức, ít vận động, chế độ ăn uống thiếu khoa học hoặc tình trạng béo phì cũng góp phần khiến cơ thể rơi vào trạng thái mệt mỏi.",
+    "answer": "Mệt mỏi có thể bắt nguồn từ nhiều nguyên nhân khác nhau, bao gồm cả yếu tố thể chất, tinh thần và môi trường. Về thể chất, thiếu ngủ, chế độ ăn uống không lành mạnh, hoặc các vấn đề sức khỏe tiềm ẩn có thể gây mệt mỏi. Về tinh thần, căng thẳng, lo âu, trầm cảm, hoặc áp lực công việc/học tập có thể dẫn đến cảm giác mệt mỏi kéo dài. Ngoài ra, môi trường sống và làm việc không tốt, thiếu vận động, hoặc ít tiếp xúc với ánh sáng tự nhiên cũng có thể góp phần gây mệt mỏi. \n\nBạn có thể chia sẻ thêm về tình trạng mệt mỏi của mình không? Điều gì khiến bạn cảm thấy mệt mỏi nhất?",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Mệt mỏi có thể bắt nguồn từ nhiều nguyên nhân khác nhau, bao gồm cả yếu tố thể chất, tinh thần và môi trường. Về thể chất, thiếu ngủ, chế độ ăn uống không lành mạnh, hoặc các vấn đề sức khỏe tiềm ẩn có thể gây mệt mỏi. Về tinh thần, căng thẳng, lo âu, trầm cảm, hoặc áp lực công việc/học tập có thể dẫn đến cảm giác mệt mỏi kéo dài. Ngoài ra, môi trường sống và làm việc không tốt, thiếu vận động, hoặc ít tiếp xúc với ánh sáng tự nhiên cũng có thể góp phần gây mệt mỏi. \n\nBạn có thể chia sẻ thêm về tình trạng mệt mỏi của mình không? Điều gì khiến bạn cảm thấy mệt mỏi nhất?",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Mệt mỏi có ảnh hưởng đến sức khỏe tâm lý không?",
+    "ground_truth": "Mệt mỏi kéo dài không chỉ ảnh hưởng đến sức khỏe thể chất mà còn tác động tiêu cực đến tinh thần, khiến bạn dễ cáu gắt, mất tập trung, giảm động lực và dễ rơi vào trạng thái lo âu hoặc trầm cảm. Nếu không được nghỉ ngơi và chăm sóc đúng cách, mệt mỏi có thể trở thành vòng luẩn quẩn, làm suy giảm cả hiệu suất học tập, công việc và chất lượng cuộc sống.",
+    "answer": "Hoàn toàn có! Mệt mỏi có thể ảnh hưởng đáng kể đến sức khỏe tâm lý. Khi bạn cảm thấy mệt mỏi kéo dài, nó có thể dẫn đến các vấn đề như lo âu, trầm cảm, giảm khả năng tập trung và khó khăn trong việc đưa ra quyết định. Mệt mỏi cũng có thể làm giảm khả năng đối phó với căng thẳng, khiến bạn dễ bị kích động và cáu gắt hơn. \n\nNếu bạn đang trải qua tình trạng mệt mỏi kéo dài và cảm thấy ảnh hưởng đến sức khỏe tinh thần của mình, đừng ngần ngại tìm kiếm sự hỗ trợ từ những người xung quanh hoặc chuyên gia tâm lý nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Hoàn toàn có! Mệt mỏi có thể ảnh hưởng đáng kể đến sức khỏe tâm lý. Khi bạn cảm thấy mệt mỏi kéo dài, nó có thể dẫn đến các vấn đề như lo âu, trầm cảm, giảm khả năng tập trung và khó khăn trong việc đưa ra quyết định. Mệt mỏi cũng có thể làm giảm khả năng đối phó với căng thẳng, khiến bạn dễ bị kích động và cáu gắt hơn. \n\nNếu bạn đang trải qua tình trạng mệt mỏi kéo dài và cảm thấy ảnh hưởng đến sức khỏe tinh thần của mình, đừng ngần ngại tìm kiếm sự hỗ trợ từ những người xung quanh hoặc chuyên gia tâm lý nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Sinh viên thường mệt mỏi vì những lý do gì?",
+    "ground_truth": "Sinh viên thường mệt mỏi do nhiều nguyên nhân khác nhau, phổ biến nhất là thiếu ngủ, áp lực học tập và thi cử, cùng với thói quen sinh hoạt không điều độ. Ngoài ra, lo âu về tương lai, căng thẳng trong các mối quan hệ, hoặc thiếu cân bằng giữa học tập và giải trí cũng góp phần khiến sinh viên dễ rơi vào trạng thái kiệt sức, mất năng lượng và giảm hứng thú trong cuộc sống.",
+    "answer": "Sinh viên thường mệt mỏi vì nhiều lý do khác nhau, bao gồm áp lực học tập lớn, lịch học dày đặc, thiếu ngủ, căng thẳng về tương lai, khó khăn trong việc cân bằng giữa học tập, công việc và cuộc sống cá nhân, cũng như các vấn đề về tài chính. Ngoài ra, áp lực từ gia đình và bạn bè cũng có thể góp phần gây ra mệt mỏi ở sinh viên. Việc hiểu rõ nguyên nhân sẽ giúp sinh viên tìm ra cách giải quyết phù hợp.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Sinh viên thường mệt mỏi vì nhiều lý do khác nhau, bao gồm áp lực học tập lớn, lịch học dày đặc, thiếu ngủ, căng thẳng về tương lai, khó khăn trong việc cân bằng giữa học tập, công việc và cuộc sống cá nhân, cũng như các vấn đề về tài chính. Ngoài ra, áp lực từ gia đình và bạn bè cũng có thể góp phần gây ra mệt mỏi ở sinh viên. Việc hiểu rõ nguyên nhân sẽ giúp sinh viên tìm ra cách giải quyết phù hợp.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi nào nên đi khám nếu cảm thấy mệt mỏi?",
+    "ground_truth": "Nếu bạn mệt mỏi liên tục, không thể kiểm soát được tình trạng, cảm thấy mất năng lượng, hoặc nghi ngờ có vấn đề về thể chất hay tâm lý, bạn nên liên hệ chuyên gia tâm lý học đường, tâm lý lâm sàng hoặc bác sĩ tâm thần để được hỗ trợ kịp thời.",
+    "answer": "Cảm giác mệt mỏi có thể do nhiều nguyên nhân khác nhau gây ra, từ thiếu ngủ, chế độ ăn uống không lành mạnh đến căng thẳng, áp lực công việc hoặc thậm chí là các vấn đề sức khỏe tiềm ẩn. Việc xác định thời điểm nên đi khám phụ thuộc vào mức độ mệt mỏi và các triệu chứng đi kèm. \n\nNếu bạn cảm thấy mệt mỏi kéo dài trong vài tuần, ảnh hưởng đến sinh hoạt hàng ngày, hoặc đi kèm với các triệu chứng như đau đầu, khó ngủ, chán ăn, mất tập trung, hoặc cảm thấy buồn bã, thì nên đi khám bác sĩ để được tư vấn và kiểm tra. Bác sĩ có thể giúp xác định nguyên nhân gây mệt mỏi và đưa ra phương pháp điều trị phù hợp. \n\nNgoài ra, bạn cũng có thể thử một số biện pháp tự chăm sóc sức khỏe như ngủ đủ giấc, ăn uống lành mạnh, tập thể dục thường xuyên, và giảm căng thẳng. Tuy nhiên, nếu tình trạng mệt mỏi không cải thiện, bạn vẫn nên đi khám để được chẩn đoán và điều trị kịp thời.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Cảm giác mệt mỏi có thể do nhiều nguyên nhân khác nhau gây ra, từ thiếu ngủ, chế độ ăn uống không lành mạnh đến căng thẳng, áp lực công việc hoặc thậm chí là các vấn đề sức khỏe tiềm ẩn. Việc xác định thời điểm nên đi khám phụ thuộc vào mức độ mệt mỏi và các triệu chứng đi kèm. \n\nNếu bạn cảm thấy mệt mỏi kéo dài trong vài tuần, ảnh hưởng đến sinh hoạt hàng ngày, hoặc đi kèm với các triệu chứng như đau đầu, khó ngủ, chán ăn, mất tập trung, hoặc cảm thấy buồn bã, thì nên đi khám bác sĩ để được tư vấn và kiểm tra. Bác sĩ có thể giúp xác định nguyên nhân gây mệt mỏi và đưa ra phương pháp điều trị phù hợp. \n\nNgoài ra, bạn cũng có thể thử một số biện pháp tự chăm sóc sức khỏe như ngủ đủ giấc, ăn uống lành mạnh, tập thể dục thường xuyên, và giảm căng thẳng. Tuy nhiên, nếu tình trạng mệt mỏi không cải thiện, bạn vẫn nên đi khám để được chẩn đoán và điều trị kịp thời.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Có những cách nào giúp giảm bớt cảm giác mệt mỏi?",
+    "ground_truth": "Có nhiều cách để giảm bớt cảm giác mệt mỏi và lấy lại năng lượng cho cơ thể và tinh thần. Bạn có thể chậm lại, thư giãn và hít thở sâu, duy trì thói quen tập thể dục hoặc tham gia các hoạt động thể thao, chăm sóc bản thân bằng chế độ ăn uống hợp lý và đảm bảo giấc ngủ đầy đủ. Quản lý thời gian hiệu quả, xây dựng mạng lưới quan hệ xã hội hỗ trợ và thảo luận các giải pháp với người tin cậy cũng giúp giảm căng thẳng. Ngoài ra, học các kỹ thuật thư giãn như thiền, yoga, hít thở sâu hay thở hình vuông, tạo danh sách các hoạt động giúp cải thiện tâm trạng, thách thức các suy nghĩ tiêu cực và tìm đến sự trợ giúp của chuyên gia khi cần thiết sẽ giúp bạn kiểm soát mệt mỏi một cách hiệu quả.",
+    "answer": "Cảm giác mệt mỏi có thể do nhiều nguyên nhân gây ra, từ thiếu ngủ, chế độ ăn uống không lành mạnh đến căng thẳng tinh thần. Để giảm bớt mệt mỏi, bạn có thể thử một số cách sau:\n\n*   **Ngủ đủ giấc:** Cố gắng ngủ 7-8 tiếng mỗi đêm.\n*   **Chế độ ăn uống cân bằng:** Ăn nhiều trái cây, rau xanh và ngũ cốc nguyên hạt.\n*   **Tập thể dục thường xuyên:** Vận động nhẹ nhàng như đi bộ, yoga có thể giúp tăng cường năng lượng.\n*   **Thực hành các kỹ thuật thư giãn:** Thiền, hít thở sâu hoặc nghe nhạc nhẹ.\n*   **Quản lý căng thẳng:** Tìm hiểu nguyên nhân gây căng thẳng và tìm cách giải quyết chúng.\n\nNếu tình trạng mệt mỏi kéo dài và ảnh hưởng đến cuộc sống hàng ngày, bạn nên tìm kiếm sự tư vấn của chuyên gia sức khỏe.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Cảm giác mệt mỏi có thể do nhiều nguyên nhân gây ra, từ thiếu ngủ, chế độ ăn uống không lành mạnh đến căng thẳng tinh thần. Để giảm bớt mệt mỏi, bạn có thể thử một số cách sau:\n\n*   **Ngủ đủ giấc:** Cố gắng ngủ 7-8 tiếng mỗi đêm.\n*   **Chế độ ăn uống cân bằng:** Ăn nhiều trái cây, rau xanh và ngũ cốc nguyên hạt.\n*   **Tập thể dục thường xuyên:** Vận động nhẹ nhàng như đi bộ, yoga có thể giúp tăng cường năng lượng.\n*   **Thực hành các kỹ thuật thư giãn:** Thiền, hít thở sâu hoặc nghe nhạc nhẹ.\n*   **Quản lý căng thẳng:** Tìm hiểu nguyên nhân gây căng thẳng và tìm cách giải quyết chúng.\n\nNếu tình trạng mệt mỏi kéo dài và ảnh hưởng đến cuộc sống hàng ngày, bạn nên tìm kiếm sự tư vấn của chuyên gia sức khỏe.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Nguyên nhân nào thường gây mất ngủ ở sinh viên?",
+    "ground_truth": "Mất ngủ ở sinh viên thường xuất phát từ nhiều nguyên nhân khác nhau. Về thể chất, các vấn đề như tiêu hóa kém, đau nhức cơ thể hoặc bệnh tật đều có thể ảnh hưởng đến giấc ngủ. Về tâm lý và cảm xúc, stress, lo âu, buồn chán, trầm cảm hay tức giận là những yếu tố phổ biến. Lối sống cũng đóng vai trò quan trọng, chẳng hạn như sử dụng chất kích thích, tập luyện thể lực quá mạnh trước khi đi ngủ, hoặc làm việc đêm ngủ ngày. Ngoài ra, môi trường ngủ không thuận lợi như phòng ồn ào, quá sáng, ô nhiễm không khí hay quá đông người cũng có thể khiến sinh viên khó đi vào giấc ngủ và duy trì giấc ngủ sâu.",
+    "answer": "Mất ngủ ở sinh viên có thể do nhiều nguyên nhân, bao gồm áp lực học tập, căng thẳng về tài chính, khó khăn trong việc thích nghi với môi trường mới, thói quen sinh hoạt không đều đặn, sử dụng thiết bị điện tử trước khi ngủ, hoặc các vấn đề sức khỏe tiềm ẩn. Để cải thiện tình trạng này, bạn có thể thử áp dụng các biện pháp như tạo lịch trình ngủ đều đặn, tránh caffeine và nicotine vào buổi tối, tập thể dục thường xuyên, và tạo một không gian ngủ yên tĩnh, thoải mái. Nếu tình trạng mất ngủ kéo dài, hãy tìm kiếm sự hỗ trợ từ các chuyên gia y tế nhé.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Mất ngủ ở sinh viên có thể do nhiều nguyên nhân, bao gồm áp lực học tập, căng thẳng về tài chính, khó khăn trong việc thích nghi với môi trường mới, thói quen sinh hoạt không đều đặn, sử dụng thiết bị điện tử trước khi ngủ, hoặc các vấn đề sức khỏe tiềm ẩn. Để cải thiện tình trạng này, bạn có thể thử áp dụng các biện pháp như tạo lịch trình ngủ đều đặn, tránh caffeine và nicotine vào buổi tối, tập thể dục thường xuyên, và tạo một không gian ngủ yên tĩnh, thoải mái. Nếu tình trạng mất ngủ kéo dài, hãy tìm kiếm sự hỗ trợ từ các chuyên gia y tế nhé.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Ngủ ít có hại hơn ngủ nhiều không, và điều gì quan trọng hơn về giấc ngủ?",
+    "ground_truth": "Ngủ ít hay nhiều không phải yếu tố quan trọng nhất. Điều quan trọng hơn là chất lượng giấc ngủ, tức là giấc ngủ có giúp cơ thể và tinh thần được phục hồi hay không. Một giấc ngủ đủ sâu, đều đặn và đúng nhịp sẽ mang lại lợi ích cho sức khỏe thể chất và tinh thần, trong khi giấc ngủ chập chờn, không nghỉ ngơi đủ có thể gây hại, dù thời lượng ngủ dài hay ngắn.",
+    "answer": "Việc ngủ ít có thể gây hại hơn ngủ nhiều, và chất lượng giấc ngủ quan trọng hơn số lượng. Giấc ngủ đủ và sâu rất cần thiết cho sức khỏe thể chất và tinh thần. Khi ngủ, cơ thể và não bộ có thời gian để phục hồi, tái tạo năng lượng và củng cố trí nhớ. Thiếu ngủ có thể dẫn đến nhiều vấn đề như giảm khả năng tập trung, suy giảm trí nhớ, tăng nguy cơ mắc bệnh tim mạch, tiểu đường và các vấn đề về tâm trạng như lo âu, trầm cảm. \n\nVậy điều gì quan trọng hơn về giấc ngủ? Chất lượng giấc ngủ quan trọng hơn số lượng. Một giấc ngủ ngắn nhưng sâu và trọn vẹn có thể mang lại hiệu quả tốt hơn một giấc ngủ dài nhưng bị gián đoạn. Để cải thiện chất lượng giấc ngủ, bạn có thể thử một số biện pháp như:\n\n*   **Tạo thói quen ngủ đều đặn:** Đi ngủ và thức dậy vào cùng một thời điểm mỗi ngày, kể cả vào cuối tuần.\n*   **Tạo môi trường ngủ lý tưởng:** Phòng ngủ tối, yên tĩnh và mát mẻ.\n*   **Tránh sử dụng thiết bị điện tử trước khi ngủ:** Ánh sáng xanh từ các thiết bị này có thể ức chế sản xuất melatonin, một hormone quan trọng cho giấc ngủ.\n*   **Hạn chế caffeine và rượu:** Đặc biệt là vào buổi tối.\n*   **Tập thể dục thường xuyên:** Nhưng tránh tập luyện cường độ cao gần giờ đi ngủ.\n*   **Thực hành các kỹ thuật thư giãn:** Như thiền, yoga hoặc hít thở sâu.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc ngủ ít có thể gây hại hơn ngủ nhiều, và chất lượng giấc ngủ quan trọng hơn số lượng. Giấc ngủ đủ và sâu rất cần thiết cho sức khỏe thể chất và tinh thần. Khi ngủ, cơ thể và não bộ có thời gian để phục hồi, tái tạo năng lượng và củng cố trí nhớ. Thiếu ngủ có thể dẫn đến nhiều vấn đề như giảm khả năng tập trung, suy giảm trí nhớ, tăng nguy cơ mắc bệnh tim mạch, tiểu đường và các vấn đề về tâm trạng như lo âu, trầm cảm. \n\nVậy điều gì quan trọng hơn về giấc ngủ? Chất lượng giấc ngủ quan trọng hơn số lượng. Một giấc ngủ ngắn nhưng sâu và trọn vẹn có thể mang lại hiệu quả tốt hơn một giấc ngủ dài nhưng bị gián đoạn. Để cải thiện chất lượng giấc ngủ, bạn có thể thử một số biện pháp như:\n\n*   **Tạo thói quen ngủ đều đặn:** Đi ngủ và thức dậy vào cùng một thời điểm mỗi ngày, kể cả vào cuối tuần.\n*   **Tạo môi trường ngủ lý tưởng:** Phòng ngủ tối, yên tĩnh và mát mẻ.\n*   **Tránh sử dụng thiết bị điện tử trước khi ngủ:** Ánh sáng xanh từ các thiết bị này có thể ức chế sản xuất melatonin, một hormone quan trọng cho giấc ngủ.\n*   **Hạn chế caffeine và rượu:** Đặc biệt là vào buổi tối.\n*   **Tập thể dục thường xuyên:** Nhưng tránh tập luyện cường độ cao gần giờ đi ngủ.\n*   **Thực hành các kỹ thuật thư giãn:** Như thiền, yoga hoặc hít thở sâu.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Những dấu hiệu nào cho thấy bạn đang gặp vấn đề về giấc ngủ?",
+    "ground_truth": "Khi gặp vấn đề về giấc ngủ, bạn có thể nhận thấy cơ thể luôn thiếu năng lượng, cảm giác mệt mỏi thường trực, hoặc khó ngủ sâu, thức giấc giữa đêm. Những dấu hiệu khác bao gồm khó giữ tỉnh táo khi ngồi yên, đọc sách hay xem tivi, buồn ngủ hoặc mệt mỏi khi lái xe hoặc học tập. Bạn cũng có thể cảm thấy khó tập trung, ngoại hình kém sức sống và gặp khó khăn trong việc kiểm soát cảm xúc. Những biểu hiện này cảnh báo cơ thể và tinh thần đang bị ảnh hưởng, cần được nghỉ ngơi, chăm sóc và điều chỉnh thói quen sinh hoạt hợp lý.",
+    "answer": "Có nhiều dấu hiệu cho thấy bạn đang gặp vấn đề về giấc ngủ. Dưới đây là một số dấu hiệu phổ biến:\n\n*   **Khó ngủ:** Mất nhiều thời gian để chợp mắt, khó đi vào giấc ngủ hoặc ngủ không sâu.\n*   **Thức giấc giữa đêm:** Thường xuyên tỉnh giấc và khó ngủ lại.\n*   **Thức dậy quá sớm:** Thức dậy sớm hơn bình thường và không thể ngủ lại.\n*   **Cảm thấy mệt mỏi vào ban ngày:** Dù đã ngủ đủ giấc nhưng vẫn cảm thấy uể oải, thiếu năng lượng.\n*   **Khó tập trung:** Gặp khó khăn trong việc tập trung và chú ý.\n*   **Dễ cáu gắt:** Trở nên dễ cáu gắt, bực bội hơn bình thường.\n*   **Đau đầu:** Đau đầu thường xuyên, đặc biệt là vào buổi sáng.\n*   **Khó khăn trong việc nhớ lại:** Gặp khó khăn trong việc ghi nhớ thông tin.\n\nNếu bạn gặp phải một hoặc nhiều dấu hiệu trên trong một thời gian dài, có thể bạn đang gặp vấn đề về giấc ngủ. Điều này có thể ảnh hưởng đến sức khỏe tinh thần và thể chất của bạn. Bạn có thể tìm kiếm các biện pháp cải thiện giấc ngủ như tạo thói quen ngủ đều đặn, tránh sử dụng thiết bị điện tử trước khi ngủ, hoặc tham khảo ý kiến của bác sĩ nếu cần thiết.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Có nhiều dấu hiệu cho thấy bạn đang gặp vấn đề về giấc ngủ. Dưới đây là một số dấu hiệu phổ biến:\n\n*   **Khó ngủ:** Mất nhiều thời gian để chợp mắt, khó đi vào giấc ngủ hoặc ngủ không sâu.\n*   **Thức giấc giữa đêm:** Thường xuyên tỉnh giấc và khó ngủ lại.\n*   **Thức dậy quá sớm:** Thức dậy sớm hơn bình thường và không thể ngủ lại.\n*   **Cảm thấy mệt mỏi vào ban ngày:** Dù đã ngủ đủ giấc nhưng vẫn cảm thấy uể oải, thiếu năng lượng.\n*   **Khó tập trung:** Gặp khó khăn trong việc tập trung và chú ý.\n*   **Dễ cáu gắt:** Trở nên dễ cáu gắt, bực bội hơn bình thường.\n*   **Đau đầu:** Đau đầu thường xuyên, đặc biệt là vào buổi sáng.\n*   **Khó khăn trong việc nhớ lại:** Gặp khó khăn trong việc ghi nhớ thông tin.\n\nNếu bạn gặp phải một hoặc nhiều dấu hiệu trên trong một thời gian dài, có thể bạn đang gặp vấn đề về giấc ngủ. Điều này có thể ảnh hưởng đến sức khỏe tinh thần và thể chất của bạn. Bạn có thể tìm kiếm các biện pháp cải thiện giấc ngủ như tạo thói quen ngủ đều đặn, tránh sử dụng thiết bị điện tử trước khi ngủ, hoặc tham khảo ý kiến của bác sĩ nếu cần thiết.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Những biểu hiện thường gặp khi bị thiếu ngủ là gì?",
+    "ground_truth": "Khi bị thiếu ngủ, bạn có thể xuất hiện nhiều biểu hiện rõ rệt như buồn ngủ vào ban ngày, mệt mỏi, khó tập trung, trí nhớ suy giảm và khó ra quyết định. Ngoài ra, tình trạng này còn khiến bạn dễ khó chịu, bực mình và làm tăng nguy cơ tai nạn hoặc chấn thương do phản xạ và khả năng phán đoán giảm. Những dấu hiệu này cho thấy cơ thể và não bộ đang không được nghỉ ngơi đầy đủ, cần được điều chỉnh kịp thời.",
+    "answer": "Thiếu ngủ có thể gây ra nhiều biểu hiện khác nhau, ảnh hưởng đến cả thể chất lẫn tinh thần. Một số biểu hiện thường gặp bao gồm:\n\n*   **Mệt mỏi và thiếu năng lượng:** Đây là biểu hiện rõ ràng nhất. Bạn cảm thấy uể oải, khó tập trung và dễ buồn ngủ vào ban ngày.\n*   **Khó tập trung và giảm trí nhớ:** Thiếu ngủ ảnh hưởng đến khả năng tập trung, ghi nhớ và đưa ra quyết định.\n*   **Thay đổi tâm trạng:** Bạn có thể trở nên cáu gắt, dễ xúc động, lo lắng hoặc thậm chí trầm cảm.\n*   **Suy giảm hệ miễn dịch:** Thiếu ngủ làm suy yếu hệ miễn dịch, khiến bạn dễ bị bệnh hơn.\n*   **Tăng cảm giác thèm ăn:** Thiếu ngủ có thể làm tăng hormone gây đói, dẫn đến việc ăn nhiều hơn và tăng cân.\n*   **Các vấn đề về sức khỏe khác:** Thiếu ngủ kéo dài có thể làm tăng nguy cơ mắc các bệnh như tiểu đường, tim mạch và béo phì.\n\nNếu bạn thường xuyên gặp phải những biểu hiện này, hãy tìm cách cải thiện giấc ngủ và tham khảo ý kiến bác sĩ nếu cần thiết.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Thiếu ngủ có thể gây ra nhiều biểu hiện khác nhau, ảnh hưởng đến cả thể chất lẫn tinh thần. Một số biểu hiện thường gặp bao gồm:\n\n*   **Mệt mỏi và thiếu năng lượng:** Đây là biểu hiện rõ ràng nhất. Bạn cảm thấy uể oải, khó tập trung và dễ buồn ngủ vào ban ngày.\n*   **Khó tập trung và giảm trí nhớ:** Thiếu ngủ ảnh hưởng đến khả năng tập trung, ghi nhớ và đưa ra quyết định.\n*   **Thay đổi tâm trạng:** Bạn có thể trở nên cáu gắt, dễ xúc động, lo lắng hoặc thậm chí trầm cảm.\n*   **Suy giảm hệ miễn dịch:** Thiếu ngủ làm suy yếu hệ miễn dịch, khiến bạn dễ bị bệnh hơn.\n*   **Tăng cảm giác thèm ăn:** Thiếu ngủ có thể làm tăng hormone gây đói, dẫn đến việc ăn nhiều hơn và tăng cân.\n*   **Các vấn đề về sức khỏe khác:** Thiếu ngủ kéo dài có thể làm tăng nguy cơ mắc các bệnh như tiểu đường, tim mạch và béo phì.\n\nNếu bạn thường xuyên gặp phải những biểu hiện này, hãy tìm cách cải thiện giấc ngủ và tham khảo ý kiến bác sĩ nếu cần thiết.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Mất ngủ gây ảnh hưởng như thế nào đến cuộc sống và học tập của sinh viên?",
+    "ground_truth": "Mất ngủ khiến sinh viên giảm khả năng tập trung, ghi nhớ kém, và khó duy trì hiệu quả học tập. Về mặt cảm xúc, việc thiếu ngủ thường dẫn đến cáu gắt, mệt mỏi, dễ mất kiểm soát cảm xúc, từ đó ảnh hưởng đến các mối quan hệ xã hội. Nếu tình trạng này kéo dài, nó còn có thể làm tăng nguy cơ mắc các rối loạn tâm lý như stress, lo âu hoặc trầm cảm, tác động tiêu cực đến cả sức khỏe tinh thần lẫn thể chất.",
+    "answer": "Mất ngủ có thể ảnh hưởng đến cuộc sống và học tập của sinh viên theo nhiều cách. Nó có thể gây ra mệt mỏi, giảm khả năng tập trung, khó khăn trong việc ghi nhớ thông tin và giảm hiệu suất học tập. Ngoài ra, mất ngủ còn có thể ảnh hưởng đến tâm trạng, khiến sinh viên dễ cáu gắt, lo lắng và thậm chí là trầm cảm. Việc thiếu ngủ cũng có thể làm suy yếu hệ miễn dịch, khiến sinh viên dễ mắc bệnh hơn. \n\nĐể cải thiện giấc ngủ, sinh viên có thể thử một số biện pháp như: duy trì lịch trình ngủ đều đặn, tạo môi trường ngủ thoải mái, tránh sử dụng thiết bị điện tử trước khi ngủ, tập thể dục thường xuyên và hạn chế caffeine và rượu.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Mất ngủ có thể ảnh hưởng đến cuộc sống và học tập của sinh viên theo nhiều cách. Nó có thể gây ra mệt mỏi, giảm khả năng tập trung, khó khăn trong việc ghi nhớ thông tin và giảm hiệu suất học tập. Ngoài ra, mất ngủ còn có thể ảnh hưởng đến tâm trạng, khiến sinh viên dễ cáu gắt, lo lắng và thậm chí là trầm cảm. Việc thiếu ngủ cũng có thể làm suy yếu hệ miễn dịch, khiến sinh viên dễ mắc bệnh hơn. \n\nĐể cải thiện giấc ngủ, sinh viên có thể thử một số biện pháp như: duy trì lịch trình ngủ đều đặn, tạo môi trường ngủ thoải mái, tránh sử dụng thiết bị điện tử trước khi ngủ, tập thể dục thường xuyên và hạn chế caffeine và rượu.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Tự sát được hiểu là gì?",
+    "ground_truth": "Tự sát là hành vi cố ý chấm dứt sự sống của chính mình, thường xuất phát từ những khủng hoảng tâm lý kéo dài, cảm giác tuyệt vọng, mất niềm tin hoặc cảm giác cuộc sống không còn ý nghĩa. Đây là một vấn đề nghiêm trọng về sức khỏe tâm thần, cần được nhận biết sớm và có sự hỗ trợ kịp thời từ gia đình, bạn bè và chuyên gia tâm lý.",
+    "answer": "Tự sát là hành động tự gây ra cái chết. Đây là một vấn đề vô cùng nghiêm trọng và thường là kết quả của những cảm xúc đau khổ tột cùng, cảm giác tuyệt vọng và không còn lối thoát. Nếu bạn đang có những suy nghĩ như vậy, xin đừng giữ chúng một mình. Hãy tìm kiếm sự giúp đỡ ngay lập tức. Có rất nhiều người quan tâm và sẵn sàng lắng nghe bạn. Bạn có thể gọi cho đường dây nóng hỗ trợ tâm lý, tìm đến bạn bè, người thân hoặc chuyên gia tâm lý để được hỗ trợ.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Tự sát là hành động tự gây ra cái chết. Đây là một vấn đề vô cùng nghiêm trọng và thường là kết quả của những cảm xúc đau khổ tột cùng, cảm giác tuyệt vọng và không còn lối thoát. Nếu bạn đang có những suy nghĩ như vậy, xin đừng giữ chúng một mình. Hãy tìm kiếm sự giúp đỡ ngay lập tức. Có rất nhiều người quan tâm và sẵn sàng lắng nghe bạn. Bạn có thể gọi cho đường dây nóng hỗ trợ tâm lý, tìm đến bạn bè, người thân hoặc chuyên gia tâm lý để được hỗ trợ.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Những yếu tố sinh học nào có thể làm tăng nguy cơ dẫn đến hành vi tự sát?",
+    "ground_truth": "Về phương diện sinh học, sự suy giảm nồng độ serotonin trong não được xem là một trong những nguyên nhân quan trọng làm tăng khả năng tự sát, bởi serotonin có vai trò điều hòa cảm xúc và kiểm soát xung động. Ngoài ra, yếu tố di truyền cũng có ảnh hưởng đáng kể,  những người có cha mẹ hoặc người thân từng tự sát hay có hành vi tự sát thường có nguy cơ cao hơn so với người bình thường.",
+    "answer": "Có nhiều yếu tố sinh học có thể làm tăng nguy cơ dẫn đến hành vi tự sát, bao gồm các yếu tố sau:\n\n*   **Tiền sử gia đình:** Nếu có người thân trong gia đình có tiền sử tự sát, bạn có nguy cơ cao hơn.\n*   **Các rối loạn tâm thần:** Các rối loạn như trầm cảm, rối loạn lưỡng cực, tâm thần phân liệt, rối loạn lo âu và rối loạn nhân cách ranh giới có liên quan đến tăng nguy cơ tự sát.\n*   **Thay đổi hóa học não:** Sự mất cân bằng các chất dẫn truyền thần kinh trong não, chẳng hạn như serotonin, có thể góp phần gây ra hành vi tự sát.\n*   **Các bệnh lý thể chất:** Một số bệnh lý thể chất mãn tính, chẳng hạn như ung thư, bệnh tim, HIV/AIDS và đau mãn tính, có thể làm tăng nguy cơ tự sát.\n*   **Sử dụng chất kích thích:** Lạm dụng rượu và ma túy có thể làm suy giảm khả năng kiểm soát bản thân và tăng nguy cơ tự sát.\n\nNếu bạn đang có những suy nghĩ tự hại, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Bạn có thể liên hệ với đường dây nóng hỗ trợ tâm lý hoặc tìm đến chuyên gia tâm lý để được tư vấn và hỗ trợ.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Có nhiều yếu tố sinh học có thể làm tăng nguy cơ dẫn đến hành vi tự sát, bao gồm các yếu tố sau:\n\n*   **Tiền sử gia đình:** Nếu có người thân trong gia đình có tiền sử tự sát, bạn có nguy cơ cao hơn.\n*   **Các rối loạn tâm thần:** Các rối loạn như trầm cảm, rối loạn lưỡng cực, tâm thần phân liệt, rối loạn lo âu và rối loạn nhân cách ranh giới có liên quan đến tăng nguy cơ tự sát.\n*   **Thay đổi hóa học não:** Sự mất cân bằng các chất dẫn truyền thần kinh trong não, chẳng hạn như serotonin, có thể góp phần gây ra hành vi tự sát.\n*   **Các bệnh lý thể chất:** Một số bệnh lý thể chất mãn tính, chẳng hạn như ung thư, bệnh tim, HIV/AIDS và đau mãn tính, có thể làm tăng nguy cơ tự sát.\n*   **Sử dụng chất kích thích:** Lạm dụng rượu và ma túy có thể làm suy giảm khả năng kiểm soát bản thân và tăng nguy cơ tự sát.\n\nNếu bạn đang có những suy nghĩ tự hại, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Bạn có thể liên hệ với đường dây nóng hỗ trợ tâm lý hoặc tìm đến chuyên gia tâm lý để được tư vấn và hỗ trợ.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Những yếu tố tâm lý nào có thể dẫn đến hành vi tự sát ở sinh viên và thanh thiếu niên?",
+    "ground_truth": "Về mặt tâm lý, trầm cảm và cảm giác tuyệt vọng là hai yếu tố hàng đầu làm tăng nguy cơ tự sát ở sinh viên và thanh thiếu niên. Người rơi vào trạng thái này thường thay đổi cảm xúc thất thường, cảm thấy mình không thuộc về ai, trở thành gánh nặng cho người khác, hoặc mất dần niềm tin vào cuộc sống. Bên cạnh đó, những cảm xúc tiêu cực như lo lắng, xấu hổ, tức giận thường xuyên hay nỗi buồn sâu sắc kéo dài cũng là những dấu hiệu cảnh báo mạnh mẽ của hành vi tự sát tiềm ẩn.",
+    "answer": "Có nhiều yếu tố tâm lý có thể góp phần dẫn đến hành vi tự sát ở sinh viên và thanh thiếu niên. Các yếu tố này thường phức tạp và tương tác lẫn nhau, bao gồm: \n\n*   **Các vấn đề sức khỏe tâm thần:** Trầm cảm, lo âu, rối loạn lưỡng cực, rối loạn nhân cách ranh giới và các vấn đề sức khỏe tâm thần khác là những yếu tố nguy cơ quan trọng. \n*   **Áp lực học tập:** Áp lực về điểm số, kỳ thi, sự cạnh tranh và mong đợi của gia đình có thể gây ra căng thẳng và lo âu quá mức. \n*   **Khó khăn trong các mối quan hệ:** Các vấn đề về tình bạn, tình yêu, gia đình hoặc bị cô lập xã hội có thể ảnh hưởng tiêu cực đến sức khỏe tinh thần. \n*   **Sang chấn tâm lý:** Trải qua các sự kiện đau thương như lạm dụng, bạo lực, mất mát hoặc tai nạn có thể làm tăng nguy cơ tự sát. \n*   **Vấn đề về bản sắc:** Khó khăn trong việc xác định bản thân, tìm kiếm mục đích sống hoặc cảm thấy không có giá trị có thể dẫn đến tuyệt vọng. \n*   **Lạm dụng chất kích thích:** Sử dụng rượu bia, ma túy hoặc các chất kích thích khác có thể làm suy giảm khả năng kiểm soát hành vi và tăng nguy cơ tự sát. \n\nNếu bạn hoặc ai đó bạn biết đang gặp khó khăn, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Có rất nhiều nguồn lực hỗ trợ sẵn có, bao gồm các đường dây nóng tư vấn, chuyên gia tâm lý và các tổ chức hỗ trợ sức khỏe tâm thần.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Có nhiều yếu tố tâm lý có thể góp phần dẫn đến hành vi tự sát ở sinh viên và thanh thiếu niên. Các yếu tố này thường phức tạp và tương tác lẫn nhau, bao gồm: \n\n*   **Các vấn đề sức khỏe tâm thần:** Trầm cảm, lo âu, rối loạn lưỡng cực, rối loạn nhân cách ranh giới và các vấn đề sức khỏe tâm thần khác là những yếu tố nguy cơ quan trọng. \n*   **Áp lực học tập:** Áp lực về điểm số, kỳ thi, sự cạnh tranh và mong đợi của gia đình có thể gây ra căng thẳng và lo âu quá mức. \n*   **Khó khăn trong các mối quan hệ:** Các vấn đề về tình bạn, tình yêu, gia đình hoặc bị cô lập xã hội có thể ảnh hưởng tiêu cực đến sức khỏe tinh thần. \n*   **Sang chấn tâm lý:** Trải qua các sự kiện đau thương như lạm dụng, bạo lực, mất mát hoặc tai nạn có thể làm tăng nguy cơ tự sát. \n*   **Vấn đề về bản sắc:** Khó khăn trong việc xác định bản thân, tìm kiếm mục đích sống hoặc cảm thấy không có giá trị có thể dẫn đến tuyệt vọng. \n*   **Lạm dụng chất kích thích:** Sử dụng rượu bia, ma túy hoặc các chất kích thích khác có thể làm suy giảm khả năng kiểm soát hành vi và tăng nguy cơ tự sát. \n\nNếu bạn hoặc ai đó bạn biết đang gặp khó khăn, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Có rất nhiều nguồn lực hỗ trợ sẵn có, bao gồm các đường dây nóng tư vấn, chuyên gia tâm lý và các tổ chức hỗ trợ sức khỏe tâm thần.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Những tác động từ môi trường xã hội và các mối quan hệ có thể ảnh hưởng như thế nào đến nguy cơ tự sát?",
+    "ground_truth": "Môi trường xã hội và các mối quan hệ đóng vai trò rất quan trọng trong sức khỏe tinh thần của mỗi người. Khi một cá nhân khó hòa nhập với xã hội, hoặc thiếu đi các mối quan hệ gắn bó, đồng cảm, họ dễ rơi vào trạng thái cô lập và tuyệt vọng. Việc mất đi sự kết nối đồng nghĩa với thiếu vắng hệ thống hỗ trợ tinh thần cần thiết, khiến họ dễ tổn thương hơn trước áp lực cuộc sống. Ngoài ra, những yếu tố như gia đình căng thẳng, tan vỡ, thiếu quan tâm, hay những thay đổi lớn trong xã hội cũng có thể làm tăng nguy cơ dẫn đến hành vi tự sát.",
+    "answer": "Môi trường xã hội và các mối quan hệ có ảnh hưởng sâu sắc đến nguy cơ tự sát. Những yếu tố này có thể tạo ra áp lực, cô lập, hoặc thiếu sự hỗ trợ cần thiết, từ đó làm tăng nguy cơ. Ví dụ, trải qua những sự kiện đau thương, bị lạm dụng, hoặc thiếu kết nối xã hội có thể góp phần vào những suy nghĩ tiêu cực và hành vi tự sát. Ngược lại, một môi trường hỗ trợ, yêu thương và có những mối quan hệ gắn bó có thể đóng vai trò như một yếu tố bảo vệ, giúp giảm thiểu nguy cơ này. Nếu bạn đang trải qua những cảm xúc khó khăn hoặc có ý nghĩ tự làm hại bản thân, xin đừng ngần ngại tìm kiếm sự giúp đỡ từ những người xung quanh hoặc các chuyên gia tâm lý.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Môi trường xã hội và các mối quan hệ có ảnh hưởng sâu sắc đến nguy cơ tự sát. Những yếu tố này có thể tạo ra áp lực, cô lập, hoặc thiếu sự hỗ trợ cần thiết, từ đó làm tăng nguy cơ. Ví dụ, trải qua những sự kiện đau thương, bị lạm dụng, hoặc thiếu kết nối xã hội có thể góp phần vào những suy nghĩ tiêu cực và hành vi tự sát. Ngược lại, một môi trường hỗ trợ, yêu thương và có những mối quan hệ gắn bó có thể đóng vai trò như một yếu tố bảo vệ, giúp giảm thiểu nguy cơ này. Nếu bạn đang trải qua những cảm xúc khó khăn hoặc có ý nghĩ tự làm hại bản thân, xin đừng ngần ngại tìm kiếm sự giúp đỡ từ những người xung quanh hoặc các chuyên gia tâm lý.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Làm thế nào để nhận diện hành vi tự gây tổn thương ở sinh viên và thanh thiếu niên?",
+    "ground_truth": "Hành vi tự gây tổn thương (Self-harm) thường biểu hiện qua những hành động cố ý làm đau bản thân mà không nhằm mục đích tự sát. Một số dấu hiệu phổ biến bao gồm: cắt hoặc rọc da, tự đánh bản thân, cào xước đến chảy máu, tự cắn, hoặc dùng vật nhọn đâm vào da, móng tay. Ngoài ra, người có hành vi này có thể xăm mình, đốt da, nhổ tóc, chà xát mạnh vào da hay cố tình làm vết thương không lành lại. Việc nhận diện sớm những dấu hiệu này là vô cùng quan trọng để có thể can thiệp và hỗ trợ kịp thời, giúp họ tránh rơi vào tình trạng tổn thương nghiêm trọng hơn cả về thể chất lẫn tinh thần.",
+    "answer": "Việc nhận diện hành vi tự gây tổn thương ở sinh viên và thanh thiếu niên là một vấn đề phức tạp, đòi hỏi sự quan sát tỉ mỉ và kiến thức chuyên môn. Một số dấu hiệu có thể bao gồm: thay đổi đột ngột trong tính cách (trở nên thu mình, cáu kỉnh hơn), giảm hứng thú với các hoạt động thường ngày, thay đổi thói quen ăn ngủ, nói về cái chết hoặc tự tử, tặng quà hoặc chia tay những người thân yêu, hoặc có những vết thương không rõ nguyên nhân. \n\nTuy nhiên, cần lưu ý rằng không phải ai có những dấu hiệu này cũng thực sự đang tự gây tổn thương. Việc đánh giá cần được thực hiện một cách cẩn trọng và kết hợp với các yếu tố khác. Nếu bạn lo lắng về một ai đó, hãy khuyến khích họ chia sẻ và tìm kiếm sự giúp đỡ từ chuyên gia tâm lý.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc nhận diện hành vi tự gây tổn thương ở sinh viên và thanh thiếu niên là một vấn đề phức tạp, đòi hỏi sự quan sát tỉ mỉ và kiến thức chuyên môn. Một số dấu hiệu có thể bao gồm: thay đổi đột ngột trong tính cách (trở nên thu mình, cáu kỉnh hơn), giảm hứng thú với các hoạt động thường ngày, thay đổi thói quen ăn ngủ, nói về cái chết hoặc tự tử, tặng quà hoặc chia tay những người thân yêu, hoặc có những vết thương không rõ nguyên nhân. \n\nTuy nhiên, cần lưu ý rằng không phải ai có những dấu hiệu này cũng thực sự đang tự gây tổn thương. Việc đánh giá cần được thực hiện một cách cẩn trọng và kết hợp với các yếu tố khác. Nếu bạn lo lắng về một ai đó, hãy khuyến khích họ chia sẻ và tìm kiếm sự giúp đỡ từ chuyên gia tâm lý.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Làm sao để nhận biết một người đang có dấu hiệu hoặc ý định tự sát qua lời nói và cách thể hiện?",
+    "ground_truth": "Người có ý định tự sát thường để lộ những dấu hiệu cảnh báo qua lời nói và hành vi. Họ có thể nói những câu bi quan, tuyệt vọng về cuộc sống, hoặc ngụ ý tạm biệt, bày tỏ tình cảm bất thường với người thân như một cách chia ly. Một số người còn thể hiện rõ ý định kết thúc mạng sống qua những câu nói như: “Chẳng còn gì quan trọng nữa”, “Thôi, mọi việc đều vô ích rồi”, “Giá mà tôi chưa từng được sinh ra”, hay “Nếu tôi chết đi thì...”. Ngoài ra, họ có thể nói về cảm giác trống rỗng, mất hứng thú với mọi thứ, và đôi khi buông những câu như “Sẽ không còn làm phiền ai nữa đâu...”.  Những lời nói tưởng chừng vô tình ấy thực chất là tín hiệu cầu cứu, cho thấy họ đang trải qua đau khổ sâu sắc và cần được lắng nghe, hỗ trợ kịp thời.",
+    "answer": "Việc nhận biết dấu hiệu tự sát ở người khác là điều rất khó khăn và nhạy cảm. Tuy nhiên, có một số dấu hiệu bạn có thể lưu ý. Điều quan trọng cần nhớ là không phải ai có những dấu hiệu này cũng có ý định tự tử, nhưng chúng cần được xem xét nghiêm túc.\n\n**Dấu hiệu về lời nói:**\n*   Nói về cái chết, tự tử, hoặc mong muốn mình biến mất.\n*   Thường xuyên than vãn, cảm thấy vô vọng, tuyệt vọng về tương lai.\n*   Thể hiện sự hối hận, cảm thấy mình là gánh nặng cho người khác.\n*   Nói chuyện bi quan, tiêu cực về mọi thứ.\n*   Tìm kiếm thông tin về cách tự tử.\n\n**Dấu hiệu về hành vi:**\n*   Rút lui khỏi bạn bè, gia đình và các hoạt động xã hội.\n*   Thay đổi đáng kể trong thói quen sinh hoạt (ví dụ: ngủ quá nhiều hoặc quá ít, ăn uống thất thường).\n*   Tặng quà hoặc nói lời tạm biệt như thể sắp xảy ra điều gì đó.\n*   Dọn dẹp đồ đạc cá nhân, sắp xếp lại cuộc sống.\n*   Tăng cường sử dụng chất kích thích (rượu, ma túy).\n*   Có hành vi tự làm hại bản thân (ví dụ: cắt xước, đốt cháy).\n\n**Nếu bạn nhận thấy bất kỳ dấu hiệu nào trong số này ở một người, hãy:**\n*   **Trực tiếp hỏi họ:** Đừng ngại hỏi trực tiếp xem họ có đang nghĩ đến việc tự tử hay không. Việc hỏi không khuyến khích họ tự tử, mà thể hiện sự quan tâm và sẵn sàng lắng nghe.\n*   **Lắng nghe một cách chân thành:** Hãy lắng nghe họ mà không phán xét, chỉ trích.\n*   **Thể hiện sự quan tâm và đồng cảm:** Cho họ biết bạn quan tâm đến họ và bạn ở đó để hỗ trợ họ.\n*   **Khuyến khích họ tìm kiếm sự giúp đỡ chuyên nghiệp:** Giới thiệu họ đến các đường dây nóng hỗ trợ tâm lý, các chuyên gia tư vấn hoặc bác sĩ tâm thần.\n*   **Đảm bảo an toàn cho họ:** Nếu bạn lo sợ họ có thể tự làm hại bản thân, hãy tìm cách đảm bảo an toàn cho họ (ví dụ: giữ họ ở lại bên cạnh, loại bỏ các vật dụng nguy hiểm).\n\n**Quan trọng:** Bạn không cần phải tự mình giải quyết vấn đề này. Hãy tìm kiếm sự giúp đỡ từ những người có chuyên môn.\n\nNếu bạn hoặc ai đó bạn biết đang gặp khó khăn, đừng ngần ngại liên hệ với các nguồn hỗ trợ sau:\n\n*   **Đường dây nóng phòng chống tự tử:** 1900.5455.558\n*   **Tổng đài tư vấn tâm lý:** 1900.272.272",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc nhận biết dấu hiệu tự sát ở người khác là điều rất khó khăn và nhạy cảm. Tuy nhiên, có một số dấu hiệu bạn có thể lưu ý. Điều quan trọng cần nhớ là không phải ai có những dấu hiệu này cũng có ý định tự tử, nhưng chúng cần được xem xét nghiêm túc.\n\n**Dấu hiệu về lời nói:**\n*   Nói về cái chết, tự tử, hoặc mong muốn mình biến mất.\n*   Thường xuyên than vãn, cảm thấy vô vọng, tuyệt vọng về tương lai.\n*   Thể hiện sự hối hận, cảm thấy mình là gánh nặng cho người khác.\n*   Nói chuyện bi quan, tiêu cực về mọi thứ.\n*   Tìm kiếm thông tin về cách tự tử.\n\n**Dấu hiệu về hành vi:**\n*   Rút lui khỏi bạn bè, gia đình và các hoạt động xã hội.\n*   Thay đổi đáng kể trong thói quen sinh hoạt (ví dụ: ngủ quá nhiều hoặc quá ít, ăn uống thất thường).\n*   Tặng quà hoặc nói lời tạm biệt như thể sắp xảy ra điều gì đó.\n*   Dọn dẹp đồ đạc cá nhân, sắp xếp lại cuộc sống.\n*   Tăng cường sử dụng chất kích thích (rượu, ma túy).\n*   Có hành vi tự làm hại bản thân (ví dụ: cắt xước, đốt cháy).\n\n**Nếu bạn nhận thấy bất kỳ dấu hiệu nào trong số này ở một người, hãy:**\n*   **Trực tiếp hỏi họ:** Đừng ngại hỏi trực tiếp xem họ có đang nghĩ đến việc tự tử hay không. Việc hỏi không khuyến khích họ tự tử, mà thể hiện sự quan tâm và sẵn sàng lắng nghe.\n*   **Lắng nghe một cách chân thành:** Hãy lắng nghe họ mà không phán xét, chỉ trích.\n*   **Thể hiện sự quan tâm và đồng cảm:** Cho họ biết bạn quan tâm đến họ và bạn ở đó để hỗ trợ họ.\n*   **Khuyến khích họ tìm kiếm sự giúp đỡ chuyên nghiệp:** Giới thiệu họ đến các đường dây nóng hỗ trợ tâm lý, các chuyên gia tư vấn hoặc bác sĩ tâm thần.\n*   **Đảm bảo an toàn cho họ:** Nếu bạn lo sợ họ có thể tự làm hại bản thân, hãy tìm cách đảm bảo an toàn cho họ (ví dụ: giữ họ ở lại bên cạnh, loại bỏ các vật dụng nguy hiểm).\n\n**Quan trọng:** Bạn không cần phải tự mình giải quyết vấn đề này. Hãy tìm kiếm sự giúp đỡ từ những người có chuyên môn.\n\nNếu bạn hoặc ai đó bạn biết đang gặp khó khăn, đừng ngần ngại liên hệ với các nguồn hỗ trợ sau:\n\n*   **Đường dây nóng phòng chống tự tử:** 1900.5455.558\n*   **Tổng đài tư vấn tâm lý:** 1900.272.272",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Làm thế nào để nhận biết một người có thể đang có ý định tự sát qua hành vi của họ?",
+    "ground_truth": "Người có ý định tự sát thường thể hiện qua nhiều hành vi khác thường mà nếu quan sát kỹ, ta có thể nhận ra. Họ có thể bắt đầu sắp xếp lại đồ đạc cá nhân, dọn dẹp phòng ốc một cách ngăn nắp bất thường như để “chuẩn bị” cho việc ra đi. Một số người viết nhật ký, thư từ hoặc gửi lại đồ vật, lời nhắn cho người thân như một cách nói lời tạm biệt. Họ cũng có thể mua hoặc tích trữ những vật dụng phục vụ cho việc tự sát. Ngoài ra, sự thay đổi trong các thói quen hằng ngày như ăn uống thất thường, mất ngủ, hoặc ngủ quá nhiều, cùng với xu hướng tự tách mình khỏi xã hội, muốn ở một mình, là những tín hiệu đáng lo ngại. Đôi khi, họ còn có những hành động như thể đang “đền ơn” hay “chuẩn bị kết thúc” một điều gì đó trong cuộc sống, chẳng hạn như chăm sóc cha mẹ, làm việc tốt bất thường. Tất cả những biểu hiện này đều là dấu hiệu cảnh báo sớm cần được quan tâm và can thiệp kịp thời.",
+    "answer": "Việc nhận biết một người có ý định tự sát là vô cùng khó khăn, nhưng có một số dấu hiệu hành vi có thể đáng lo ngại. Điều quan trọng cần nhớ là không phải ai có những dấu hiệu này cũng thực sự có ý định tự tử, nhưng bạn nên thận trọng và hành động nếu bạn lo lắng. \n\nMột số dấu hiệu có thể bao gồm:\n\n*   **Nói về cái chết hoặc tự tử:** Thường xuyên nói về việc muốn chết, cảm thấy cuộc sống vô nghĩa, hoặc bày tỏ mong muốn tự tử.\n*   **Tìm kiếm phương tiện tự tử:** Tìm kiếm thông tin về cách tự tử, mua hoặc thu thập các vật dụng có thể dùng để tự gây thương tích.\n*   **Chia tay với mọi người và rút lui khỏi xã hội:** Từ bỏ bạn bè, gia đình, và các hoạt động xã hội.\n*   **Tặng quà hoặc giải quyết các vấn đề cá nhân:** Như thể họ đang chuẩn bị cho điều gì đó lớn lao.\n*   **Thay đổi hành vi đột ngột:** Trở nên bồn chồn, kích động, hoặc ngược lại, trở nên thờ ơ, không quan tâm đến mọi thứ.\n*   **Cảm thấy tuyệt vọng và bất lực:** Luôn cảm thấy mọi thứ đều tồi tệ và không có lối thoát.\n*   **Tăng cường sử dụng chất kích thích:** Như rượu hoặc ma túy.\n\nNếu bạn nhận thấy bất kỳ dấu hiệu nào trong số này ở một người bạn hoặc người thân, hãy nói chuyện với họ một cách chân thành và thể hiện sự quan tâm của bạn. Đừng ngại hỏi trực tiếp về những suy nghĩ của họ. Quan trọng nhất, hãy khuyến khích họ tìm kiếm sự giúp đỡ chuyên nghiệp từ các chuyên gia tâm lý hoặc đường dây nóng hỗ trợ tự tử. \n\nĐây là một tình huống nhạy cảm, và bạn không nên cố gắng tự mình giải quyết vấn đề. Hãy nhớ rằng bạn không đơn độc và có rất nhiều nguồn lực hỗ trợ sẵn có.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc nhận biết một người có ý định tự sát là vô cùng khó khăn, nhưng có một số dấu hiệu hành vi có thể đáng lo ngại. Điều quan trọng cần nhớ là không phải ai có những dấu hiệu này cũng thực sự có ý định tự tử, nhưng bạn nên thận trọng và hành động nếu bạn lo lắng. \n\nMột số dấu hiệu có thể bao gồm:\n\n*   **Nói về cái chết hoặc tự tử:** Thường xuyên nói về việc muốn chết, cảm thấy cuộc sống vô nghĩa, hoặc bày tỏ mong muốn tự tử.\n*   **Tìm kiếm phương tiện tự tử:** Tìm kiếm thông tin về cách tự tử, mua hoặc thu thập các vật dụng có thể dùng để tự gây thương tích.\n*   **Chia tay với mọi người và rút lui khỏi xã hội:** Từ bỏ bạn bè, gia đình, và các hoạt động xã hội.\n*   **Tặng quà hoặc giải quyết các vấn đề cá nhân:** Như thể họ đang chuẩn bị cho điều gì đó lớn lao.\n*   **Thay đổi hành vi đột ngột:** Trở nên bồn chồn, kích động, hoặc ngược lại, trở nên thờ ơ, không quan tâm đến mọi thứ.\n*   **Cảm thấy tuyệt vọng và bất lực:** Luôn cảm thấy mọi thứ đều tồi tệ và không có lối thoát.\n*   **Tăng cường sử dụng chất kích thích:** Như rượu hoặc ma túy.\n\nNếu bạn nhận thấy bất kỳ dấu hiệu nào trong số này ở một người bạn hoặc người thân, hãy nói chuyện với họ một cách chân thành và thể hiện sự quan tâm của bạn. Đừng ngại hỏi trực tiếp về những suy nghĩ của họ. Quan trọng nhất, hãy khuyến khích họ tìm kiếm sự giúp đỡ chuyên nghiệp từ các chuyên gia tâm lý hoặc đường dây nóng hỗ trợ tự tử. \n\nĐây là một tình huống nhạy cảm, và bạn không nên cố gắng tự mình giải quyết vấn đề. Hãy nhớ rằng bạn không đơn độc và có rất nhiều nguồn lực hỗ trợ sẵn có.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Liệu một người từng có ý định tự sát có thể hồi phục và sống tích cực trở lại không?",
+    "ground_truth": "Nhiều người từng có ý định tự sát đã hồi phục nhờ nhận được sự hỗ trợ kịp thời và đúng cách. Khi được trị liệu tâm lý, sử dụng thuốc theo hướng dẫn (nếu cần), và đặc biệt là có sự thấu hiểu, yêu thương từ gia đình, bạn bè, họ dần lấy lại niềm tin, cảm giác được kết nối và ý nghĩa sống. Quá trình này không diễn ra trong ngày một ngày hai, nhưng với sự đồng hành kiên nhẫn và môi trường tích cực, người từng có ý định tự sát hoàn toàn có thể vượt qua khủng hoảng, sống mạnh mẽ và tìm lại hạnh phúc cho mình.",
+    "answer": "Việc một người từng có ý định tự sát có thể hồi phục và sống tích cực trở lại là hoàn toàn có thể, nhưng đòi hỏi thời gian, sự hỗ trợ và nỗ lực. Quá trình hồi phục có thể rất khó khăn và không tuyến tính, với những thăng trầm khác nhau. \n\nCó nhiều yếu tố ảnh hưởng đến khả năng hồi phục, bao gồm mức độ nghiêm trọng của ý định tự sát, các vấn đề sức khỏe tâm thần tiềm ẩn (như trầm cảm, rối loạn lo âu, rối loạn lưỡng cực), sự hỗ trợ từ gia đình và bạn bè, cũng như việc tiếp cận các phương pháp điều trị phù hợp. \n\nCác phương pháp điều trị thường được sử dụng bao gồm liệu pháp tâm lý (như liệu pháp nhận thức hành vi - CBT, liệu pháp tâm động), thuốc (như thuốc chống trầm cảm, thuốc chống lo âu), và các chương trình hỗ trợ phục hồi. \n\nĐiều quan trọng là người từng có ý định tự sát cần được theo dõi và hỗ trợ liên tục để ngăn ngừa tái phát. Nếu bạn hoặc ai đó bạn biết đang trải qua những suy nghĩ tương tự, hãy tìm kiếm sự giúp đỡ từ các chuyên gia sức khỏe tâm thần hoặc liên hệ với các đường dây nóng hỗ trợ tự tử.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Việc một người từng có ý định tự sát có thể hồi phục và sống tích cực trở lại là hoàn toàn có thể, nhưng đòi hỏi thời gian, sự hỗ trợ và nỗ lực. Quá trình hồi phục có thể rất khó khăn và không tuyến tính, với những thăng trầm khác nhau. \n\nCó nhiều yếu tố ảnh hưởng đến khả năng hồi phục, bao gồm mức độ nghiêm trọng của ý định tự sát, các vấn đề sức khỏe tâm thần tiềm ẩn (như trầm cảm, rối loạn lo âu, rối loạn lưỡng cực), sự hỗ trợ từ gia đình và bạn bè, cũng như việc tiếp cận các phương pháp điều trị phù hợp. \n\nCác phương pháp điều trị thường được sử dụng bao gồm liệu pháp tâm lý (như liệu pháp nhận thức hành vi - CBT, liệu pháp tâm động), thuốc (như thuốc chống trầm cảm, thuốc chống lo âu), và các chương trình hỗ trợ phục hồi. \n\nĐiều quan trọng là người từng có ý định tự sát cần được theo dõi và hỗ trợ liên tục để ngăn ngừa tái phát. Nếu bạn hoặc ai đó bạn biết đang trải qua những suy nghĩ tương tự, hãy tìm kiếm sự giúp đỡ từ các chuyên gia sức khỏe tâm thần hoặc liên hệ với các đường dây nóng hỗ trợ tự tử.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Khi nào một người cần tìm đến sự giúp đỡ chuyên nghiệp khi có ý nghĩ tự sát?",
+    "ground_truth": "Khi bạn hoặc ai đó bắt đầu có những suy nghĩ về cái chết, cảm thấy tuyệt vọng, bế tắc, mất ý nghĩa sống, hoặc có hành vi chuẩn bị cho việc tự sát (như viết thư tuyệt mệnh, sắp xếp đồ đạc, rút khỏi các mối quan hệ), đó là lúc cần tìm đến sự giúp đỡ chuyên nghiệp ngay lập tức. Hãy liên hệ với chuyên gia tâm lý, bác sĩ tâm thần, hoặc đường dây nóng hỗ trợ khẩn cấp. Việc chia sẻ sớm và nhận hỗ trợ đúng lúc có thể cứu sống một mạng người và mở ra cơ hội hồi phục, tìm lại hy vọng trong cuộc sống.",
+    "answer": "Nếu bạn đang có những ý nghĩ tự sát, điều quan trọng là phải biết bạn không đơn độc và có sự giúp đỡ. Việc tìm kiếm sự hỗ trợ chuyên nghiệp là vô cùng cần thiết. Dưới đây là một số dấu hiệu cho thấy một người có thể cần sự giúp đỡ chuyên nghiệp: \n\n*   **Nói về cái chết hoặc tự tử:** Thường xuyên nói về mong muốn chết, cảm thấy cuộc sống không còn ý nghĩa, hoặc lên kế hoạch cho việc tự tử.\n*   **Cảm thấy tuyệt vọng:** Cảm thấy không còn hy vọng, mọi thứ đều tồi tệ và không có lối thoát.\n*   **Rút lui khỏi xã hội:** Tránh xa bạn bè, gia đình và các hoạt động thường ngày.\n*   **Thay đổi hành vi:** Có những thay đổi đột ngột trong hành vi, chẳng hạn như trở nên hung hăng, dễ kích động hoặc lơ là bản thân.\n*   **Tặng đồ đạc giá trị:** Có thể tặng những đồ vật có giá trị cho người khác, như thể họ sắp phải chia tay vĩnh viễn.\n*   **Tìm kiếm phương tiện tự tử:** Tìm kiếm thông tin về cách tự tử hoặc chuẩn bị các phương tiện để tự tử.\n\nNếu bạn hoặc ai đó bạn biết đang trải qua những điều này, hãy liên hệ ngay với đường dây nóng hỗ trợ tâm lý hoặc tìm kiếm sự giúp đỡ từ chuyên gia sức khỏe tâm thần. Bạn có thể tìm thấy thông tin liên hệ tại các nguồn sau:\n\n*   **Đường dây nóng phòng chống tự tử:** [Số điện thoại đường dây nóng phòng chống tự tử tại Việt Nam]\n*   **Các chuyên gia sức khỏe tâm thần:** Tìm kiếm các bác sĩ tâm thần, nhà tâm lý học hoặc chuyên gia tư vấn tâm lý có giấy phép.\n*   **Người thân, bạn bè:** Chia sẻ cảm xúc của bạn với những người bạn tin tưởng.\n\nHãy nhớ rằng, sự giúp đỡ luôn có sẵn và bạn xứng đáng được sống một cuộc sống hạnh phúc.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Nếu bạn đang có những ý nghĩ tự sát, điều quan trọng là phải biết bạn không đơn độc và có sự giúp đỡ. Việc tìm kiếm sự hỗ trợ chuyên nghiệp là vô cùng cần thiết. Dưới đây là một số dấu hiệu cho thấy một người có thể cần sự giúp đỡ chuyên nghiệp: \n\n*   **Nói về cái chết hoặc tự tử:** Thường xuyên nói về mong muốn chết, cảm thấy cuộc sống không còn ý nghĩa, hoặc lên kế hoạch cho việc tự tử.\n*   **Cảm thấy tuyệt vọng:** Cảm thấy không còn hy vọng, mọi thứ đều tồi tệ và không có lối thoát.\n*   **Rút lui khỏi xã hội:** Tránh xa bạn bè, gia đình và các hoạt động thường ngày.\n*   **Thay đổi hành vi:** Có những thay đổi đột ngột trong hành vi, chẳng hạn như trở nên hung hăng, dễ kích động hoặc lơ là bản thân.\n*   **Tặng đồ đạc giá trị:** Có thể tặng những đồ vật có giá trị cho người khác, như thể họ sắp phải chia tay vĩnh viễn.\n*   **Tìm kiếm phương tiện tự tử:** Tìm kiếm thông tin về cách tự tử hoặc chuẩn bị các phương tiện để tự tử.\n\nNếu bạn hoặc ai đó bạn biết đang trải qua những điều này, hãy liên hệ ngay với đường dây nóng hỗ trợ tâm lý hoặc tìm kiếm sự giúp đỡ từ chuyên gia sức khỏe tâm thần. Bạn có thể tìm thấy thông tin liên hệ tại các nguồn sau:\n\n*   **Đường dây nóng phòng chống tự tử:** [Số điện thoại đường dây nóng phòng chống tự tử tại Việt Nam]\n*   **Các chuyên gia sức khỏe tâm thần:** Tìm kiếm các bác sĩ tâm thần, nhà tâm lý học hoặc chuyên gia tư vấn tâm lý có giấy phép.\n*   **Người thân, bạn bè:** Chia sẻ cảm xúc của bạn với những người bạn tin tưởng.\n\nHãy nhớ rằng, sự giúp đỡ luôn có sẵn và bạn xứng đáng được sống một cuộc sống hạnh phúc.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Làm thế nào để giúp đỡ một người đang có ý định tự sát?",
+    "ground_truth": "Hãy bắt đầu bằng việc lắng nghe họ với sự cảm thông và không phán xét. Đôi khi, điều họ cần nhất là cảm giác được thấu hiểu. Bạn nên khuyến khích họ nói ra cảm xúc, chia sẻ với người thân, bạn bè tin cậy hoặc chuyên gia tâm lý. Tuyệt đối không xem nhẹ hay chế giễu những lời họ nói về cái chết. Nếu nhận thấy nguy cơ tự sát cấp bách, hãy báo ngay cho gia đình, giáo viên, hoặc cơ quan y tế gần nhất để được can thiệp kịp thời. Việc bạn quan tâm và hành động đúng lúc có thể cứu họ khỏi một quyết định mãi mãi.",
+    "answer": "Đây là một tình huống rất nghiêm trọng và cần được xử lý ngay lập tức. Nếu bạn đang lo lắng cho một người có ý định tự sát, điều quan trọng nhất là phải hành động nhanh chóng và cung cấp sự hỗ trợ cần thiết. \n\n**Đây không phải là một vấn đề bạn có thể giải quyết một mình.** Hãy khuyến khích người đó tìm kiếm sự giúp đỡ chuyên nghiệp ngay lập tức. Dưới đây là một số bước bạn có thể thực hiện:\n\n1. **Giữ bình tĩnh:** Điều này rất quan trọng để bạn có thể hỗ trợ người đó một cách hiệu quả.\n2. **Lắng nghe:** Hãy lắng nghe những gì người đó đang trải qua mà không phán xét. Cho họ biết bạn quan tâm và sẵn sàng giúp đỡ.\n3. **Hỏi trực tiếp:** Đừng ngại hỏi trực tiếp về ý định tự sát của họ. Việc hỏi không khuyến khích mà còn cho phép bạn đánh giá mức độ nguy hiểm.\n4. **Đảm bảo an toàn:** Nếu bạn lo sợ người đó có thể tự làm hại bản thân, hãy đảm bảo họ không ở một mình và loại bỏ bất kỳ vật dụng nguy hiểm nào xung quanh.\n5. **Tìm kiếm sự giúp đỡ chuyên nghiệp:** Gọi ngay cho đường dây nóng hỗ trợ tâm lý hoặc đưa người đó đến bệnh viện hoặc trung tâm sức khỏe tâm thần gần nhất.\n\n**Các nguồn hỗ trợ bạn có thể liên hệ:**\n\n*   **Đường dây nóng phòng chống tự tử:** [Số điện thoại đường dây nóng ở Việt Nam]\n*   **Bệnh viện Tâm thần:** [Địa chỉ bệnh viện tâm thần gần nhất]\n*   **Trung tâm sức khỏe tâm thần:** [Địa chỉ trung tâm sức khỏe tâm thần gần nhất]\n\n**Xin lưu ý:** Tôi là một trợ lý AI và không thể cung cấp tư vấn chuyên môn. Thông tin này chỉ mang tính chất tham khảo. Việc tìm kiếm sự giúp đỡ chuyên nghiệp là vô cùng quan trọng trong tình huống này.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Đây là một tình huống rất nghiêm trọng và cần được xử lý ngay lập tức. Nếu bạn đang lo lắng cho một người có ý định tự sát, điều quan trọng nhất là phải hành động nhanh chóng và cung cấp sự hỗ trợ cần thiết. \n\n**Đây không phải là một vấn đề bạn có thể giải quyết một mình.** Hãy khuyến khích người đó tìm kiếm sự giúp đỡ chuyên nghiệp ngay lập tức. Dưới đây là một số bước bạn có thể thực hiện:\n\n1. **Giữ bình tĩnh:** Điều này rất quan trọng để bạn có thể hỗ trợ người đó một cách hiệu quả.\n2. **Lắng nghe:** Hãy lắng nghe những gì người đó đang trải qua mà không phán xét. Cho họ biết bạn quan tâm và sẵn sàng giúp đỡ.\n3. **Hỏi trực tiếp:** Đừng ngại hỏi trực tiếp về ý định tự sát của họ. Việc hỏi không khuyến khích mà còn cho phép bạn đánh giá mức độ nguy hiểm.\n4. **Đảm bảo an toàn:** Nếu bạn lo sợ người đó có thể tự làm hại bản thân, hãy đảm bảo họ không ở một mình và loại bỏ bất kỳ vật dụng nguy hiểm nào xung quanh.\n5. **Tìm kiếm sự giúp đỡ chuyên nghiệp:** Gọi ngay cho đường dây nóng hỗ trợ tâm lý hoặc đưa người đó đến bệnh viện hoặc trung tâm sức khỏe tâm thần gần nhất.\n\n**Các nguồn hỗ trợ bạn có thể liên hệ:**\n\n*   **Đường dây nóng phòng chống tự tử:** [Số điện thoại đường dây nóng ở Việt Nam]\n*   **Bệnh viện Tâm thần:** [Địa chỉ bệnh viện tâm thần gần nhất]\n*   **Trung tâm sức khỏe tâm thần:** [Địa chỉ trung tâm sức khỏe tâm thần gần nhất]\n\n**Xin lưu ý:** Tôi là một trợ lý AI và không thể cung cấp tư vấn chuyên môn. Thông tin này chỉ mang tính chất tham khảo. Việc tìm kiếm sự giúp đỡ chuyên nghiệp là vô cùng quan trọng trong tình huống này.",
+        "sources": null,
+        "error": null
+      }
+    }
+  },
+  {
+    "question": "Có phải người nói về tự sát thật ra không muốn chết?",
+    "ground_truth": "Không hoàn toàn như vậy. Phần lớn những người nói về tự sát không thực sự muốn kết thúc cuộc sống, mà họ muốn chấm dứt nỗi đau đang phải chịu đựng. Họ thường gửi đi những tín hiệu gián tiếp như: “Giá mà mình biến mất”, “Ước gì có thể ngủ mãi”, hay “Mọi người sẽ tốt hơn nếu không có mình”. Những lời này không nên xem nhẹ, vì đó là lời kêu cứu thể hiện họ đang tuyệt vọng và cần được quan tâm, lắng nghe và hỗ trợ kịp thời.",
+    "answer": "Câu hỏi của bạn rất quan trọng. Việc một người nói về tự sát có thực sự muốn chết hay không là một vấn đề phức tạp và không thể xác định chỉ dựa trên một câu nói. Đôi khi, những người đang trải qua khủng hoảng có thể sử dụng những câu nói như vậy để thu hút sự chú ý hoặc thể hiện sự tuyệt vọng. Tuy nhiên, điều quan trọng là phải luôn nghiêm túc lắng nghe và thể hiện sự quan tâm đến cảm xúc của họ. \n\nNếu bạn hoặc ai đó bạn biết đang có những suy nghĩ về tự tử, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Có rất nhiều nguồn lực hỗ trợ sẵn có, bao gồm các đường dây nóng tư vấn, chuyên gia tâm lý và người thân, bạn bè. Bạn có thể liên hệ với các tổ chức sau:\n\n* **Tổng đài 1900-545577 (Đường dây nóng phòng chống tự tử):**  Cung cấp hỗ trợ 24/7.\n* **Các chuyên gia tâm lý:** Có thể giúp bạn hiểu rõ hơn về những cảm xúc của mình và tìm ra giải pháp phù hợp.\n* **Người thân, bạn bè:** Chia sẻ với những người bạn tin tưởng có thể giúp bạn cảm thấy bớt cô đơn và nhận được sự hỗ trợ cần thiết.",
+    "contexts": [],
+    "metadata": {
+      "selected_agent": null,
+      "raw_response": {
+        "selected_agent": null,
+        "response": "Câu hỏi của bạn rất quan trọng. Việc một người nói về tự sát có thực sự muốn chết hay không là một vấn đề phức tạp và không thể xác định chỉ dựa trên một câu nói. Đôi khi, những người đang trải qua khủng hoảng có thể sử dụng những câu nói như vậy để thu hút sự chú ý hoặc thể hiện sự tuyệt vọng. Tuy nhiên, điều quan trọng là phải luôn nghiêm túc lắng nghe và thể hiện sự quan tâm đến cảm xúc của họ. \n\nNếu bạn hoặc ai đó bạn biết đang có những suy nghĩ về tự tử, xin đừng ngần ngại tìm kiếm sự giúp đỡ. Có rất nhiều nguồn lực hỗ trợ sẵn có, bao gồm các đường dây nóng tư vấn, chuyên gia tâm lý và người thân, bạn bè. Bạn có thể liên hệ với các tổ chức sau:\n\n* **Tổng đài 1900-545577 (Đường dây nóng phòng chống tự tử):**  Cung cấp hỗ trợ 24/7.\n* **Các chuyên gia tâm lý:** Có thể giúp bạn hiểu rõ hơn về những cảm xúc của mình và tìm ra giải pháp phù hợp.\n* **Người thân, bạn bè:** Chia sẻ với những người bạn tin tưởng có thể giúp bạn cảm thấy bớt cô đơn và nhận được sự hỗ trợ cần thiết.",
+        "sources": null,
+        "error": null
+      }
+    }
+  }
+]

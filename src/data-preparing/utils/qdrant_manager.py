@@ -28,7 +28,7 @@ class QdrantManager:
             # Khởi tạo client
             self.client = QdrantClient(
                 url=Config.QDRANT_URL,
-                api_key=Config.QDRANT_API_KEY if Config.QDRANT_API_KEY else None
+                api_key=Config.QDRANT_API_KEY if Config.QDRANT_API_KEY else None,
             )
             
             self.collection_name = Config.COLLECTION_NAME
