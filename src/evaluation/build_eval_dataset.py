@@ -15,6 +15,11 @@ import time
 import uuid
 from pathlib import Path
 from typing import List, Dict, Any
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 import requests
 
@@ -82,7 +87,9 @@ def build_dataset(
     """Iterate QA list, query orchestrator, return evaluation entries."""
     results = []
     for item in qa_pairs:
+        logging.info(f"Processing Q{item['id']}: {item['question'][:50]}...")
         response = call_orchestrator(item["question"], orchestrator_url)
+        logging.info(f"Received response for Q{item['id']}")
         answer = response.get("response") or response.get("direct_response") or ""
         contexts = response.get("sources") or []
         results.append(
