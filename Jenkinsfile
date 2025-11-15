@@ -1,43 +1,137 @@
 pipeline {
-    agent any
+  agent none
 
-    stages {
+  stages {
 
-        stage('Build orchestrator-agent') {
-            agent {
-                docker {
-                    image 'python:3.13-slim'
-                    args '-u root'
-                }
-            }
-            steps {
-                dir('src/agents/orchestrator-agent') {
-                    sh """
-                        pip install --no-cache-dir uv==0.9.3
-                        uv pip install --no-cache-dir -r pyproject.toml
-                        uv run .
-                    """
-                }
-            }
+    stage('Test orchestrator-agent') {
+      agent {
+        kubernetes {
+          yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: python
+    image: python:3.13-slim
+    command:
+    - cat
+    tty: true
+"""
         }
-
-        stage('Build rag-agent') {
-            agent {
-                docker {
-                    image 'python:3.13-slim'
-                    args '-u root'
-                }
-            }
-            steps {
-                dir('src/agents/rag-agent') {
-                    sh """
-                        pip install --no-cache-dir uv==0.9.3
-                        uv pip install --no-cache-dir -r pyproject.toml
-                        uv run .
-                    """
-                }
-            }
+      }
+      steps {
+        container('python') {
+          dir('src/agents/orchestrator-agent') {
+            sh """
+              pip install --no-cache-dir uv==0.9.3
+              uv pip install --no-cache-dir -r pyproject.toml
+              
+              echo "⚡ Running tests..."
+              uv run pytest -q || exit 1
+            """
+          }
         }
-
+      }
     }
+
+    stage('Test rag-agent') {
+      agent {
+        kubernetes {
+          yaml """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: python
+    image: python:3.13-slim
+    command:
+    - cat
+    tty: true
+"""
+        }
+      }
+      steps {
+        container('python') {
+          dir('src/agents/rag-agent') {
+            sh """
+              pip install --no-cache-dir uv==0.9.3
+              uv pip install --no-cache-dir -r pyproject.toml
+
+              echo "⚡ Running tests..."
+              uv run pytest -q || exit 1
+            """
+          }
+        }
+      }
+    }
+
+    stage('Build orchestrator-agent') {
+      when {
+        expression { currentBuild.currentResult == 'SUCCESS' }
+      }
+      agent {
+        kubernetes {
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            spec:
+            containers:
+            - name: python
+                image: python:3.13-slim
+                command:
+                - cat
+                tty: true
+            """
+        }
+      }
+      steps {
+        container('python') {
+          dir('src/agents/orchestrator-agent') {
+            sh """
+              pip install --no-cache-dir uv==0.9.3
+              uv pip install --no-cache-dir -r pyproject.toml
+
+              echo "⚡ Running orchestrator agent build..."
+              uv run .
+            """
+          }
+        }
+      }
+    }
+
+    stage('Build rag-agent') {
+      when {
+        expression { currentBuild.currentResult == 'SUCCESS' }
+      }
+      agent {
+        kubernetes {
+          yaml """
+          apiVersion: v1
+            kind: Pod
+            spec:
+            containers:
+            - name: python
+                image: python:3.13-slim
+                command:
+                - cat
+                tty: true
+            """
+        }
+      }
+      steps {
+        container('python') {
+          dir('src/agents/rag-agent') {
+            sh """
+              pip install --no-cache-dir uv==0.9.3
+              uv pip install --no-cache-dir -r pyproject.toml
+
+              echo "⚡ Running rag agent build..."
+              uv run .
+            """
+          }
+        }
+      }
+    }
+
+  }
 }
