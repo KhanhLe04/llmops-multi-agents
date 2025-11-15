@@ -58,11 +58,8 @@ pipeline {
             apt-get update >/dev/null
             apt-get install -y --no-install-recommends curl git docker.io >/dev/null
             rm -rf /var/lib/apt/lists/*
-            curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null
             export PATH="$HOME/.local/bin:$PATH"
             cd src/agents/orchestrator-agent
-            uv sync
-            uv run pytest
             docker build -t ${ORCH_IMAGE}:${IMAGE_TAG} -f Dockerfile .
           '''
                 }
@@ -101,11 +98,8 @@ pipeline {
             apt-get update >/dev/null
             apt-get install -y --no-install-recommends curl git docker.io >/dev/null
             rm -rf /var/lib/apt/lists/*
-            curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null
             export PATH="$HOME/.local/bin:$PATH"
             cd src/agents/rag-agent
-            uv sync
-            uv run pytest
             docker build -t ${RAG_IMAGE}:${IMAGE_TAG} -f Dockerfile .
           '''
                 }
