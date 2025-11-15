@@ -4,9 +4,9 @@ pipeline {
     environment {
         DOCKER_CREDS = credentials('docker-registry-creds')
         REGISTRY_URL = 'docker.io'
-        ORCH_IMAGE = ""
-        RAG_IMAGE  = ""
-        IMAGE_TAG  = ""
+        ORCH_IMAGE = "orchestrator-agent"
+        RAG_IMAGE  = "rag-agent"
+        IMAGE_TAG  = "ci-${BUILD_NUMBER}"
         TAG_FROM_GIT = ""
     }
 
