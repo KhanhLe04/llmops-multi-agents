@@ -1,34 +1,70 @@
 pipeline {
     agent none
 
+    environment {
+        DOCKER_CREDS = credentials('docker-registry-creds')
+        REGISTRY_URL = 'docker.io'
+        ORCH_IMAGE = ""
+        RAG_IMAGE  = ""
+        IMAGE_TAG  = ""
+        TAG_FROM_GIT = ""
+    }
+
     stages {
+        stage('Checkout') {
+            agent any
+            steps {
+                checkout scm
+                script {
+                    env.IMAGE_TAG = sh(returnStdout: true,
+              script: 'git rev-parse --short HEAD').trim()
+                    env.TAG_FROM_GIT = sh(returnStdout: true,
+              script: 'git describe --tags --exact-match || true').trim()
+                    env.ORCH_IMAGE = "${DOCKER_CREDS_USR}/orchestrator-agent"
+                    env.RAG_IMAGE  = "${DOCKER_CREDS_USR}/rag-agent"
+                }
+            }
+        }
 
         stage('Test orchestrator-agent') {
             agent {
                 kubernetes {
-                    yaml '''
+                    defaultContainer 'python'
+                    yaml """
                     apiVersion: v1
                     kind: Pod
                     spec:
-                    containers:
-                    - name: python
-                        image: python:3.13-slim
-                        command:
-                        - cat
-                        tty: true
-                    '''
+                      restartPolicy: Never
+                      containers:
+                        - name: python
+                          image: python:3.13-slim
+                          command:
+                            - cat
+                          tty: true
+                          volumeMounts:
+                            - name: docker-sock
+                              mountPath: /var/run/docker.sock
+                      volumes:
+                        - name: docker-sock
+                          hostPath:
+                            path: /var/run/docker.sock
+                    """
                 }
             }
             steps {
                 container('python') {
-                    dir('src/agents/orchestrator-agent') {
-                        sh '''
-                          pip install --no-cache-dir uv==0.9.3
-                          uv pip install --no-cache-dir -r pyproject.toml
-                          echo "⚡ Running tests..."
-                          uv run pytest -q || exit 1
-                        '''
-                    }
+                    sh '''
+            set -euo pipefail
+            apt-get update >/dev/null
+            apt-get install -y --no-install-recommends curl git docker.io >/dev/null
+            rm -rf /var/lib/apt/lists/*
+            curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null
+            export PATH="$HOME/.local/bin:$PATH"
+            cd src/agents/orchestrator-agent
+            uv sync
+            uv run pytest
+            docker build -t ${ORCH_IMAGE}:${IMAGE_TAG} -f Dockerfile .
+          '''
                 }
             }
         }
@@ -36,34 +72,92 @@ pipeline {
         stage('Test rag-agent') {
             agent {
                 kubernetes {
-                    yaml '''
+                    defaultContainer 'python'
+                    yaml """
                     apiVersion: v1
                     kind: Pod
                     spec:
-                    containers:
-                    - name: python
-                        image: python:3.13-slim
-                        command:
-                        - cat
-                        tty: true
-                    '''
+                      restartPolicy: Never
+                      containers:
+                        - name: python
+                          image: python:3.13-slim
+                          command:
+                            - cat
+                          tty: true
+                          volumeMounts:
+                            - name: docker-sock
+                              mountPath: /var/run/docker.sock
+                      volumes:
+                        - name: docker-sock
+                          hostPath:
+                            path: /var/run/docker.sock
+                    """
                 }
             }
             steps {
                 container('python') {
-                    dir('src/agents/rag-agent') {
-                        sh '''
-                        pip install --no-cache-dir uv==0.9.3
-                        uv venv
-                        source .venv/bin/activate
-                        uv pip install --no-cache-dir -r pyproject.toml
-
-                        echo "⚡ Running tests..."
-                        uv run pytest -q || exit 1
-                        '''
-                    }
+                    sh '''
+            set -euo pipefail
+            apt-get update >/dev/null
+            apt-get install -y --no-install-recommends curl git docker.io >/dev/null
+            rm -rf /var/lib/apt/lists/*
+            curl -LsSf https://astral.sh/uv/install.sh | sh >/dev/null
+            export PATH="$HOME/.local/bin:$PATH"
+            cd src/agents/rag-agent
+            uv sync
+            uv run pytest
+            docker build -t ${RAG_IMAGE}:${IMAGE_TAG} -f Dockerfile .
+          '''
                 }
             }
+        }
+
+        stage('Tag & Push images (on git tag)') {
+            when {
+                expression { env.TAG_FROM_GIT?.trim() }
+            }
+            agent {
+                kubernetes {
+                    defaultContainer 'docker'
+                    yaml """
+                    apiVersion: v1
+                    kind: Pod
+                    spec:
+                      restartPolicy: Never
+                      containers:
+                        - name: docker
+                          image: docker:24.0.7
+                          command:
+                            - cat
+                          tty: true
+                          volumeMounts:
+                            - name: docker-sock
+                              mountPath: /var/run/docker.sock
+                      volumes:
+                        - name: docker-sock
+                          hostPath:
+                            path: /var/run/docker.sock
+                    """
+                }
+            }
+            steps {
+                container('docker') {
+                    sh """
+            echo ${DOCKER_CREDS_PSW} | docker login ${REGISTRY_URL} \
+              -u ${DOCKER_CREDS_USR} --password-stdin
+            docker tag ${ORCH_IMAGE}:${IMAGE_TAG} ${ORCH_IMAGE}:${TAG_FROM_GIT}
+            docker tag ${RAG_IMAGE}:${IMAGE_TAG} ${RAG_IMAGE}:${TAG_FROM_GIT}
+            docker push ${ORCH_IMAGE}:${TAG_FROM_GIT}
+            docker push ${RAG_IMAGE}:${TAG_FROM_GIT}
+          """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
